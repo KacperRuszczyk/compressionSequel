@@ -50,6 +50,8 @@ if page1:
 if page2:
     st.dataframe(resultDataFrame())
 
+print("testtest")
+
 if page3:
     st.subheader("You won't be able to nest any other widgets after using the button!")
     st.subheader("The memory of a button click lasts only 1 script run")
