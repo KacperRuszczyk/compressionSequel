@@ -1,19 +1,47 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 
+import my_functions
+
+uploaded_file = st.file_uploader("Upload your file here...", type=['csv'])
 
 path = 'E:\Py\Data\wyniki1.csv'
 
-def loadData(path):
-    data = pd.read_csv( path , sep = ',')
-    data['CompressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
-    return data
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-data = loadData(path)
+methodes_used = []
 
+with col1:
+    one_check = st.checkbox('Gzip')
+    if one_check:
+        methodes_used.append('Gzip')        
+with col2:
+    two_check = st.checkbox('L4')
+    if two_check:
+        methodes_used.append('L4')        
+with col3:
+    three_check = st.checkbox('Xz')
+    if three_check:
+        methodes_used.append('Xz') 
+with col1:
+    four_check = st.checkbox('Gzip 2')
+    if four_check:
+        methodes_used.append('Gzip 2')        
+with col2:
+    five_check = st.checkbox('L4 2')
+    if five_check:
+        methodes_used.append('L4 2')        
+with col3:
+    six_check = st.checkbox('Xz 2')
+    if six_check:
+        methodes_used.append('Xz 2')        
+
+
+
+st.markdown(f''' :red[methodes used:] :rainbow[{str(methodes_used)}]''')
+
+data = my_functions.loadData(uploaded_file)
 averageTime = data['compressionTime'].mean()
 unique_methods = list(set(data['method']))
 
@@ -23,47 +51,11 @@ meanDecompressionTime = []
 
 for method in unique_methods:
     mask = data['method'] == method
-    meanCompressionFactor.append(data['CompressionFactor'][mask].mean())
+    meanCompressionFactor.append(data['compressionFactor'][mask].mean())
     meanCompressionTime.append(data['compressionTime'][mask].mean())
     meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
-def resultDataFrame():
-    result = pd.DataFrame({
-        'Method': unique_methods,
-        'Compression Factor': meanCompressionFactor,
-        'Compression Time (s)': meanCompressionTime,
-        'Decompression Time (s)': meanDecompressionTime})
-    return result
 
-def secGraph(data):
-    
-    colors_dict = {
-    "gzip": "yellow",
-    "gzip -v9": "red",
-    "gzip -v1": "blue",
-    "pigz": "green",
-    "bzip2": "purple",
-    "pbzip2": "orange",
-    "lz4": "pink",
-    "lz4 -12": "gray",
-    "lzip": "brown",
-    "plzip": "olive",
-    "plzip -9": "cyan",
-    "xz": "magenta",
-    "zstd": "teal",
-    "zstd -19 -T0": "navy"}
-    
-    legend = [mpatches.Patch(color=color, label=label) for label, color in colors_dict.items()]
-    colors = [colors_dict[m] for m in data['method']]
-    fig = plt.figure(figsize=(12,10))
-    plt.xticks(fontsize=14)
-    plt.yticks(fontsize=14)
-    plt.scatter(data['compressionTime'], data['CompressionFactor'], c=colors, s=data['decompressionTime']*50, alpha = 0.5)
-    plt.xlabel('Czas kompresji (s)', fontsize=17)
-    plt.ylabel('Współczynnik kompresji (%)', fontsize=17)
-    plt.title('Wykres czasu kompresji i współczynnika kompresji')
-    plt.legend(handles=legend)
-    return fig
 
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
@@ -85,8 +77,8 @@ if page1:
 
 if page2:
     st.title('Data Frame')
-    st.dataframe(resultDataFrame())
+    st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
 
 if page3:
     st.title('OG Graph ')
-    st.pyplot(secGraph(data))
+    st.pyplot(my_functions.Graph_with_dots(data))
