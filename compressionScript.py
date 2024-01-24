@@ -3,7 +3,7 @@ import os
 import time
 
 # cmop / decomp
-metodes = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
+methods = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
 decopm_metodes = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
 
 # Data variables
@@ -27,16 +27,16 @@ i = 0
 
 
 
-for metode in metodes:
+for method in methods:
     for file_name in os.listdir(data_dir):
         path_with_file_name = os.path.join(data_dir, file_name)
         
         files.append(file_name) #1
-        comp_metode.append(metode) #2
+        comp_metode.append(method) #2
         file_size.append(os.system("ls -l $path_with_file_name | awk '{print $5}'")) #3
         
         start_time = time.time()    
-        os.system("$metode $path_with_file_name")
+        os.system("$method $path_with_file_name")
         end_time = time.time()
         comp_time.append(end_time - start_time) #4
         

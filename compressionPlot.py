@@ -6,7 +6,7 @@ import my_functions
 
 uploaded_file = st.file_uploader("Upload your file here...", type=['csv'])
 
-path = 'E:\Py\Data\wyniki1.csv'
+PATH = 'E:\Py\Data\wyniki1.csv'
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
