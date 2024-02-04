@@ -85,5 +85,7 @@ if page3:
     st.pyplot(my_functions.Graph_with_dots(data))
     
     
-yes = os.getcwd()
-st.markdown({yes})
+os.getcwd()
+os.listdir()
+os.mkdir("New Folder")
+os.listdir()
