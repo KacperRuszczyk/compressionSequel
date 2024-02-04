@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import os
+import subprocess
 
 import my_functions
 
@@ -87,5 +88,8 @@ if page3:
     
 st.markdown(os.getcwd())
 st.markdown(os.listdir())
-os.mkdir("New Folder")
+
 st.markdown(os.listdir())
+
+yes = subprocess.run(['bash', '-c', 'compgen -c | grep -iE "zip|gzip|bzip2|xz"'], stdout=subprocess.PIPE, text=True)
+st.markdown({yes})
