@@ -14,9 +14,9 @@ col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 methods_used = []
 
 with col1:
-    one_check = st.checkbox('Gzip')
+    one_check = st.checkbox('Gzipp')
     if one_check:
-        methods_used.append('Gzip')        
+        methods_used.append('Gzipp')        
 with col2:
     two_check = st.checkbox('L4')
     if two_check:
