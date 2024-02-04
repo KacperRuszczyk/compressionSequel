@@ -42,7 +42,7 @@ with col3:
 
 st.markdown(f''' :red[methods used:] :gray[{str(methods_used)}]''')
 
-data = my_functions.loadData(PATH)
+data = my_functions.loadData(uploaded_file)
 averageTime = data['compressionTime'].mean()
 unique_methods = list(set(data['method']))
 
