@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import pandas as pd
 
-def load_data(PATH):
-    data = pd.read_csv( PATH , sep = ',')
+def loadData(path):
+    data = pd.read_csv( path , sep = ',')
     data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
     return data
 

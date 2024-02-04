@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
 import pandas as pd
+import os
 
 import my_functions
 
@@ -10,38 +11,38 @@ PATH = 'E:\Py\Data\wyniki1.csv'
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-methodes_used = []
+methods_used = []
 
 with col1:
     one_check = st.checkbox('Gzip')
     if one_check:
-        methodes_used.append('Gzip')        
+        methods_used.append('Gzip')        
 with col2:
     two_check = st.checkbox('L4')
     if two_check:
-        methodes_used.append('L4')        
+        methods_used.append('L4')        
 with col3:
     three_check = st.checkbox('Xz')
     if three_check:
-        methodes_used.append('Xz') 
+        methods_used.append('Xz') 
 with col1:
     four_check = st.checkbox('Gzip 2')
     if four_check:
-        methodes_used.append('Gzip 2')        
+        methods_used.append('Gzip 2')        
 with col2:
     five_check = st.checkbox('L4 2')
     if five_check:
-        methodes_used.append('L4 2')        
+        methods_used.append('L4 2')        
 with col3:
     six_check = st.checkbox('Xz 2')
     if six_check:
-        methodes_used.append('Xz 2')        
+        methods_used.append('Xz 2')        
 
 
 
-st.markdown(f''' :red[methodes used:] :rainbow[{str(methodes_used)}]''')
+st.markdown(f''' :red[methods used:] :gray[{str(methods_used)}]''')
 
-data = my_functions.loadData(uploaded_file)
+data = my_functions.loadData(PATH)
 averageTime = data['compressionTime'].mean()
 unique_methods = list(set(data['method']))
 
@@ -61,13 +62,13 @@ for method in unique_methods:
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
 with col1:
-    page1 = st.button("Look at a graphs")
+    page1 = st.button("Graphs")
 
 with col2:
-    page2 = st.button("Look at the data")
+    page2 = st.button("Data")
 
 with col3:
-    page3 = st.button("Look at this graph")
+    page3 = st.button("One graph")
 
 if page1:
     st.title('Graphs')
@@ -82,3 +83,7 @@ if page2:
 if page3:
     st.title('OG Graph ')
     st.pyplot(my_functions.Graph_with_dots(data))
+    
+    
+yes = os.getcwd()
+st.markdown({yes})
