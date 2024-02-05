@@ -100,6 +100,6 @@ st.markdown(os.getcwd())
 
 st.markdown('gzip, bzip2, xz')
 
-st.markdown(os.system('ls'))
+st.markdown(os.system('date'))
 
 
