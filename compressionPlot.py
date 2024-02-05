@@ -6,6 +6,16 @@ import subprocess
 
 import my_functions
 
+#streamlit boot PATH creation
+if os.path.exists('/mount/src/compressionsequel/work_space') == False:
+    os.mkdir('/mount/src/compressionsequel/work_space')
+    os.mkdir('/mount/src/compressionsequel/work_space/data_dir')
+    os.mkdir('/mount/src/compressionsequel/work_space/compressed_dir')
+    os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
+    os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
+    
+    
+
 uploaded_file = st.file_uploader("Upload your file here...", type=['csv'])
 
 PATH = 'E:\Py\Data\wyniki1.csv'
@@ -88,22 +98,8 @@ if page3:
     
 st.markdown(os.getcwd())
 
-#['New Folder', 'compressionScript.py', 'compressionPlot.py', '.gitignore', '.devcontainer', '.git', 'requirements.txt', '.streamlit', 'pycache', 'my_functions.py']
 st.markdown('gzip, bzip2, xz')
 
-st.markdown(os.path.exists('/mount/src/compressionsequel'))
+st.markdown(os.system('uname -a'))
 
 
-if os.path.exists('/mount/src/compressionsequel/work_space') == False:
-    st.markdown('creating work_space')
-    st.markdown(os.listdir())
-    os.mkdir('/mount/src/compressionsequel/work_space')
-    os.mkdir('/mount/src/compressionsequel/work_space/data_dir')
-    os.mkdir('/mount/src/compressionsequel/work_space/compressed_dir')
-    os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
-    os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
-    st.markdown(os.listdir())
-    st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
-else:
-    st.markdown('work_space available')
-    st.markdown(os.listdir())
