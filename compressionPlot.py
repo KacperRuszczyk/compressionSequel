@@ -103,6 +103,6 @@ st.markdown('gzip, bzip2, xz, help')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 
 st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv')
-subprocess.run(['head', '/mount/src/compressionsequel/work_space/results_dir/results.csv'], capture_output=True, text=True)
+st.markdown(subprocess.run(['head', '/mount/src/compressionsequel/work_space/results_dir/results.csv'], capture_output=True, text=True))
 
 
