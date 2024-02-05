@@ -109,5 +109,6 @@ with open(results, 'a') as file:
     file.write("method;filename;size_before;compression_time;size_after_compression;decompression_time;size_after_decompression;are_identical\n")
 
 
-subprocess.run(['cat', '/mount/src/compressionsequel/work_space/results_dir/results.csv'], capture_output=True, text=True)
+subprocess.run(['head', '/mount/src/compressionsequel/work_space/results_dir/results.csv'], capture_output=True, text=True)
 
+subprocess.run(['echo', 'hello'], capture_output=True, text=True)
