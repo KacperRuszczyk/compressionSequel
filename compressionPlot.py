@@ -87,14 +87,16 @@ if page3:
     
     
 st.markdown(os.getcwd())
-st.markdown(os.listdir())
+
 #['New Folder', 'compressionScript.py', 'compressionPlot.py', '.gitignore', '.devcontainer', '.git', 'requirements.txt', '.streamlit', 'pycache', 'my_functions.py']
 st.markdown('gzip, bzip2, xz')
 
 st.markdown(os.path.exists('/mount/src/compressionsequel'))
 
 
-if os.path.exists('/mount/src/compressionsequel/work_space'):
+if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     st.markdown('no available work_space')
+    st.markdown(os.listdir())
 else:
     st.markdown('work_space available')
+    st.markdown(os.listdir())
