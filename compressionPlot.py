@@ -94,3 +94,7 @@ st.markdown('gzip, bzip2, xz')
 st.markdown(os.path.exists('/mount/src/compressionsequel'))
 
 
+if os.path.exists('/mount/src/compressionsequel/work_space'):
+    st.markdown('no available work_space')
+else:
+    st.markdown('work_space available')
