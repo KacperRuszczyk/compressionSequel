@@ -98,7 +98,7 @@ if page3:
     
 st.markdown(os.getcwd())
 
-st.markdown('gzip, bzip2, xz')
+st.markdown('gzip, bzip2, xz, help')
 
 st.markdown(os.system('date'))
 
