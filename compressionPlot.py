@@ -101,6 +101,13 @@ st.markdown(os.getcwd())
 st.markdown('gzip, bzip2, xz, help')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-subprocess.run(['touch', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+results = os.path.join(results_dir, 'results.csv')
+
+with open(results, 'a') as file:
+    file.write("method;filename;size_before;compression_time;size_after_compression;decompression_time;size_after_decompression;are_identical\n")
+
+
+subprocess.run(['cat', '/mount/src/compressionsequel/work_space/results_dir/results.csv'], capture_output=True, text=True)
+
