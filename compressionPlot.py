@@ -100,6 +100,6 @@ st.markdown(os.getcwd())
 
 st.markdown('gzip, bzip2, xz, help')
 
-st.markdown(os.system('date'))
+st.markdown(subprocess.run('echo "Hello World"'))
 
 
