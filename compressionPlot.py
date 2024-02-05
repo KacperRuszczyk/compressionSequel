@@ -99,7 +99,8 @@ if page3:
 st.markdown(os.getcwd())
 
 st.markdown('gzip, bzip2, xz, help')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+subprocess.run(['touch', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 
-st.markdown(subprocess.run(['uname', '-a'], capture_output=True, text=True))
-
-
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
