@@ -88,8 +88,9 @@ if page3:
     
 st.markdown(os.getcwd())
 st.markdown(os.listdir())
+#['New Folder', 'compressionScript.py', 'compressionPlot.py', '.gitignore', '.devcontainer', '.git', 'requirements.txt', '.streamlit', 'pycache', 'my_functions.py']
+st.markdown('gzip, bzip2, xz')
 
-st.markdown(os.listdir())
+st.markdown(os.path.exists('/mount/src/compressionsequel'))
 
-yes = subprocess.run(['bash', '-c', 'compgen -c | grep -iE "zip|gzip|bzip2|xz"'], stdout=subprocess.PIPE, text=True)
-st.markdown({yes})
+
