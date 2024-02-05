@@ -95,8 +95,15 @@ st.markdown(os.path.exists('/mount/src/compressionsequel'))
 
 
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
-    st.markdown('no available work_space')
+    st.markdown('creating work_space')
     st.markdown(os.listdir())
+    os.mkdir('/mount/src/compressionsequel/work_space')
+    os.mkdir('/mount/src/compressionsequel/work_space/data_dir')
+    os.mkdir('/mount/src/compressionsequel/work_space/compressed_dir')
+    os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
+    os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
+    st.markdown(os.listdir())
+    st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 else:
     st.markdown('work_space available')
     st.markdown(os.listdir())
