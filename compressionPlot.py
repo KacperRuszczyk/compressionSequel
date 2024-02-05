@@ -100,6 +100,6 @@ st.markdown(os.getcwd())
 
 st.markdown('gzip, bzip2, xz, help')
 
-st.markdown(subprocess.run('echo "Hello World"'))
+st.markdown(subprocess.run(['uname'], capture_output=True, text=True))
 
 
