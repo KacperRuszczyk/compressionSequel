@@ -100,10 +100,10 @@ st.markdown(os.getcwd())
 
 st.markdown('gzip, bzip2, xz, help')
 
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 #st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv.bz2'))
-
+st.markdown(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"]))

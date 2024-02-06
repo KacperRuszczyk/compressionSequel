@@ -3,7 +3,7 @@ import os
 import time
 
 # cmop / decomp
-metodes = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
+metods = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
 decopm_metodes = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
 
 # Data variables
@@ -18,55 +18,55 @@ check_if_diff = [] #8
 
 
 # Paths
-data_dir = '0'
-compressed_dir = '0'
-decompressed_dir = '0'
-results_dir = '0'
+data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+results_dir = '/mount/src/compressionsequel/work_space/results_dir'
 
 i = 0
 
 
 
-for metode in metodes:
+for metode in metods:
     for file_name in os.listdir(data_dir):
         path_with_file_name = os.path.join(data_dir, file_name)
         
         files.append(file_name) #1
         comp_metode.append(metode) #2
-        file_size.append(os.system("ls -l $path_with_file_name | awk '{print $5}'")) #3
+        file_size.append(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"])) #3
         
         start_time = time.time()    
-        os.system("$metode $path_with_file_name")
+        subprocess.run(["$metode $path_with_file_name"])
         end_time = time.time()
         comp_time.append(end_time - start_time) #4
         
-        os.system("rm $path_with_file_name")
+        subprocess.run(["rm $path_with_file_name"])
         
     
-    os.system("mv $data_dir/* $compressed_dir")
-    i = 0
+    subprocess.run(["mv $data_dir/* $compressed_dir"])
+    
     
     for file_name in os.listdir(compressed_dir):
         path_with_file_name = os.path.join(compressed_dir, file_name)
         
-        file_size_after_comp.append(os.system("ls -l $path_with_file_name | awk '{print $5}'")) #5
+        file_size_after_comp.append(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"])) #5
         
         start_time = time.time()    
-        os.system("${decopm_metodes[$i]} $path_with_file_name")
+        subprocess.run(["${decopm_metodes[$i]} $path_with_file_name"])
         end_time = time.time()
         decomp_time.append(end_time - start_time) #6
         
-        file_size_after_decomp.append(os.system("ls -l $path_with_file_name | awk '{print $5}'")) #7
+        file_size_after_decomp.append(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"])) #7
         
-        os.system("rm $path_with_file_name")
-        i =+ 1
+        subprocess.run(["rm $path_with_file_name"])
         
-    os.system("mv $compressed_dir/* $decompressed_dir")
-    i = 0
+        
+    subprocess.run(["mv $compressed_dir/* $decompressed_dir"])
+    i =+ 1
     
     for file_name in os.listdir(decompressed_dir):
         path_with_file_name = os.path.join(decompressed_dir, file_name)
-        check_if_diff.append(os.system("diff -s $decompressed_dir/$file_name $data_dir/$file_name  | awk '{print $6}'"))
+        check_if_diff.append(subprocess.run(["diff -s $decompressed_dir/$file_name $data_dir/$file_name  | awk '{print $6}'"]))
     
     
     
@@ -75,3 +75,12 @@ start_time = time.time()
 end_time = time.time()
 how_long = end_time - start_time
 
+
+
+results = os.path.join(results_dir, 'results.csv')
+
+with open(results, 'a') as file:
+    file.write("method;filename;size_before;compression_time;size_after_compression;decompression_time;size_after_decompression;are_identical\n")
+
+    for i in range(len(cmethods)):    
+        file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
