@@ -113,6 +113,6 @@ X = '/mount/src/compressionsequel/compressionPlot.py'
 
 result=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
 st.markdown(result)
-if result.returncode == 0:
-    file_size = int(result.stdout.strip())
-    st.markdown(file_size)
+
+file_size = int(result.stdout.strip())
+st.markdown(file_size)
