@@ -2,9 +2,6 @@
 import os
 import time
 import subprocess
-# cmop / decomp
-metods = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
-decopm_metodes = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
 
 # Data variables
 files = [] #1

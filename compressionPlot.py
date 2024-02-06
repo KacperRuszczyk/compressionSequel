@@ -22,36 +22,41 @@ PATH = 'E:\Py\Data\wyniki1.csv'
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-methods_used = []
+metods = []
+decopm_metodes = []
+
 
 with col1:
-    one_check = st.checkbox('Gzipp')
+    one_check = st.checkbox('Gzip')
     if one_check:
-        methods_used.append('Gzipp')        
+        metods.append('gzip')  
+        decopm_metodes.append('gunzip')
 with col2:
-    two_check = st.checkbox('L4')
+    two_check = st.checkbox('bzip2')
     if two_check:
-        methods_used.append('L4')        
+        metods.append('bzip2')       
+        decopm_metodes.append('bzip2 -d')
 with col3:
     three_check = st.checkbox('Xz')
     if three_check:
-        methods_used.append('Xz') 
+        metods.append('xz') 
+        decopm_metodes.append('unxz')
 with col1:
     four_check = st.checkbox('Gzip 2')
     if four_check:
-        methods_used.append('Gzip 2')        
+        metods.append('Gzip 2')        
 with col2:
     five_check = st.checkbox('L4 2')
     if five_check:
-        methods_used.append('L4 2')        
+        metods.append('L4 2')        
 with col3:
     six_check = st.checkbox('Xz 2')
     if six_check:
-        methods_used.append('Xz 2')        
+        metods.append('Xz 2')        
 
 
 
-st.markdown(f''' :red[methods used:] :gray[{str(methods_used)}]''')
+st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
 
 data = my_functions.loadData(uploaded_file)
 averageTime = data['compressionTime'].mean()
@@ -114,5 +119,5 @@ X = '/mount/src/compressionsequel/compressionPlot.py'
 result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
 st.markdown(result_temp)
 
-file_size = type(result_temp.stdout.strip())
+file_size = result_temp.stdout.strip()
 st.markdown(file_size)
