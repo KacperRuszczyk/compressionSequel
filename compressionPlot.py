@@ -120,4 +120,4 @@ result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capt
 st.markdown(result_temp)
 
 file_size = result_temp.stdout.strip()
-st.markdown(subprocess.run(['inxi', '-Fxz']))
+st.markdown(subprocess.run(['inxi', '-Fxz'], shell=True, capture_output=True, text=True))
