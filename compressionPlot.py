@@ -120,4 +120,4 @@ result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capt
 st.markdown(result_temp)
 
 file_size = result_temp.stdout.strip()
-st.markdown(subprocess.run(['lshw', '|', 'less'], shell=True, capture_output=True, text=True))
+st.markdown(subprocess.run(['lscpu'], shell=True, capture_output=True, text=True))
