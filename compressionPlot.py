@@ -75,7 +75,7 @@ for method in unique_methods:
 
 
 
-col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
+col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
 
 with col1:
     page1 = st.button("Graphs")
