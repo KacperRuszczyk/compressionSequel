@@ -111,8 +111,8 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 st.markdown(os.path.exists( '/mount/src/compressionsequel/compressionPlot.py'))
 X = '/mount/src/compressionsequel/compressionPlot.py'
 
-result=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
+result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
 st.markdown(result)
 
-file_size = int(result.stdout.strip())
+file_size = result.stdout.strip()
 st.markdown(file_size)
