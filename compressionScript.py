@@ -71,17 +71,9 @@ for metod in metods:
     i =+ 1
     
     for file_name in os.listdir(decompressed_dir):
-        path_with_file_name = os.path.join(decompressed_dir, file_name)
-        check_if_diff.append(subprocess.run(["diff -s $decompressed_dir/$file_name $data_dir/$file_name  | awk '{print $6}'"]))
+        check_if_diff.append(subprocess.run(['diff', '-s', f'{decompressed_dir}/{file_name}', f'{data_dir}/{file_name}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
     
     
-    
-start_time = time.time()    
-#
-end_time = time.time()
-how_long = end_time - start_time
-
-
 
 results = os.path.join(results_dir, 'results.csv')
 
