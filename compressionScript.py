@@ -51,19 +51,23 @@ for metod in metods:
     for file_name in os.listdir(compressed_dir):
         path_with_file_name = os.path.join(compressed_dir, file_name)
         
-        file_size_after_comp.append(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"])) #5
-        
+        result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
+        result_temp2 = result_temp.stdout.strip()
+        file_size_after_comp.append(result_temp2) #5
+            
         start_time = time.time()    
-        subprocess.run(["${decopm_metodes[$i]} $path_with_file_name"])
+        subprocess.run([decopm_metodes[i], path_with_file_name"])
         end_time = time.time()
         decomp_time.append(end_time - start_time) #6
         
-        file_size_after_decomp.append(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"])) #7
         
-        subprocess.run(["rm $path_with_file_name"])
+        result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
+        result_temp2 = result_temp.stdout.strip()
+        file_size_after_decomp.append(result_temp2) #7
         
+        subprocess.run(['rm', path_with_file_name])
         
-    subprocess.run(["mv $compressed_dir/* $decompressed_dir"])
+    subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])    
     i =+ 1
     
     for file_name in os.listdir(decompressed_dir):
