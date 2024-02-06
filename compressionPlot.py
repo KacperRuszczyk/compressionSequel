@@ -110,4 +110,4 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 
 st.markdown(os.path.exists( '/mount/src/compressionsequel/compressionPlot.py'))
 X = '/mount/src/compressionsequel/compressionPlot.py'
-st.markdown(subprocess.run(["ls -l", X], capture_output=True, text=True))
+st.markdown(subprocess.run(['ls', '-l', X], capture_output=True, text=True))
