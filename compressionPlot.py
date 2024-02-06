@@ -106,4 +106,5 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 #st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv.bz2'))
-st.markdown(subprocess.run(["ls -l", '/mount/src/compressionsequel/compressionPlot.py', " | awk '{print $5}'"]))
+X = '/mount/src/compressionsequel/compressionPlot.py'
+st.markdown(subprocess.run(["ls -l", X, " | awk '{print $5}'"]))
