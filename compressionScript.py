@@ -11,7 +11,7 @@ comp_time = [] #4
 file_size_after_comp = [] #5
 decomp_time = [] #6
 file_size_after_decomp = [] #7
-check_if_diff = [] #8
+check_if_diff = [] #8\\
 
 
 # Paths
@@ -53,7 +53,7 @@ for metod in metods:
         file_size_after_comp.append(result_temp2) #5
             
         start_time = time.time()    
-        subprocess.run([decopm_metodes[i], path_with_file_name"])
+        subprocess.run([decopm_metodes[i], path_with_file_name], shell=True)
         end_time = time.time()
         decomp_time.append(end_time - start_time) #6
         

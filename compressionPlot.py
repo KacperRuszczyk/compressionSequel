@@ -32,7 +32,7 @@ with col1:
         metods.append('gzip')  
         decopm_metodes.append('gunzip')
 with col2:
-    two_check = st.checkbox('bzip2')
+    two_check = st.checkbox('Bzip2')
     if two_check:
         metods.append('bzip2')       
         decopm_metodes.append('bzip2 -d')
@@ -85,6 +85,9 @@ with col2:
 
 with col3:
     page3 = st.button("One graph")
+    
+with col4:
+    page4 = st.button("Specs")
 
 if page1:
     st.title('Graphs')
@@ -99,6 +102,9 @@ if page2:
 if page3:
     st.title('OG Graph ')
     st.pyplot(my_functions.Graph_with_dots(data))
+    
+if page4:
+    st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
     
     
 st.markdown(os.getcwd())
@@ -120,4 +126,4 @@ result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capt
 st.markdown(result_temp)
 
 file_size = result_temp.stdout.strip()
-st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
+
