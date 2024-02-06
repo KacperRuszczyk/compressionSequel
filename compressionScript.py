@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import time
-
+import subprocess
 # cmop / decomp
 metods = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
 decopm_metodes = ['Gzip', 'L4', 'Xz', 'Gzip 2', 'L4 2', 'Xz 2']
@@ -27,23 +27,25 @@ i = 0
 
 
 
-for metode in metods:
+for metod in metods:
     for file_name in os.listdir(data_dir):
         path_with_file_name = os.path.join(data_dir, file_name)
         
         files.append(file_name) #1
-        comp_metode.append(metode) #2
-        file_size.append(subprocess.run(["ls -l $path_with_file_name | awk '{print $5}'"])) #3
+        comp_metode.append(metod) #2
+        result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
+        result_temp2 = result_temp.stdout.strip()
+        file_size.append(result_temp2) #3
         
         start_time = time.time()    
-        subprocess.run(["$metode $path_with_file_name"])
+        subprocess.run([metod, path_with_file_name])
         end_time = time.time()
         comp_time.append(end_time - start_time) #4
         
-        subprocess.run(["rm $path_with_file_name"])
+        subprocess.run(['rm', path_with_file_name])
         
     
-    subprocess.run(["mv $data_dir/* $compressed_dir"])
+    subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
     
     
     for file_name in os.listdir(compressed_dir):
