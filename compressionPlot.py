@@ -112,7 +112,7 @@ st.markdown(os.path.exists( '/mount/src/compressionsequel/compressionPlot.py'))
 X = '/mount/src/compressionsequel/compressionPlot.py'
 
 result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-st.markdown(result)
+st.markdown(result_temp)
 
-file_size = result.stdout.strip()
+file_size = result_temp.stdout.strip()
 st.markdown(file_size)
