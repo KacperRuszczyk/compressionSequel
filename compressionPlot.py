@@ -87,7 +87,7 @@ with col3:
     page3 = st.button("One graph")
     
 with col4:
-    page4 = st.button("Specs")
+    page4 = st.button("CPU inf")
 
 if page1:
     st.title('Graphs')
@@ -104,6 +104,7 @@ if page3:
     st.pyplot(my_functions.Graph_with_dots(data))
     
 if page4:
+    st.title('CPU ')
     st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
     
     
