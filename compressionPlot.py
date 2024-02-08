@@ -35,7 +35,7 @@ with col2:
     two_check = st.checkbox('Bzip2')
     if two_check:
         metods.append('bzip2')       
-        decopm_metodes.append('bzip2 -d')
+        decopm_metodes.append(['bzip2','-d'])
 with col3:
     three_check = st.checkbox('Xz')
     if three_check:

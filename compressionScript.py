@@ -55,7 +55,10 @@ def compression(metods, decopm_metodes):
             file_size_after_comp.append(result_temp2) #5
                 
             start_time = time.time()    
-            subprocess.run([decopm_metodes[i], path_with_file_name], shell=True)
+            if decopm_metodes == list:
+                subprocess.run([decopm_metodes[i][0],decopm_metodes[i][1], path_with_file_name], shell=True)
+            else:
+                subprocess.run([decopm_metodes[i], path_with_file_name], shell=True)
             end_time = time.time()
             decomp_time.append(end_time - start_time) #6
             
