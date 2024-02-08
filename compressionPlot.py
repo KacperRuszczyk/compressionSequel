@@ -135,5 +135,5 @@ subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/compressed_dir
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 subprocess.run(['rm', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py'])
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
-subprocess.run(['bzip2 -d', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'])
+subprocess.run(['bzip2',' -d', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'])
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
