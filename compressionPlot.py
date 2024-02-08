@@ -23,24 +23,24 @@ PATH = 'E:\Py\Data\wyniki1.csv'
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
 metods = []
-decopm_metodes = []
+decomp_metodes = []
 
 
 with col1:
     one_check = st.checkbox('Gzip')
     if one_check:
         metods.append('gzip')  
-        decopm_metodes.append('gunzip')
+        decomp_metodes.append('gunzip')
 with col2:
     two_check = st.checkbox('Bzip2')
     if two_check:
         metods.append('bzip2')       
-        decopm_metodes.append(['bzip2','-d'])
+        decomp_metodes.append(['bzip2','-d'])
 with col3:
     three_check = st.checkbox('Xz')
     if three_check:
         metods.append('xz') 
-        decopm_metodes.append('unxz')
+        decomp_metodes.append('unxz')
 with col1:
     four_check = st.checkbox('Gzip 2')
     if four_check:
