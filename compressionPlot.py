@@ -128,3 +128,8 @@ st.markdown(result_temp)
 
 file_size = result_temp.stdout.strip()
 
+st.markdown(file_size)
+
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+subprocess.run(['cp', '/mount/src/compressionsequel/compressionPlot.py', '/mount/src/compressionsequel/work_space/compressed_dir/'])
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
