@@ -13,10 +13,12 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/compressed_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
-    
+    os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
     
 
 uploaded_file = st.file_uploader("Upload your file here...", type=['csv'])
+with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir',uploaded_file.name)"wb") as f:
+    f.write(uploaded_file.getbuffer())
 
 PATH = 'E:\Py\Data\wyniki1.csv'
 
