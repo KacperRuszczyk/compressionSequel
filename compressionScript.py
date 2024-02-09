@@ -5,7 +5,7 @@ import subprocess
 
 
 def compression(metods, decomp_metodes):
-    # Data variables
+    # Data harvesting arrays
     files = [] #1
     comp_metode = [] #2
     file_size = [] #3
