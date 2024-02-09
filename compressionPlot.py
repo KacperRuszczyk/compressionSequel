@@ -46,18 +46,7 @@ with col3:
     if three_check:
         metods.append('xz') 
         decomp_metodes.append('unxz')
-with col1:
-    four_check = st.checkbox('Gzip 2')
-    if four_check:
-        metods.append('Gzip 2')        
-with col2:
-    five_check = st.checkbox('L4 2')
-    if five_check:
-        metods.append('L4 2')        
-with col3:
-    six_check = st.checkbox('Xz 2')
-    if six_check:
-        metods.append('Xz 2')        
+    
 
 
 
