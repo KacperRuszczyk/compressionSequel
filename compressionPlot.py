@@ -133,10 +133,9 @@ st.markdown(file_size)
 #st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py'])
 ##subprocess.run(['rm', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py'])
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+#st.markdown(os.path.isfile('/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'))
+#st.markdown(subprocess.run(['bzip2','-d', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'], capture_output=True, text=True))
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 
-st.markdown(os.path.isfile('/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'))
-
-st.markdown(subprocess.run(['bzip2','-d', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'], capture_output=True, text=True))
-
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+st.markdown(uploaded_file)
