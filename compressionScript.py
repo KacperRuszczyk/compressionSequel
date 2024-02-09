@@ -5,7 +5,7 @@ import subprocess
 
 
 def compression(metods, decomp_metodes):
-    # Data variables
+    # Data harvesting arrays
     files = [] #1
     comp_metode = [] #2
     file_size = [] #3
@@ -21,12 +21,13 @@ def compression(metods, decomp_metodes):
     compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
     decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
     results_dir = '/mount/src/compressionsequel/work_space/results_dir'
-
+    uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     i = 0
 
 
 
     for metod in metods:
+        subprocess.run(['cp', f'{uploaded_dir}/*', data_dir])
         for file_name in os.listdir(data_dir):
             path_with_file_name = os.path.join(data_dir, file_name)
             
