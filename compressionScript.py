@@ -71,7 +71,7 @@ def compression(metods, decomp_metodes):
             subprocess.run(['rm', path_with_file_name])
             
         subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])    
-        i =+ 1
+        i += 1
         
         for file_name in os.listdir(decompressed_dir):
             check_if_diff.append(subprocess.run(['diff', '-s', f'{decompressed_dir}/{file_name}', f'{data_dir}/{file_name}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
