@@ -5,6 +5,7 @@ import os
 import subprocess
 
 import my_functions
+import compressionScript
 
 #streamlit boot PATH creation
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
@@ -29,7 +30,7 @@ if uploaded_files:
 
     metods = []
     decomp_metodes = []
-
+    button_check = True
 
     with col1:
         one_check = st.checkbox('Gzip')
@@ -47,67 +48,80 @@ if uploaded_files:
             metods.append('xz') 
             decomp_metodes.append('unxz')
         
-
-
-
     st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
-
-    data = my_functions.loadData(uploaded_file)
-    averageTime = data['compressionTime'].mean()
-    unique_methods = list(set(data['method']))
-
-    meanCompressionFactor = []
-    meanCompressionTime = []
-    meanDecompressionTime = []
-
-    for method in unique_methods:
-        mask = data['method'] == method
-        meanCompressionFactor.append(data['compressionFactor'][mask].mean())
-        meanCompressionTime.append(data['compressionTime'][mask].mean())
-        meanDecompressionTime.append(data['decompressionTime'][mask].mean())
-
-
-
-
-    col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
-
-    with col1:
-        page1 = st.button("Graphs")
-
-    with col2:
-        page2 = st.button("Data")
-
-    with col3:
-        page3 = st.button("One graph")
         
-    with col4:
-        page4 = st.button("CPU inf")
+    
+    
+    if os.path.exists('/mount/src/compressionsequel/work_space/results_dir/results.csv'):
+    
+        data = my_functions.loadData('/mount/src/compressionsequel/work_space/results_dir/results.csv')
+        averageTime = data['compressionTime'].mean()
+        unique_methods = list(set(data['method']))
 
-    if page1:
-        st.title('Graphs')
-        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Factor': meanCompressionFactor}), x='Method', y='Compression Factor')
-        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Time (s)': meanCompressionTime}), x='Method', y='Compression Time (s)')
-        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Decompression Time (s)': meanDecompressionTime}), x='Method', y='Decompression Time (s)')
+        meanCompressionFactor = []
+        meanCompressionTime = []
+        meanDecompressionTime = []
 
-    if page2:
-        st.title('Data Frame')
-        st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
+        for method in unique_methods:
+            mask = data['method'] == method
+            meanCompressionFactor.append(data['compressionFactor'][mask].mean())
+            meanCompressionTime.append(data['compressionTime'][mask].mean())
+            meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
-    if page3:
-        st.title('OG Graph ')
-        st.pyplot(my_functions.Graph_with_dots(data))
-        
-    if page4:
-        st.title('CPU ')
-        st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
+
+
+
+        col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
+
+        with col1:
+            page1 = st.button("Graphs")
+
+        with col2:
+            page2 = st.button("Data")
+
+        with col3:
+            page3 = st.button("One graph")
+            
+        with col4:
+            page4 = st.button("CPU inf")
+
+        if page1:
+            st.title('Graphs')
+            st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Factor': meanCompressionFactor}), x='Method', y='Compression Factor')
+            st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Time (s)': meanCompressionTime}), x='Method', y='Compression Time (s)')
+            st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Decompression Time (s)': meanDecompressionTime}), x='Method', y='Decompression Time (s)')
+
+        if page2:
+            st.title('Data Frame')
+            st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
+
+        if page3:
+            st.title('OG Graph ')
+            st.pyplot(my_functions.Graph_with_dots(data))
+            
+        if page4:
+            st.title('CPU ')
+            st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
+            
+            
+    elif button_check:
+    
+        with col2:
+            compress_button = st.button('Compress The Files')
+        if compress_button:
+            button_check = False      
+            compressionScript.compression(metods, decomp_metodes)
+    
+    else:
+        st.warning("Processing data...")
 else:
     st.warning("Please upload one or more files to proceed.")      
         
-st.markdown(os.getcwd())
+#st.markdown(os.getcwd())
 
-st.markdown('gzip, bzip2, xz, help')
+#st.markdown('gzip, bzip2, xz, help')
 
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
@@ -115,15 +129,15 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv.bz2'))
 
 
-st.markdown(os.path.exists( '/mount/src/compressionsequel/compressionPlot.py'))
-X = '/mount/src/compressionsequel/compressionPlot.py'
+#st.markdown(os.path.exists( '/mount/src/compressionsequel/compressionPlot.py'))
+#X = '/mount/src/compressionsequel/compressionPlot.py'
 
-result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-st.markdown(result_temp)
+#result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
+#st.markdown(result_temp)
 
-file_size = result_temp.stdout.strip()
+#file_size = result_temp.stdout.strip()
 
-st.markdown(file_size)
+#st.markdown(file_size)
 
 #st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py'])

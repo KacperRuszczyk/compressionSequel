@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# compressionScript
 import os
 import time
 import subprocess
@@ -71,7 +72,7 @@ def compression(metods, decomp_metodes):
             subprocess.run(['rm', path_with_file_name])
             
         subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])    
-        i =+ 1
+        i += 1
         
         for file_name in os.listdir(decompressed_dir):
             check_if_diff.append(subprocess.run(['diff', '-s', f'{decompressed_dir}/{file_name}', f'{data_dir}/{file_name}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
@@ -81,8 +82,8 @@ def compression(metods, decomp_metodes):
     results = os.path.join(results_dir, 'results.csv')
 
     with open(results, 'a') as file:
-        file.write("method;filename;size_before;compression_time;size_after_compression;decompression_time;size_after_decompression;are_identical\n")
-
-        for i in range(len(cmethods)):    
+        file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
+                    
+        for i in range(len(comp_metode)):    
             file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
     return
