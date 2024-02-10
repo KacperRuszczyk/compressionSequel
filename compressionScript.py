@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# compressionScript
 import os
 import time
 import subprocess
@@ -81,8 +82,8 @@ def compression(metods, decomp_metodes):
     results = os.path.join(results_dir, 'results.csv')
 
     with open(results, 'a') as file:
-        file.write("method;filename;size_before;compression_time;size_after_compression;decompression_time;size_after_decompression;are_identical\n")
-
+        file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
+                    
         for i in range(len(comp_metode)):    
             file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
     return
