@@ -107,7 +107,7 @@ if uploaded_files:
     elif button_check:
     
         with col2:
-        compress_button = st.button('Compress The Files')
+            compress_button = st.button('Compress The Files')
         if compress_button:
             button_check = False      
             compressionScript.compression(metods, decomp_metodes)
