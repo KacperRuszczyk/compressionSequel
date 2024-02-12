@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#compressionPlot
 import streamlit as st
 import pandas as pd
 import os
@@ -16,8 +17,14 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
     
-
+PATH = '/mount/src/compressionsequel/work_space/results_dir/results.csv'
+if st.button("Download File"):
+    st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
+
+
+
+
 if uploaded_files:
     for uploaded_file in uploaded_files:
         my_functions.save_file(uploaded_file)
@@ -49,7 +56,19 @@ if uploaded_files:
             decomp_metodes.append('unxz')
         
     st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
-        
+    
+    with col2:
+        compress_button = st.button('Compress The Files')
+        if compress_button:    
+            compressionScript.compression(metods, decomp_metodes)
+    st.markdown(files)
+    st.markdown(comp_metode)
+    st.markdown(file_size) 
+    st.markdown(comp_time)
+    st.markdown(file_size_after_comp)
+    st.markdown(decomp_time)
+    st.markdown(file_size_after_decomp)
+    st.markdown(check_if_diff)
     
     
     if os.path.exists('/mount/src/compressionsequel/work_space/results_dir/results.csv'):
@@ -104,24 +123,22 @@ if uploaded_files:
             st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
             
             
-    elif button_check:
-    
-        with col2:
-            compress_button = st.button('Compress The Files')
-        if compress_button:
-            button_check = False      
-            compressionScript.compression(metods, decomp_metodes)
+   
+        
     
     else:
         st.warning("Processing data...")
 else:
-    st.warning("Please upload one or more files to proceed.")      
+    st.warning("Please upload one or more files to proceed.")  
+
+
+    
         
 #st.markdown(os.getcwd())
 
 #st.markdown('gzip, bzip2, xz, help')
 
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
 
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])

@@ -3,7 +3,7 @@
 import os
 import time
 import subprocess
-
+import shutil
 
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
@@ -28,7 +28,13 @@ def compression(metods, decomp_metodes):
 
 
     for metod in metods:
-        subprocess.run(['cp', f'{uploaded_dir}/*', data_dir])
+        #copy files from uploaded_dir to data_dir
+        files_to_copy = os.listdir(uploaded_dir)
+        for file_name in files_to_copy:
+            source_path = os.path.join(uploaded_dir, file_name)
+            destination_path = os.path.join(data_dir, file_name)
+            shutil.copy(source_path, destination_path)
+            
         for file_name in os.listdir(data_dir):
             path_with_file_name = os.path.join(data_dir, file_name)
             
@@ -79,11 +85,20 @@ def compression(metods, decomp_metodes):
         
         
 
-    results = os.path.join(results_dir, 'results.csv')
+    #results = os.path.join(results_dir, 'results.csv')
 
-    with open(results, 'a') as file:
-        file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
+    #with open(results, 'a') as file:
+        #file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
                     
-        for i in range(len(comp_metode)):    
-            file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
-    return
+        #for i in range(len(comp_metode)):    
+            #file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
+        
+   
+    return(files,
+        comp_metode,
+        file_size, 
+        comp_time,
+        file_size_after_comp,
+        decomp_time,
+        file_size_after_decomp,
+        check_if_diff)
