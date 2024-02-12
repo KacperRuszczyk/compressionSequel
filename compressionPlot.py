@@ -19,7 +19,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
    
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-compressionScript.compression(metods, decomp_metodes)
+
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
