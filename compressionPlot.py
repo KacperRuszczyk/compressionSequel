@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#compressionPlot
 import streamlit as st
 import pandas as pd
 import os
@@ -16,6 +17,9 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
     
+    
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 if uploaded_files:
@@ -121,7 +125,7 @@ else:
 
 #st.markdown('gzip, bzip2, xz, help')
 
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
 
 #st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv'))
 #subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
