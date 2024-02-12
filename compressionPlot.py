@@ -65,7 +65,11 @@ if uploaded_files:
             decomp_metodes.append('unxz')
         
     st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
-        
+    
+    with col2:
+        compress_button = st.button('Compress The Files')
+        if compress_button:    
+            compressionScript.compression(metods, decomp_metodes)
     
     
     if os.path.exists('/mount/src/compressionsequel/work_space/results_dir/results.csv'):
@@ -120,13 +124,8 @@ if uploaded_files:
             st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
             
             
-    elif button_check:
-    
-        with col2:
-            compress_button = st.button('Compress The Files')
-        if compress_button:
-            button_check = False      
-            compressionScript.compression(metods, decomp_metodes)
+   
+        
     
     else:
         st.warning("Processing data...")
