@@ -50,6 +50,12 @@ if uploaded_files:
         compress_button = st.button('Compress The Files')
         if compress_button:    
             compressionScript.compression(metods, decomp_metodes)
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
             st.markdown(files)
             st.markdown(comp_metode)
             st.markdown(file_size) 
