@@ -3,7 +3,7 @@
 import os
 import time
 import subprocess
-
+import streamlit as st
 
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
