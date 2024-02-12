@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import os
 import subprocess
+import shutil
 
 import my_functions
 import compressionScript
@@ -26,9 +27,15 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
 data_dir = '/mount/src/compressionsequel/work_space/data_dir'
 uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
-subprocess.run(['cp', f'{uploaded_dir}/*', data_dir])
+files_to_copy = os.listdir(uploaded_dir)
+for file_name in files_to_copy:
+    source_path = os.path.join(uploaded_dir, file_name)
+    destination_path = os.path.join(data_dir, file_name)
+    shutil.copy(source_path, destination_path)
+    
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 
 if uploaded_files:
