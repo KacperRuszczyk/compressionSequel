@@ -57,10 +57,4 @@ if uploaded_files:
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
             st.markdown(files)
-            st.markdown(comp_metode)
-            st.markdown(file_size) 
-            st.markdown(comp_time)
-            st.markdown(file_size_after_comp)
-            st.markdown(decomp_time)
-            st.markdown(file_size_after_decomp)
-            st.markdown(check_if_diff)
+            
