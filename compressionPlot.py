@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#compressionPlot
+#Debug/compressionPlot
 import streamlit as st
 import pandas as pd
 import os
@@ -56,5 +56,8 @@ if uploaded_files:
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+            data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+            uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
+            subprocess.run(['cp', f'{uploaded_dir}/*', data_dir])
             st.markdown(Files)
             
