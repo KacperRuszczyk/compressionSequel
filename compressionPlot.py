@@ -21,7 +21,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
 PATH = '/mount/src/compressionsequel/work_space/results_dir/results.csv'
 if st.button("Download File"):
     st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
-    
+uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
@@ -37,16 +37,16 @@ with col2:
         compressionScript.compression(metods, decomp_metodes)
             
 st.markdown(files,
-        comp_metode,
-        file_size, 
-        comp_time,
-        file_size_after_comp,
-        decomp_time,
-        file_size_after_decomp,
-        check_if_diff)
+    comp_metode,
+    file_size, 
+    comp_time,
+    file_size_after_comp,
+    decomp_time,
+    file_size_after_decomp,
+    check_if_diff)
 
 
-uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
+
 if uploaded_files:
     for uploaded_file in uploaded_files:
         my_functions.save_file(uploaded_file)
