@@ -19,7 +19,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     
     
 PATH = '/mount/src/compressionsequel/work_space/results_dir/results.csv'
-st.markdown(st.download_button(label="Download File", key="download_button", on_click=None, PATH), unsafe_allow_html=True)
+st.markdown(st.download_button(label="Download File", key="download_button", on_click=None, PATH=PATH), unsafe_allow_html=True)
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 
