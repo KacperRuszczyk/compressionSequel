@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# compressionScript
+#Debug/compressionScript
 import os
 import time
 import subprocess
@@ -16,7 +16,7 @@ def compression(metods, decomp_metodes):
     file_size_after_decomp = [] #7
     check_if_diff = [] #8
 
-    return(Files)
+    return(Files=metods)
     # Paths
     data_dir = '/mount/src/compressionsequel/work_space/data_dir'
     compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
