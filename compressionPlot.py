@@ -70,6 +70,14 @@ if uploaded_files:
         compress_button = st.button('Compress The Files')
         if compress_button:    
             compressionScript.compression(metods, decomp_metodes)
+    st.markdown(files)
+    st.markdown(comp_metode)
+    st.markdown(file_size) 
+    st.markdown(comp_time)
+    st.markdown(file_size_after_comp)
+    st.markdown(decomp_time)
+    st.markdown(file_size_after_decomp)
+    st.markdown(check_if_diff)
     
     
     if os.path.exists('/mount/src/compressionsequel/work_space/results_dir/results.csv'):
