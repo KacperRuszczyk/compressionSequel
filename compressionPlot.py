@@ -30,7 +30,7 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 #subprocess.run(['rm', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 #st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
-
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 with col2:
     compress_button = st.button('Compress The Files')
     if compress_button:    
