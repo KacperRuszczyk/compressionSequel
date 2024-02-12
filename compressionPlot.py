@@ -30,20 +30,7 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 #subprocess.run(['rm', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 #st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
-col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
-with col2:
-    compress_button = st.button('Compress The Files')
-    if compress_button:    
-        compressionScript.compression(metods, decomp_metodes)
-            
-st.markdown(files,
-    comp_metode,
-    file_size, 
-    comp_time,
-    file_size_after_comp,
-    decomp_time,
-    file_size_after_decomp,
-    check_if_diff)
+
 
 
 
@@ -144,7 +131,10 @@ if uploaded_files:
     else:
         st.warning("Processing data...")
 else:
-    st.warning("Please upload one or more files to proceed.")      
+    st.warning("Please upload one or more files to proceed.")  
+
+
+    
         
 #st.markdown(os.getcwd())
 
