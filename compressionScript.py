@@ -16,6 +16,7 @@ def compression(metods, decomp_metodes):
     file_size_after_decomp = [] #7
     check_if_diff = [] #8
     Files=metods
+    data_dir = '/mount/src/compressionsequel/work_space/data_dir'
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     subprocess.run(['cp', f'{uploaded_dir}/*', data_dir])
     return(Files)
