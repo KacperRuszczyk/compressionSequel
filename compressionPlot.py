@@ -21,8 +21,14 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
 PATH = '/mount/src/compressionsequel/work_space/results_dir/results.csv'
 if st.button("Download File"):
     st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+    
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 if uploaded_files:
