@@ -32,10 +32,9 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 
 with col2:
-            compress_button = st.button('Compress The Files')
-        if compress_button:
-            button_check = False      
-            compressionScript.compression(metods, decomp_metodes)
+    compress_button = st.button('Compress The Files')
+    if compress_button:    
+        compressionScript.compression(metods, decomp_metodes)
             
 st.markdown(files,
         comp_metode,
