@@ -7,7 +7,7 @@ import subprocess
 
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
-    files = [] #1
+    Files = [] #1
     comp_metode = [] #2
     file_size = [] #3
     comp_time = [] #4
@@ -32,7 +32,7 @@ def compression(metods, decomp_metodes):
         for file_name in os.listdir(data_dir):
             path_with_file_name = os.path.join(data_dir, file_name)
             
-            files.append(file_name) #1
+            Files.append(file_name) #1
             comp_metode.append(metod) #2
             result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
             result_temp2 = result_temp.stdout.strip()
@@ -85,7 +85,9 @@ def compression(metods, decomp_metodes):
         #file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
                     
         #for i in range(len(comp_metode)):    
-            #file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
+            #file.write(f"{comp_metode[i]};{Files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
         
    
-    return(files)
+    return(Files)
+    
+    

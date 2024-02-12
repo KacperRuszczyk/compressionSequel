@@ -56,5 +56,5 @@ if uploaded_files:
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
             st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
-            st.markdown(files)
+            st.markdown(Files)
             
