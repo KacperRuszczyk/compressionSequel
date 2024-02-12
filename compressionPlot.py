@@ -27,9 +27,24 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-subprocess.run(['rm', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+#subprocess.run(['rm', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
+with col2:
+            compress_button = st.button('Compress The Files')
+        if compress_button:
+            button_check = False      
+            compressionScript.compression(metods, decomp_metodes)
+            
+st.markdown(files,
+        comp_metode,
+        file_size, 
+        comp_time,
+        file_size_after_comp,
+        decomp_time,
+        file_size_after_decomp,
+        check_if_diff)
 
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)

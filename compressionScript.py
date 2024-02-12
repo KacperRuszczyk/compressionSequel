@@ -79,11 +79,19 @@ def compression(metods, decomp_metodes):
         
         
 
-    results = os.path.join(results_dir, 'results.csv')
+    #results = os.path.join(results_dir, 'results.csv')
 
-    with open(results, 'a') as file:
-        file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
+    #with open(results, 'a') as file:
+        #file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
                     
-        for i in range(len(comp_metode)):    
-            file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
-    return
+        #for i in range(len(comp_metode)):    
+            #file.write(f"{comp_metode[i]};{files[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
+    return(
+        files,
+        comp_metode,
+        file_size, 
+        comp_time,
+        file_size_after_comp,
+        decomp_time,
+        file_size_after_decomp,
+        check_if_diff)
