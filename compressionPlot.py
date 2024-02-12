@@ -27,7 +27,7 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-subprocess.run(['rm', '/mount/src/compressionsequel/work_space/results_dir'])
+subprocess.run(['rm', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 
