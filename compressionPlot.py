@@ -59,5 +59,6 @@ if uploaded_files:
             data_dir = '/mount/src/compressionsequel/work_space/data_dir'
             uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
             subprocess.run(['cp', f'{uploaded_dir}/*', data_dir])
+            st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
             st.markdown(Files)
             
