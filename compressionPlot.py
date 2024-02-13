@@ -104,7 +104,9 @@ def compression(metods, decomp_metodes):
         for file_name in os.listdir(decompressed_dir):
             file_after = os.path.join(compressed_dir, file_name)
             file_before = os.path.join(data_dir, file_name)
-            check_if_diff.append(subprocess.run(['diff', '-s', f'{file_after}', f'{file_before}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
+            result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
+            result_temp2 = result_temp.stdout.strip()
+            check_if_diff.append(result_temp2)  #8
 
     return(Files_list)
    
@@ -182,4 +184,4 @@ if uploaded_files:
         if compress_button:    
             compression(metods, decomp_metodes)
             st.markdown(Files)
-            
+    st.markdown(Files)
