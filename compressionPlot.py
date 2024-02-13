@@ -21,7 +21,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
-    Files = [] #1
+    Files_list = [] #1
     comp_metode = [] #2
     file_size = [] #3
     comp_time = [] #4
@@ -52,7 +52,7 @@ def compression(metods, decomp_metodes):
         for file_name in os.listdir(data_dir):
             path_with_file_name = os.path.join(data_dir, file_name)
             
-            Files.append(file_name) #1
+            Files_list.append(file_name) #1
             comp_metode.append(metod) #2
             result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
             result_temp2 = result_temp.stdout.strip()
@@ -97,21 +97,21 @@ def compression(metods, decomp_metodes):
         for file_name in os.listdir(decompressed_dir):
             check_if_diff.append(subprocess.run(['diff', '-s', f'{decompressed_dir}/{file_name}', f'{data_dir}/{file_name}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
 
-    return(Files,
-        comp_metode,
-        file_size, 
-        comp_time,
-        file_size_after_comp,
-        decomp_time,
-        file_size_after_decomp,
-        check_if_diff)
+    return(Files_list)
    
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
 st.markdown('work_space')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
+
 st.markdown('data_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+file_name = 'compressionPlot.py.gz.xz'
+path_with_file_name = os.path.join(compressed_dir, file_name)
+os.remove(path_with_file_name)
+st.markdown('data_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+
 st.markdown('compressed_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 st.markdown('decompressed_dir')
@@ -129,6 +129,7 @@ for file_name in files_to_copy:
     destination_path = os.path.join(data_dir, file_name)
     shutil.copy(source_path, destination_path)
     
+st.markdown('data_dir')    
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 
 if uploaded_files:
