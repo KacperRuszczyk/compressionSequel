@@ -108,13 +108,18 @@ def compression(metods, decomp_metodes):
    
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-
-st.markdown('work_space',os.listdir('/mount/src/compressionsequel/work_space'))
-st.markdown('data_dir',os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
-st.markdown('compressed_dir',os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
-st.markdown('decompressed_dir',os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
-st.markdown('results_dir',os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-st.markdown('uploaded_dir',os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+st.markdown('work_space')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
+st.markdown('data_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+st.markdown('compressed_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+st.markdown('decompressed_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
+st.markdown('results_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+st.markdown('uploaded_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 
 data_dir = '/mount/src/compressionsequel/work_space/data_dir'
 uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
