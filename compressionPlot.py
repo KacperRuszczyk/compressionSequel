@@ -123,8 +123,10 @@ file_after = os.path.join(compressed_dir, file_name)
 
 
 st.markdown('CHECK')
-st.markdown(subprocess.run(['diff', '-s', f'{file_after}', f'{file_after}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))
 
+result_temp = subprocess.run([f"diff -s {file_after} {file_after} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
+result_temp2 = result_temp.stdout.strip()
+st.markdown(result_temp2)
 
 st.markdown('compressed_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
