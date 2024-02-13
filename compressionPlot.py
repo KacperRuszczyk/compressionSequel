@@ -66,8 +66,7 @@ def compression(metods, decomp_metodes):
             os.remove(path_with_file_name)
             
         
-        subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
-        
+        #subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
         files_to_move = os.listdir(data_dir)
         for file_name in files_to_move:
             source_path = os.path.join(data_dir, file_name)
@@ -95,11 +94,17 @@ def compression(metods, decomp_metodes):
             
             os.remove(path_with_file_name)
             
-        subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])    
+        #subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])  
+        files_to_move = os.listdir(compressed_dir)
+        for file_name in files_to_move:
+            source_path = os.path.join(compressed_dir, file_name)
+            shutil.move(source_path, decompressed_dir)
         i += 1
         
         for file_name in os.listdir(decompressed_dir):
-            check_if_diff.append(subprocess.run(['diff', '-s', f'{decompressed_dir}/{file_name}', f'{data_dir}/{file_name}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
+            file_after = os.path.join(compressed_dir, file_name)
+            file_before = os.path.join(data_dir, file_name)
+            check_if_diff.append(subprocess.run(['diff', '-s', f'{file_after}', f'{file_before}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))  #8
 
     return(Files_list)
    
@@ -113,17 +118,13 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 
 data_dir = '/mount/src/compressionsequel/work_space/data_dir'
 compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+file_name = 'compressionScript.py'
+file_after = os.path.join(compressed_dir, file_name)
 
-st.markdown('compressed_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 
-files_to_move = os.listdir(data_dir)
-for file_name in files_to_move:
-    source_path = os.path.join(data_dir, file_name)
-    shutil.move(source_path, compressed_dir)
+st.markdown('CHECK')
+st.markdown(subprocess.run(['diff', '-s', f'{file_after}', f'{file_after}', '|', 'awk', '{{print $6}}'], shell=True, capture_output=True, text=True))
 
-st.markdown('data_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 
 st.markdown('compressed_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
