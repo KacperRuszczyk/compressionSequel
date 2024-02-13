@@ -117,6 +117,9 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 
 st.markdown('data_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+os.remove('/mount/src/compressionsequel/work_space/data_dir/compressionScript.py')
+st.markdown('data_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 
 data_dir = '/mount/src/compressionsequel/work_space/data_dir'
 compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
@@ -129,6 +132,8 @@ st.markdown('CHECK')
 result_temp = subprocess.run([f"diff -s {file_after} {file_after} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
 result_temp2 = result_temp.stdout.strip()
 st.markdown(result_temp2)
+
+os.remove('/mount/src/compressionsequel/work_space/data_dir/compressionScript.py')
 
 st.markdown('compressed_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
