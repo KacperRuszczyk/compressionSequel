@@ -106,6 +106,7 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 
 st.markdown('data_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+data_dir = '/mount/src/compressionsequel/work_space/data_dir'
 file_name = 'compressionPlot.py.gz.xz'
 path_with_file_name = os.path.join(data_dir, file_name)
 os.remove(path_with_file_name)
