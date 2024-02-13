@@ -63,11 +63,15 @@ def compression(metods, decomp_metodes):
             end_time = time.time()
             comp_time.append(end_time - start_time) #4
             
-            subprocess.run(['rm', path_with_file_name])
+            os.remove(path_with_file_name)
             
         
         subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
         
+        files_to_move = os.listdir(data_dir)
+        for file_name in files_to_move:
+            source_path = os.path.join(data_dir, file_name)
+            shutil.move(source_path, compressed_dir)
         
         for file_name in os.listdir(compressed_dir):
             path_with_file_name = os.path.join(compressed_dir, file_name)
@@ -89,7 +93,7 @@ def compression(metods, decomp_metodes):
             result_temp2 = result_temp.stdout.strip()
             file_size_after_decomp.append(result_temp2) #7
             
-            subprocess.run(['rm', path_with_file_name])
+            os.remove(path_with_file_name)
             
         subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])    
         i += 1
@@ -106,21 +110,30 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
 
 st.markdown('data_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+
 data_dir = '/mount/src/compressionsequel/work_space/data_dir'
-file_name = 'compressionPlot.py.gz.xz'
-path_with_file_name = os.path.join(data_dir, file_name)
-os.remove(path_with_file_name)
+compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+
+st.markdown('compressed_dir')
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+
+files_to_move = os.listdir(data_dir)
+for file_name in files_to_move:
+    source_path = os.path.join(data_dir, file_name)
+    shutil.move(source_path, compressed_dir)
+
 st.markdown('data_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 
 st.markdown('compressed_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
-st.markdown('decompressed_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
-st.markdown('results_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-st.markdown('uploaded_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
+#st.markdown('decompressed_dir')
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
+#st.markdown('results_dir')
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+#st.markdown('uploaded_dir')
+#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 
 data_dir = '/mount/src/compressionsequel/work_space/data_dir'
 uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
