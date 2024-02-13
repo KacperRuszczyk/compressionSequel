@@ -112,50 +112,6 @@ def compression(metods, decomp_metodes):
    
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-st.markdown('work_space')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space'))
-
-st.markdown('data_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
-os.remove('/mount/src/compressionsequel/work_space/data_dir/compressionScript.py')
-st.markdown('data_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
-
-data_dir = '/mount/src/compressionsequel/work_space/data_dir'
-compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
-file_name = 'compressionScript.py'
-file_after = os.path.join(compressed_dir, file_name)
-
-
-st.markdown('CHECK')
-
-result_temp = subprocess.run([f"diff -s {file_after} {file_after} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
-result_temp2 = result_temp.stdout.strip()
-st.markdown(result_temp2)
-
-os.remove('/mount/src/compressionsequel/work_space/data_dir/compressionScript.py')
-
-st.markdown('compressed_dir')
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
-
-#st.markdown('decompressed_dir')
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
-#st.markdown('results_dir')
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-#st.markdown('uploaded_dir')
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
-
-data_dir = '/mount/src/compressionsequel/work_space/data_dir'
-uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
-files_to_copy = os.listdir(uploaded_dir)
-for file_name in files_to_copy:
-    source_path = os.path.join(uploaded_dir, file_name)
-    destination_path = os.path.join(data_dir, file_name)
-    shutil.copy(source_path, destination_path)
-    
-st.markdown('data_dir')    
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
-
 if uploaded_files:
     for uploaded_file in uploaded_files:
         my_functions.save_file(uploaded_file)
