@@ -113,7 +113,6 @@ def compression(metods, decomp_metodes):
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
 st.markdown('File check')
-st.markdown(os.path.isfile(uploaded_files))
 st.markdown(os.path.isfile('/mount/src/compressionsequel/work_space/uploaded_dir/compressionPlot.py'))
 
 st.markdown('size check')
