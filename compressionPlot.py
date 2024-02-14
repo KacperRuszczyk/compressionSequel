@@ -54,16 +54,14 @@ def compression(metods, decomp_metodes):
             
             Files_list.append(file_name) #1
             comp_metode.append(metod) #2
-            result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-            result_temp2 = result_temp.stdout.strip()
-            file_size.append(result_temp2) #3
+            file_size.append(os.path.getsize(path_with_file_name)) #3
             
             start_time = time.time()    
             subprocess.run([metod, path_with_file_name])
             end_time = time.time()
             comp_time.append(end_time - start_time) #4
-            
-            os.remove(path_with_file_name)
+            if os.path.isfile(path_with_file_name):
+                os.remove(path_with_file_name)
             
         
         #subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
@@ -75,9 +73,7 @@ def compression(metods, decomp_metodes):
         for file_name in os.listdir(compressed_dir):
             path_with_file_name = os.path.join(compressed_dir, file_name)
             
-            result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-            result_temp2 = result_temp.stdout.strip()
-            file_size_after_comp.append(result_temp2) #5
+            file_size_after_comp.append(os.path.getsize(path_with_file_name)) #5
                 
             start_time = time.time()    
             if decomp_metodes == list:
@@ -87,12 +83,9 @@ def compression(metods, decomp_metodes):
             end_time = time.time()
             decomp_time.append(end_time - start_time) #6
             
-            
-            result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-            result_temp2 = result_temp.stdout.strip()
-            file_size_after_decomp.append(result_temp2) #7
-            
-            os.remove(path_with_file_name)
+
+            if os.path.isfile(path_with_file_name):
+                os.remove(path_with_file_name)
             
         #subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])  
         files_to_move = os.listdir(compressed_dir)
@@ -102,27 +95,19 @@ def compression(metods, decomp_metodes):
         i += 1
         
         for file_name in os.listdir(decompressed_dir):
-            file_after = os.path.join(compressed_dir, file_name)
+            file_after = os.path.join(decompressed_dir, file_name)
             file_before = os.path.join(data_dir, file_name)
+            
+            file_size_after_decomp.append(os.path.getsize(file_after)) #7
+            
             result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
             result_temp2 = result_temp.stdout.strip()
             check_if_diff.append(result_temp2)  #8
 
     return(Files_list)
-   
+
+
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
-
-st.markdown('File check')
-st.markdown(os.path.isfile('/mount/src/compressionsequel/work_space/uploaded_dir/compressionPlot.py'))
-
-st.markdown('size check')
-st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/uploaded_dir/compressionPlot.py'))
-
-path_with_file_name = '/mount/src/compressionsequel/work_space/uploaded_dir/compressionPlot.py'
-result_temp = subprocess.run([f"ls -l {path_with_file_name} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-result_temp2 = result_temp.stdout.strip()
-st.markdown(result_temp2)
-
 
 
 if uploaded_files:
@@ -157,5 +142,5 @@ if uploaded_files:
         compress_button = st.button('Compress The Files')
         if compress_button:    
             compression(metods, decomp_metodes)
-            st.markdown(Files)
-    st.markdown(Files)
+            st.markdown(Files_list)
+    st.markdown(Files_list)
