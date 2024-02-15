@@ -18,7 +18,9 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
-    
+ 
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+ 
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
     Files_list = [] #1
