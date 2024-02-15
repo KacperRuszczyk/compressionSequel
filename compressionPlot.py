@@ -100,9 +100,9 @@ def compression(metods, decomp_metodes):
             
             file_size_after_decomp.append(os.path.getsize(file_after)) #7
             
-            result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
-            result_temp2 = result_temp.stdout.strip()
-            check_if_diff.append(result_temp2)  #8
+            #result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
+            #result_temp2 = result_temp.stdout.strip()
+            #check_if_diff.append(result_temp2)  #8
 
     return(Files_list)
 
