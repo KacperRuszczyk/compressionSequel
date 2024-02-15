@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-#compressionPlot
+#Debug/compressionPlot
 import streamlit as st
 import pandas as pd
 import os
 import subprocess
+import shutil
+import time
 
 import my_functions
 import compressionScript
@@ -16,28 +18,113 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
-    
-PATH = '/mount/src/compressionsequel/work_space/results_dir/results.csv'
-if st.button("Download File"):
-    st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
+ 
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+
+ 
+def compression(metods, decomp_metodes):
+    # Data harvesting arrays
+    Files_list = [] #1
+    comp_metode = [] #2
+    file_size = [] #3
+    comp_time = [] #4
+    file_size_after_comp = [] #5
+    decomp_time = [] #6
+    file_size_after_decomp = [] #7
+    check_if_diff = [] #8
+
+
+    # Paths
+    data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+    compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+    decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+    results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+    uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
+    i = 0
+
+
+
+    for metod in metods:
+        #copy files from uploaded_dir to data_dir
+        files_to_copy = os.listdir(uploaded_dir)
+        for file_name in files_to_copy:
+            source_path = os.path.join(uploaded_dir, file_name)
+            destination_path = os.path.join(data_dir, file_name)
+            shutil.copy(source_path, destination_path)
+            
+        for file_name in os.listdir(data_dir):
+            path_with_file_name = os.path.join(data_dir, file_name)
+            
+            Files_list.append(file_name) #1
+            comp_metode.append(metod) #2
+            file_size.append(os.path.getsize(path_with_file_name)) #3
+            
+            start_time = time.time()    
+            subprocess.run([metod, path_with_file_name])
+            end_time = time.time()
+            comp_time.append(end_time - start_time) #4
+            if os.path.isfile(path_with_file_name):
+                os.remove(path_with_file_name)
+            
+        
+        #subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
+        files_to_move = os.listdir(data_dir)
+        for file_name in files_to_move:
+            source_path = os.path.join(data_dir, file_name)
+            shutil.move(source_path, compressed_dir)
+        
+        for file_name in os.listdir(compressed_dir):
+            path_with_file_name = os.path.join(compressed_dir, file_name)
+            
+            file_size_after_comp.append(os.path.getsize(path_with_file_name)) #5
+                
+            start_time = time.time()    
+            if decomp_metodes == list:
+                subprocess.run([decomp_metodes[i][0],decomp_metodes[i][1], path_with_file_name], shell=True)
+            else:
+                subprocess.run([decomp_metodes[i], path_with_file_name], shell=True)
+            end_time = time.time()
+            decomp_time.append(end_time - start_time) #6
+            
+
+            if os.path.isfile(path_with_file_name):
+                os.remove(path_with_file_name)
+            
+        #subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])  
+        files_to_move = os.listdir(compressed_dir)
+        for file_name in files_to_move:
+            source_path = os.path.join(compressed_dir, file_name)
+            shutil.move(source_path, decompressed_dir)
+        i += 1
+        
+        for file_name in os.listdir(decompressed_dir):
+            file_after = os.path.join(decompressed_dir, file_name)
+            file_before = os.path.join(data_dir, file_name)
+            
+            file_size_after_decomp.append(os.path.getsize(file_after)) #7
+            
+            #result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
+            #result_temp2 = result_temp.stdout.strip()
+            #check_if_diff.append(result_temp2)  #8
+
+    return(Files_list)
+
+
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
-
-
 
 
 if uploaded_files:
     for uploaded_file in uploaded_files:
         my_functions.save_file(uploaded_file)
-
-
-
-
-
+       
     col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
     metods = []
     decomp_metodes = []
-    button_check = True
+   
 
     with col1:
         one_check = st.checkbox('Gzip')
@@ -60,106 +147,6 @@ if uploaded_files:
     with col2:
         compress_button = st.button('Compress The Files')
         if compress_button:    
-            compressionScript.compression(metods, decomp_metodes)
-    st.markdown(files)
-    st.markdown(comp_metode)
-    st.markdown(file_size) 
-    st.markdown(comp_time)
-    st.markdown(file_size_after_comp)
-    st.markdown(decomp_time)
-    st.markdown(file_size_after_decomp)
-    st.markdown(check_if_diff)
-    
-    
-    if os.path.exists('/mount/src/compressionsequel/work_space/results_dir/results.csv'):
-    
-        data = my_functions.loadData('/mount/src/compressionsequel/work_space/results_dir/results.csv')
-        averageTime = data['compressionTime'].mean()
-        unique_methods = list(set(data['method']))
-
-        meanCompressionFactor = []
-        meanCompressionTime = []
-        meanDecompressionTime = []
-
-        for method in unique_methods:
-            mask = data['method'] == method
-            meanCompressionFactor.append(data['compressionFactor'][mask].mean())
-            meanCompressionTime.append(data['compressionTime'][mask].mean())
-            meanDecompressionTime.append(data['decompressionTime'][mask].mean())
-
-
-
-
-        col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
-
-        with col1:
-            page1 = st.button("Graphs")
-
-        with col2:
-            page2 = st.button("Data")
-
-        with col3:
-            page3 = st.button("One graph")
-            
-        with col4:
-            page4 = st.button("CPU inf")
-
-        if page1:
-            st.title('Graphs')
-            st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Factor': meanCompressionFactor}), x='Method', y='Compression Factor')
-            st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Time (s)': meanCompressionTime}), x='Method', y='Compression Time (s)')
-            st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Decompression Time (s)': meanDecompressionTime}), x='Method', y='Decompression Time (s)')
-
-        if page2:
-            st.title('Data Frame')
-            st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
-
-        if page3:
-            st.title('OG Graph ')
-            st.pyplot(my_functions.Graph_with_dots(data))
-            
-        if page4:
-            st.title('CPU ')
-            st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
-            
-            
-   
-        
-    
-    else:
-        st.warning("Processing data...")
-else:
-    st.warning("Please upload one or more files to proceed.")  
-
-
-    
-        
-#st.markdown(os.getcwd())
-
-#st.markdown('gzip, bzip2, xz, help')
-
-
-
-#st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv'))
-#subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/results_dir/results.csv'])
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
-#st.markdown(os.path.getsize('/mount/src/compressionsequel/work_space/results_dir/results.csv.bz2'))
-
-
-#st.markdown(os.path.exists( '/mount/src/compressionsequel/compressionPlot.py'))
-#X = '/mount/src/compressionsequel/compressionPlot.py'
-
-#result_temp=subprocess.run([f"ls -l {X} | awk '{{print $5}}'"], shell=True, capture_output=True, text=True)
-#st.markdown(result_temp)
-
-#file_size = result_temp.stdout.strip()
-
-#st.markdown(file_size)
-
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
-#subprocess.run(['bzip2', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py'])
-##subprocess.run(['rm', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py'])
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
-#st.markdown(os.path.isfile('/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'))
-#st.markdown(subprocess.run(['bzip2','-d', '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'], capture_output=True, text=True))
-#st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+            compression(metods, decomp_metodes)
+            st.markdown(Files_list)
+    st.markdown(Files_list)
