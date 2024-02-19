@@ -23,7 +23,12 @@ col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
 with col2:
     clear_button = st.button('clear directorys')
-    if clear_button:    
+    if clear_button:
+        data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+        compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+        decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+        results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+        uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
         for file_name in os.listdir(data_dir):
             path_with_file_name = os.path.join(data_dir, file_name)
             os.remove(path_with_file_name)
