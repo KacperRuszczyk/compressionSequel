@@ -178,5 +178,5 @@ if uploaded_files:
         compress_button = st.button('Compress The Files')
         if compress_button:    
             compression(metods, decomp_metodes)
-            st.markdown(Files_list)
-    st.markdown(Files_list)
+            st.markdown(type(Files_list))
+    st.markdown(type(Files_list))
