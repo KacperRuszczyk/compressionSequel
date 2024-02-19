@@ -23,7 +23,7 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
-
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
  
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
@@ -62,12 +62,12 @@ def compression(metods, decomp_metodes):
             comp_metode.append(metod) #2
             file_size.append(os.path.getsize(path_with_file_name)) #3
             
-            start_time = time.time()    
-            subprocess.run([metod, path_with_file_name])
-            end_time = time.time()
-            comp_time.append(end_time - start_time) #4
-            if os.path.isfile(path_with_file_name):
-                os.remove(path_with_file_name)
+            #start_time = time.time()    
+            #subprocess.run([metod, path_with_file_name])
+            #end_time = time.time()
+            #comp_time.append(end_time - start_time) #4
+            #if os.path.isfile(path_with_file_name):
+                #os.remove(path_with_file_name)
             
         
         #subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
@@ -81,17 +81,17 @@ def compression(metods, decomp_metodes):
             
             file_size_after_comp.append(os.path.getsize(path_with_file_name)) #5
                 
-            start_time = time.time()    
-            if decomp_metodes == list:
-                subprocess.run([decomp_metodes[i][0],decomp_metodes[i][1], path_with_file_name], shell=True)
-            else:
-                subprocess.run([decomp_metodes[i], path_with_file_name], shell=True)
-            end_time = time.time()
-            decomp_time.append(end_time - start_time) #6
+            #start_time = time.time()    
+            #if decomp_metodes == list:
+                #subprocess.run([decomp_metodes[i][0],decomp_metodes[i][1], path_with_file_name], shell=True)
+            #else:
+                #subprocess.run([decomp_metodes[i], path_with_file_name], shell=True)
+            #end_time = time.time()
+            #decomp_time.append(end_time - start_time) #6
             
 
-            if os.path.isfile(path_with_file_name):
-                os.remove(path_with_file_name)
+            #if os.path.isfile(path_with_file_name):
+                #os.remove(path_with_file_name)
             
         #subprocess.run(['mv', f'{compressed_dir}/*', decompressed_dir])  
         files_to_move = os.listdir(compressed_dir)
