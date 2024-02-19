@@ -89,14 +89,14 @@ def compression(metods, decomp_metodes):
             comp_metode.append(metod) #2
             file_size.append(os.path.getsize(path_with_file_name)) #3
             
-            #start_time = time.time()    
-            #subprocess.run([metod, path_with_file_name])
-            #end_time = time.time()
-            #comp_time.append(end_time - start_time) #4
-            #if os.path.isfile(path_with_file_name):
-                #os.remove(path_with_file_name)
+            start_time = time.time()    
+            subprocess.run([metod, path_with_file_name])
+            end_time = time.time()
+            comp_time.append(end_time - start_time) #4
+            if os.path.isfile(path_with_file_name):
+                os.remove(path_with_file_name)
             
-        return(Files_list)
+        
         #subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
         files_to_move = os.listdir(data_dir)
         for file_name in files_to_move:
@@ -179,4 +179,4 @@ if uploaded_files:
         if compress_button:    
             compression(metods, decomp_metodes)
             st.markdown(type(Files_list))
-    st.markdown(type(Files_list))
+    
