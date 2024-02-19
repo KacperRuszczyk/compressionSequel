@@ -22,7 +22,32 @@ if st.button("Download File"):
     st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
+with col2:
+    clear_button = st.button('clear directorys')
+    if clear_button:
+        data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+        compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+        decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+        results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+        uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
+        for file_name in os.listdir(data_dir):
+            path_with_file_name = os.path.join(data_dir, file_name)
+            os.remove(path_with_file_name)
+        for file_name in os.listdir(compressed_dir):
+            path_with_file_name = os.path.join(compressed_dir, file_name)
+            os.remove(path_with_file_name)
+        for file_name in os.listdir(decompressed_dir):
+            path_with_file_name = os.path.join(decompressed_dir, file_name)
+            os.remove(path_with_file_name)
+        for file_name in os.listdir(results_dir):
+            path_with_file_name = os.path.join(results_dir, file_name)
+            os.remove(path_with_file_name)
+        for file_name in os.listdir(uploaded_dir):
+            path_with_file_name = os.path.join(uploaded_dir, file_name)
+            os.remove(path_with_file_name)
+ 
 
 
 if uploaded_files:
