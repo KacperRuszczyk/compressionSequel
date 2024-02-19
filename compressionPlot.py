@@ -150,7 +150,7 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 
 metods = []
 decomp_metodes = []
-
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
 with col1:
     one_check = st.checkbox('Gzip')
@@ -167,25 +167,27 @@ with col3:
     if three_check:
         metods.append('xz') 
         decomp_metodes.append('unxz')
-
+        
+st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
 
 if metods != []:
-    st.markdown('CHECK !!!!!!')
+    if uploaded_files:
+        for uploaded_file in uploaded_files:
+            my_functions.save_file(uploaded_file)
+        compression(metods, decomp_metodes)
 
 
-if uploaded_files:
-    for uploaded_file in uploaded_files:
-        my_functions.save_file(uploaded_file)
+
        
-    col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
+    
 
     
         
-    st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
+    
     
     with col2:
         compress_button = st.button('Compress The Files')
         if compress_button:    
-            compression(metods, decomp_metodes)
+            
             st.markdown(type(Files_list))
     
