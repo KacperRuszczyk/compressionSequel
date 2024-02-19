@@ -45,11 +45,15 @@ with col2:
             path_with_file_name = os.path.join(uploaded_dir, file_name)
             os.remove(path_with_file_name)
         
-      
+st.markdown('data_dir')     
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
+st.markdown('compressed_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
+st.markdown('decompressed_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
+st.markdown('data_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
+st.markdown('uploaded_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
  
 def compression(metods, decomp_metodes):
