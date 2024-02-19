@@ -96,7 +96,7 @@ def compression(metods, decomp_metodes):
             #if os.path.isfile(path_with_file_name):
                 #os.remove(path_with_file_name)
             
-        
+        return(Files_list)
         #subprocess.run(['mv', f'{data_dir}/*', compressed_dir])
         files_to_move = os.listdir(data_dir)
         for file_name in files_to_move:
