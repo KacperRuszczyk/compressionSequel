@@ -85,8 +85,10 @@ with col2:
     if move2_button:
         moveToDecompressedDir()
         
-        
-        
+with col3:
+    ref_button = st.button('ref')
+    if ref_button:       
+        pass
         
         
 def compression(metods, decomp_metodes):
