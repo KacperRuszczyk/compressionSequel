@@ -114,12 +114,12 @@ col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 with col1:
     move_button = st.button('move1')
     if move_button:
-        moveToCompressedDir()
+        my_functions.moveToCompressedDir()
         
 with col2:
     move2_button = st.button('move2')
     if move2_button:
-        moveToDecompressedDir()
+        my_functions.moveToDecompressedDir()
         
 with col3:
     ref_button = st.button('ref')
