@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import pandas as pd
 import os
-
+import subprocess
+import shutil
+import time
 
 def save_file(uploaded_file):
     with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', uploaded_file.name), "wb") as f:
@@ -89,8 +91,8 @@ def compression(metods):
             
     return(Files_list)
     
-def decompression(decomp_metodes):
-    
+def decompression(metods,decomp_metodes):
+    i = 0
     file_size_after_comp = [] #5
     decomp_time = [] #6
     
@@ -119,7 +121,12 @@ def decompression(decomp_metodes):
         i += 1
     return(file_size_after_comp)
     
-def decompressionCheck():
+def decompressionCheck(metods):
+    data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+    compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+    decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+    results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+    uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     for metod in metods:
         for file_name in os.listdir(decompressed_dir):
                 file_after = os.path.join(decompressed_dir, file_name)
@@ -134,6 +141,11 @@ def decompressionCheck():
     return(file_size_after_decomp)
 
 def moveToCompressedDir():
+    data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+    compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+    decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+    results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+    uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     files_to_move = os.listdir(data_dir)
     for file_name in files_to_move:
         source_path = os.path.join(data_dir, file_name)
