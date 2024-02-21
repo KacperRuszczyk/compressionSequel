@@ -81,17 +81,15 @@ with col3:
             for uploaded_file in uploaded_files:
                 my_functions.save_file(uploaded_file)       
         
-        
-        
+st.markdown('uploaded_dir') 
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))             
 st.markdown('data_dir')     
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
 st.markdown('compressed_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/compressed_dir'))
 st.markdown('decompressed_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/decompressed_dir'))
-st.markdown('data_dir') 
-st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
-st.markdown('uploaded_dir') 
+st.markdown('results_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
