@@ -91,7 +91,7 @@ def compression(metods):
             
     return(Files_list)
     
-def decompression(decomp_metodes):
+def decompression(metods):
     
     file_size_after_comp = [] #5
     decomp_time = [] #6
