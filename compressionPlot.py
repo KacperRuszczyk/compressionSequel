@@ -21,7 +21,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-with col2:
+with col1:
     clear_button = st.button('clear directorys')
     if clear_button:
         data_dir = '/mount/src/compressionsequel/work_space/data_dir'
@@ -44,6 +44,16 @@ with col2:
         for file_name in os.listdir(uploaded_dir):
             path_with_file_name = os.path.join(uploaded_dir, file_name)
             os.remove(path_with_file_name)
+
+
+with col3:
+    conf_button = st.button('upload to data dir')
+    if conf_button:       
+        if uploaded_files:
+            for uploaded_file in uploaded_files:
+                my_functions.save_file(uploaded_file)       
+        
+        
         
 st.markdown('data_dir')     
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/data_dir'))
@@ -205,24 +215,5 @@ with col3:
         
 st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
 
-if metods != []:
-    if uploaded_files:
-        for uploaded_file in uploaded_files:
-            my_functions.save_file(uploaded_file)
-        compression(metods, decomp_metodes)
 
-
-
-       
-    
-
-    
-        
-    
-    
-    with col2:
-        compress_button = st.button('Compress The Files')
-        if compress_button:    
-            
-            st.markdown(type(Files_list))
     
