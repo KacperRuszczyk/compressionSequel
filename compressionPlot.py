@@ -24,6 +24,7 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 
 metods = []
 decomp_metodes = []
+
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
 with col1:
@@ -102,7 +103,7 @@ with col1:
 with col2:
     decomp_button = st.button('decompress')
     if decomp_button:        
-        my_functions.decompression(decomp_metodes)
+        my_functions.decompression(metods,decomp_metodes)
  
 with col3:
     check_button = st.button('check')
