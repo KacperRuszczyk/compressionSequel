@@ -55,7 +55,40 @@ st.markdown('data_dir')
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))
 st.markdown('uploaded_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
+
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
+
+with col1:
+    comp_button = st.button('compress')
+    if comp_button:
+        my_functions.compression(metods)
+        
+with col2:
+    decomp_button = st.button('decompress')
+    if decomp_button:        
+        my_functions.decompression(decomp_metodes)
  
+with col3:
+    check_button = st.button('check')
+    if check_button:  
+        my_functions.decompressionCheck(metods)
+ 
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
+
+with col1:
+    move_button = st.button('move1')
+    if move_button:
+        moveToCompressedDir()
+        
+with col2:
+    move2_button = st.button('move2')
+    if move2_button:
+        moveToDecompressedDir()
+        
+        
+        
+        
+        
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
     Files_list = [] #1
