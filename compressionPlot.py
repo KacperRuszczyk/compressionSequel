@@ -19,6 +19,34 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
 
+uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
+
+
+metods = []
+decomp_metodes = []
+col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
+
+with col1:
+    one_check = st.checkbox('Gzip')
+    if one_check:
+        metods.append('gzip')  
+        decomp_metodes.append('gunzip')
+with col2:
+    two_check = st.checkbox('Bzip2')
+    if two_check:
+        metods.append('bzip2')       
+        decomp_metodes.append(['bzip2','-d'])
+with col3:
+    three_check = st.checkbox('Xz')
+    if three_check:
+        metods.append('xz') 
+        decomp_metodes.append('unxz')
+        
+st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
+
+
+
+
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
 with col1:
@@ -189,31 +217,7 @@ def compression(metods, decomp_metodes):
     return(Files_list)
 
 
-uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-
-
-metods = []
-decomp_metodes = []
-col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
-
-with col1:
-    one_check = st.checkbox('Gzip')
-    if one_check:
-        metods.append('gzip')  
-        decomp_metodes.append('gunzip')
-with col2:
-    two_check = st.checkbox('Bzip2')
-    if two_check:
-        metods.append('bzip2')       
-        decomp_metodes.append(['bzip2','-d'])
-with col3:
-    three_check = st.checkbox('Xz')
-    if three_check:
-        metods.append('xz') 
-        decomp_metodes.append('unxz')
-        
-st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
 
 
     
