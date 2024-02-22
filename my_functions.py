@@ -109,9 +109,9 @@ def decompression(metods,decomp_metodes):
                 
             start_time = time.time()    
             if type(metod) == list:
-                subprocess.run([metod[0],metod[1], path_with_file_name], shell=True)
+                os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
             else:
-                subprocess.run([metod, path_with_file_name], shell=True)
+                os.system(f'{metod} {path_with_file_name}')
             end_time = time.time()
             decomp_time.append(end_time - start_time) #6
             
