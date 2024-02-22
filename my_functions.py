@@ -123,6 +123,8 @@ def decompression(metods,decomp_metodes):
     return(file_size_after_comp)
     
 def decompressionCheck(metods):
+    file_size_after_decomp = [] #7
+    check_if_diff = [] #8
     data_dir = '/mount/src/compressionsequel/work_space/data_dir'
     compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
     decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
@@ -155,8 +157,7 @@ def moveToCompressedDir():
     return
     
 def moveToDecompressedDir():
-    file_size_after_decomp = [] #7
-    check_if_diff = [] #8
+    
     data_dir = '/mount/src/compressionsequel/work_space/data_dir'
     compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
     decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
