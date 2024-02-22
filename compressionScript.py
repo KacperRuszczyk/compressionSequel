@@ -93,5 +93,9 @@ def compression(metods, decomp_metodes):
             result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
             result_temp2 = result_temp.stdout.strip()
             check_if_diff.append(result_temp2)  #8
+            
+            if os.path.isfile(file_after):
+                os.remove(file_after)
+        
 
     return(Files_list)
