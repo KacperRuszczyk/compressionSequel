@@ -79,7 +79,7 @@ with col1:
     if test_button:
         metod = 'gunzip'
         path_with_file_name = '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.gz'
-        subprocess.run([metod, path_with_file_name], shell=True)
+        os.system(metod, path_with_file_name)
 
 
 
