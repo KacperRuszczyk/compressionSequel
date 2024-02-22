@@ -79,7 +79,7 @@ with col1:
     if test_button:
         metod = 'gunzip'
         path_with_file_name = '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.gz'
-        os.system(metod, path_with_file_name)
+        os.system(f'{metod} {path_with_file_name}')
 
 
 
