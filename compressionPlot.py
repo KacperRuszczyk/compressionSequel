@@ -89,7 +89,8 @@ with col3:
     if conf_button:       
         if uploaded_files:
             for uploaded_file in uploaded_files:
-                my_functions.save_file(uploaded_file)       
+                my_functions.save_file(uploaded_file)     
+            compressionScript.compression(metods, decomp_metodes)
         
 st.markdown('uploaded_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))             
