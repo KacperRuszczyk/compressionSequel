@@ -154,6 +154,11 @@ def moveToCompressedDir():
     return
     
 def moveToDecompressedDir():
+    data_dir = '/mount/src/compressionsequel/work_space/data_dir'
+    compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
+    decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
+    results_dir = '/mount/src/compressionsequel/work_space/results_dir'
+    uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     files_to_move = os.listdir(compressed_dir)
     for file_name in files_to_move:
         source_path = os.path.join(compressed_dir, file_name)
