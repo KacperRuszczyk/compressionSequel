@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #Debug/compressionScript
 import os
-import time
 import subprocess
+import shutil
+import time
 
 
 def compression(metods, decomp_metodes):
