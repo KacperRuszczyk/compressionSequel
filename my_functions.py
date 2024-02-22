@@ -101,24 +101,24 @@ def decompression(metods,decomp_metodes):
     decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
     results_dir = '/mount/src/compressionsequel/work_space/results_dir'
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
-    for metod in metods:    
+    for metod in decomp_metodes:    
         for file_name in os.listdir(compressed_dir):
             path_with_file_name = os.path.join(compressed_dir, file_name)
             
             file_size_after_comp.append(os.path.getsize(path_with_file_name)) #5
                 
             start_time = time.time()    
-            if decomp_metodes == list:
-                subprocess.run([decomp_metodes[i][0],decomp_metodes[i][1], path_with_file_name], shell=True)
+            if type(metod) == list:
+                subprocess.run([metod[0],metod[1], path_with_file_name], shell=True)
             else:
-                subprocess.run([decomp_metodes[i], path_with_file_name], shell=True)
+                subprocess.run([metod, path_with_file_name], shell=True)
             end_time = time.time()
             decomp_time.append(end_time - start_time) #6
             
 
             if os.path.isfile(path_with_file_name):
                 os.remove(path_with_file_name)
-        i += 1
+       
     return(file_size_after_comp)
     
 def decompressionCheck(metods):
