@@ -74,13 +74,23 @@ with col1:
             path_with_file_name = os.path.join(uploaded_dir, file_name)
             os.remove(path_with_file_name)
 
+with col1:
+    test_button = st.button('test decomp')
+    if test_button:
+        metod = ['bzip2','-d']
+        path_with_file_name = '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'
+        os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
+
+
+
 
 with col3:
     conf_button = st.button('upload to data dir')
     if conf_button:       
         if uploaded_files:
             for uploaded_file in uploaded_files:
-                my_functions.save_file(uploaded_file)       
+                my_functions.save_file(uploaded_file)     
+            compressionScript.compression(metods, decomp_metodes)
         
 st.markdown('uploaded_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))             
