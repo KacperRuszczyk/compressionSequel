@@ -86,6 +86,7 @@ def compression(metods):
             subprocess.run([metod, path_with_file_name])
             end_time = time.time()
             comp_time.append(end_time - start_time) #4
+            
             if os.path.isfile(path_with_file_name):
                 os.remove(path_with_file_name)
             
@@ -108,10 +109,10 @@ def decompression(metods,decomp_metodes):
             file_size_after_comp.append(os.path.getsize(path_with_file_name)) #5
                 
             start_time = time.time()    
-            if type(metod) == list:
-                os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
+            if type(decomp_metodes[i]) == list:
+                os.system(f'{decomp_metodes[i][0]} {decomp_metodes[i][1]} {path_with_file_name}')
             else:
-                os.system(f'{metod} {path_with_file_name}')
+                os.system(f'{decomp_metodes[i]} {path_with_file_name}')
             end_time = time.time()
             decomp_time.append(end_time - start_time) #6
             
@@ -154,6 +155,8 @@ def moveToCompressedDir():
     return
     
 def moveToDecompressedDir():
+    file_size_after_decomp = [] #7
+    check_if_diff = [] #8
     data_dir = '/mount/src/compressionsequel/work_space/data_dir'
     compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
     decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
