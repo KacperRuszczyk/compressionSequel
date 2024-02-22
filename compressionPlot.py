@@ -78,7 +78,7 @@ with col1:
     test_button = st.button('test decomp')
     if test_button:
         metod = 'gunzip'
-        path_with_file_name = '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'
+        path_with_file_name = '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.gz'
         subprocess.run([metod, path_with_file_name], shell=True)
 
 
