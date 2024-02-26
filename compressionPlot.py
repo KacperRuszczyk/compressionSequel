@@ -112,4 +112,4 @@ with col3:
         
 PATH = '/mount/src/compressionsequel/work_space/results_dir/results.txt'
 if st.button("Download File"):
-    st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{PATH}" download="results.txt">download</a>', unsafe_allow_html=True)
