@@ -75,11 +75,9 @@ with col1:
             os.remove(path_with_file_name)
 
 with col2:
-    test_button = st.button('test decomp')
-    if test_button:
-        metod = ['bzip2','-d']
-        path_with_file_name = '/mount/src/compressionsequel/work_space/compressed_dir/compressionPlot.py.bz2'
-        os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
+    comp_button = st.button('compress')
+    if comp_button:
+         compressionScript.compression(metods, decomp_metodes)
 
 
 
@@ -90,7 +88,7 @@ with col3:
         if uploaded_files:
             for uploaded_file in uploaded_files:
                 my_functions.save_file(uploaded_file)     
-            compressionScript.compression(metods, decomp_metodes)
+           
         
 st.markdown('uploaded_dir') 
 st.markdown(os.listdir('/mount/src/compressionsequel/work_space/uploaded_dir'))             
@@ -105,33 +103,7 @@ st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-with col1:
-    comp_button = st.button('compress')
-    if comp_button:
-        my_functions.compression(metods)
-        
-with col2:
-    decomp_button = st.button('decompress')
-    if decomp_button:        
-        my_functions.decompression(metods,decomp_metodes)
- 
-with col3:
-    check_button = st.button('check')
-    if check_button:  
-        my_functions.decompressionCheck(metods)
- 
-col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-with col1:
-    move_button = st.button('move1')
-    if move_button:
-        my_functions.moveToCompressedDir()
-        
-with col2:
-    move2_button = st.button('move2')
-    if move2_button:
-        my_functions.moveToDecompressedDir()
-        
 with col3:
     ref_button = st.button('ref')
     if ref_button:       
