@@ -95,11 +95,11 @@ with col3:
 
             
 
-            for method in unique_methods:
-                mask = data['method'] == method
-                meanCompressionFactor.append(data['compressionFactor'][mask].mean())
-                meanCompressionTime.append(data['compressionTime'][mask].mean())
-                meanDecompressionTime.append(data['decompressionTime'][mask].mean())
+        for method in unique_methods:
+            mask = data['method'] == method
+            meanCompressionFactor.append(data['compressionFactor'][mask].mean())
+            meanCompressionTime.append(data['compressionTime'][mask].mean())
+            meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
 
 
