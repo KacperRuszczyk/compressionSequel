@@ -98,7 +98,7 @@ with col3:
             meanCompressionTime.append(data['compressionTime'][mask].mean())
             meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
-
+        st.markdown(data)
 
 
 col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
