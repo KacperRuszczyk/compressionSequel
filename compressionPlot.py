@@ -15,7 +15,9 @@ import compressionScript
 unlock_charts = False
 metods = []
 decomp_metodes = []
-
+meanCompressionFactor = []
+meanCompressionTime = []
+meanDecompressionTime = []
 
 #streamlit boot PATH creation
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
@@ -91,9 +93,7 @@ with col3:
         averageTime = data['compressionTime'].mean()
         unique_methods = list(set(data['method']))
 
-            meanCompressionFactor = []
-            meanCompressionTime = []
-            meanDecompressionTime = []
+            
 
             for method in unique_methods:
                 mask = data['method'] == method
