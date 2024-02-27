@@ -84,10 +84,7 @@ with col3:
         if uploaded_files:
             for uploaded_file in uploaded_files:
                 my_functions.save_file(uploaded_file)
-        comp_metode,files_list, \
-        file_size,comp_time, \
-        file_size_after_comp,decomp_time, \
-        file_size_after_decomp,check_if_diff = compressionScript.compression(metods, decomp_metodes)
+        comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff = compressionScript.compression(metods, decomp_metodes)
         data = my_functions.loadData(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
         
         averageTime = data['compressionTime'].mean()
