@@ -11,7 +11,7 @@ import my_functions
 import compressionScript
 
 
-
+unique_methods = 0
 unlock_charts = False
 metods = []
 decomp_metodes = []
