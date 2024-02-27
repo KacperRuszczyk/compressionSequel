@@ -86,6 +86,7 @@ with col3:
             file_size,comp_time, \
             file_size_after_comp,decomp_time, \
             file_size_after_decomp,check_if_diff = compressionScript.compression(metods, decomp_metodes)
+            data = my_functions.loadData(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
             unlock_charts = True
             averageTime = data['compressionTime'].mean()
             unique_methods = list(set(data['method']))
