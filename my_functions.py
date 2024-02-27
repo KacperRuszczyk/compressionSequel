@@ -12,8 +12,17 @@ def save_file(uploaded_file):
     with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', uploaded_file.name), "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-def loadData(path):
-    data = pd.read_csv( path , sep = ',')
+def loadData(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff):
+    data = pd.DataFrame({
+        'method': comp_metode,
+        'filename': files_list,
+        'sizeBefore': file_size,
+        'compressionTime': comp_time,
+        'compressedFileSize': file_size_after_comp,
+        'decompressionTime': decomp_time,
+        'sizeAfterDecompression': file_size_after_decomp,
+        'different': check_if_diff})
+        
     data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
     return data
 

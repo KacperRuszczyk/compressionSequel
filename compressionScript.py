@@ -8,7 +8,7 @@ import time
 
 def compression(metods, decomp_metodes):
     # Data harvesting arrays
-    Files_list = [] #1
+    files_list = [] #1
     comp_metode = [] #2
     file_size = [] #3
     comp_time = [] #4
@@ -39,7 +39,7 @@ def compression(metods, decomp_metodes):
         for file_name in os.listdir(data_dir):
             path_with_file_name = os.path.join(data_dir, file_name)
             
-            Files_list.append(file_name) #1
+            files_list.append(file_name) #1
             comp_metode.append(metod) #2
             file_size.append(os.path.getsize(path_with_file_name)) #3
             
@@ -99,12 +99,12 @@ def compression(metods, decomp_metodes):
                 
     results = os.path.join(results_dir, 'results.txt')
 
-    with open(results, 'a') as file:
-        file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
+    #with open(results, 'a') as file:
+        #file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
                     
-        for i in range(len(comp_metode)):    
-            file.write(f"{comp_metode[i]};{Files_list[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
+        #for i in range(len(comp_metode)):    
+            #file.write(f"{comp_metode[i]};{files_list[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
     
         
 
-    return(Files_list)
+    return(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
