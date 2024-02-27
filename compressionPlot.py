@@ -79,7 +79,7 @@ with col1:
             os.remove(path_with_file_name)
 
 with col3:
-    comp_button = st.button('compress')
+    comp_button = st.checkbox('compress')
     if comp_button:
         if uploaded_files:
             for uploaded_file in uploaded_files:
@@ -98,7 +98,7 @@ with col3:
             meanCompressionTime.append(data['compressionTime'][mask].mean())
             meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
-        st.markdown(data)
+        #st.markdown(data)
 
 
 col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
