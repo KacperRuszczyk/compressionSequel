@@ -99,7 +99,7 @@ if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.cs
         meanCompressionTime.append(data['compressionTime'][mask].mean())
         meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
-
+st.markdown(os.listdir('/mount/src/compressionsequel/work_space/results_dir'))
 
 
 col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
