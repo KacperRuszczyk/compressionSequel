@@ -90,7 +90,8 @@ with col3:
             averageTime = data['compressionTime'].mean()
             data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
 
-if unlock_charts:       
+if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.csv'):      
+    data = pd.read_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv')
     unique_methods = list(set(data['method']))
     for method in unique_methods:
         mask = data['method'] == method
