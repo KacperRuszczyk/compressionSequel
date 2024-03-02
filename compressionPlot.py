@@ -84,24 +84,21 @@ with col3:
         if uploaded_files:
             for uploaded_file in uploaded_files:
                 my_functions.save_file(uploaded_file)
-            unlock_charts == True    
-                
-if unlock_charts:
-    comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff = compressionScript.compression(metods, decomp_metodes)
-    data = my_functions.loadData(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
-    
-    averageTime = data['compressionTime'].mean()
+                            
+            comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff = compressionScript.compression(metods, decomp_metodes)
+            data = my_functions.loadData(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
+            averageTime = data['compressionTime'].mean()
+            data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
+
+if unlock_charts:       
     unique_methods = list(set(data['method']))
-
-        
-
     for method in unique_methods:
         mask = data['method'] == method
         meanCompressionFactor.append(data['compressionFactor'][mask].mean())
         meanCompressionTime.append(data['compressionTime'][mask].mean())
         meanDecompressionTime.append(data['decompressionTime'][mask].mean())
 
-    #st.markdown(data)
+
 
 
 col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
@@ -159,6 +156,6 @@ with col2:
 
 
        
-#PATH = '/mount/src/compressionsequel/work_space/results_dir/results.txt'
-#if st.button("Download File"):
-    #st.markdown(f'<a href="{PATH}" download="results.txt">download</a>', unsafe_allow_html=True)
+PATH = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
+if st.button("Download File"):
+    st.markdown(f'<a href="{PATH}" download="results.txt">download</a>', unsafe_allow_html=True)
