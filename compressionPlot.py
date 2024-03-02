@@ -79,7 +79,7 @@ with col1:
             os.remove(path_with_file_name)
 
 with col3:
-    comp_button = st.checkbox('compress')
+    comp_button = st.button('compress')
     if comp_button:
         if uploaded_files:
             for uploaded_file in uploaded_files:
@@ -158,4 +158,4 @@ with col2:
        
 PATH = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
 if st.button("Download File"):
-    st.markdown(f'<a href="{PATH}" download="results.txt">download</a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
