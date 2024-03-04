@@ -46,7 +46,7 @@ with col3:
         decomp_metodes.append('unxz')
         
 
-col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
+left, col2, right = st.columns([0.1,10,0.1])
 
 
 with col2:
