@@ -93,7 +93,7 @@ def compression(metods, decomp_metodes):
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     
     percent_complete = int(100/len(metods))
-        
+    percent_progress = 0  
     progress_text = "Operation in progress. Please wait."
     my_bar = st.progress(0, text=progress_text)
 
@@ -167,7 +167,7 @@ def compression(metods, decomp_metodes):
             
             if os.path.isfile(file_after):
                 os.remove(file_after)
-        my_bar.progress(0 + percent_complete, text=progress_text)  
+        my_bar.progress(percent_progress += percent_complete, text=progress_text)  
     data = pd.DataFrame({
         'method': comp_metode,
         'filename': files_list,
