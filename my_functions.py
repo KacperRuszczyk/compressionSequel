@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #Debug/my_functions
+import streamlit as st
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import pandas as pd
