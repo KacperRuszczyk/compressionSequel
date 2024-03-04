@@ -93,7 +93,7 @@ def compression(metods, decomp_metodes):
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     
     percent_complete = int(50/len(metods))
-    percent_progress = 0  
+    percent_progress = percent_complete  
     progress_text = "Operation in progress. Please wait."
     my_bar = st.progress(0, text=progress_text)
 
