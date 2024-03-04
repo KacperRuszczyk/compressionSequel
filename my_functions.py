@@ -93,8 +93,12 @@ def compression(metods, decomp_metodes):
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     
 
-    st.markdown('loading')
+        
+    progress_text = "Operation in progress. Please wait."
+    my_bar = st.progress(0, text=progress_text)
 
+    
+    
     for i, metod in enumerate(metods):
         #copy files from uploaded_dir to data_dir
         files_to_copy = os.listdir(uploaded_dir)
@@ -176,4 +180,7 @@ def compression(metods, decomp_metodes):
         
     data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
     data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
+    
+    my_bar.empty()
+    
     return 
