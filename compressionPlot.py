@@ -100,8 +100,8 @@ if page1:
 
 if page2:
     st.title('Data Frame')
-    st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
-
+    #st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
+    st.dataframe(data)
 if page3:
     st.title('OG Graph ')
     st.pyplot(my_functions.Graph_with_dots(data))
