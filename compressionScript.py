@@ -4,6 +4,7 @@ import os
 import subprocess
 import shutil
 import time
+import pandas as pd
 
 
 def compression(metods, decomp_metodes):
@@ -16,7 +17,7 @@ def compression(metods, decomp_metodes):
     decomp_time = [] #6
     file_size_after_decomp = [] #7
     check_if_diff = [] #8
-
+    data = pd.DataFrame()
 
     # Paths
     data_dir = '/mount/src/compressionsequel/work_space/data_dir'
@@ -24,7 +25,7 @@ def compression(metods, decomp_metodes):
     decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
     results_dir = '/mount/src/compressionsequel/work_space/results_dir'
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
-    i = 0
+    
 
 
 
@@ -97,14 +98,16 @@ def compression(metods, decomp_metodes):
             if os.path.isfile(file_after):
                 os.remove(file_after)
                 
-    results = os.path.join(results_dir, 'results.txt')
-
-    #with open(results, 'a') as file:
-        #file.write("method;filename;sizeBefore;compressionTime;compressedFileSize;decompressionTime;sizeAfterDecompression;different\n")
-                    
-        #for i in range(len(comp_metode)):    
-            #file.write(f"{comp_metode[i]};{files_list[i]};{file_size[i]};{comp_time[i]};{file_size_after_comp[i]};{decomp_time[i]};{file_size_after_decomp[i]};{check_if_diff[i]}\n")
-    
+    data = pd.DataFrame({
+        'method': comp_metode,
+        'filename': files_list,
+        'sizeBefore': file_size,
+        'compressionTime': comp_time,
+        'compressedFileSize': file_size_after_comp,
+        'decompressionTime': decomp_time,
+        'sizeAfterDecompression': file_size_after_decomp,
+        'different': check_if_diff})
         
-
-    return(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
+    data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
+    data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
+    return 

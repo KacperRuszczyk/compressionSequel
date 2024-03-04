@@ -54,45 +54,21 @@ st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
-with col1:
-    clear_button = st.button('clear directorys')
-    if clear_button:
-        data_dir = '/mount/src/compressionsequel/work_space/data_dir'
-        compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
-        decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
-        results_dir = '/mount/src/compressionsequel/work_space/results_dir'
-        uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
-        for file_name in os.listdir(data_dir):
-            path_with_file_name = os.path.join(data_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(compressed_dir):
-            path_with_file_name = os.path.join(compressed_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(decompressed_dir):
-            path_with_file_name = os.path.join(decompressed_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(results_dir):
-            path_with_file_name = os.path.join(results_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(uploaded_dir):
-            path_with_file_name = os.path.join(uploaded_dir, file_name)
-            os.remove(path_with_file_name)
 
-with col3:
+with col2:
     comp_button = st.button('compress')
     if comp_button:
+        my_functions.clear_work_space()
         if uploaded_files:
             for uploaded_file in uploaded_files:
                 my_functions.save_file(uploaded_file)
-                            
-            comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff = compressionScript.compression(metods, decomp_metodes)
-            data = my_functions.loadData(comp_metode,files_list,file_size,comp_time,file_size_after_comp,decomp_time,file_size_after_decomp,check_if_diff)
-            averageTime = data['compressionTime'].mean()
-            data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
+            compressionScript.compression(metods, decomp_metodes)
+
 
 if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.csv'):      
     data = pd.read_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv')
     unique_methods = list(set(data['method']))
+    averageTime = data['compressionTime'].mean()
     for method in unique_methods:
         mask = data['method'] == method
         meanCompressionFactor.append(data['compressionFactor'][mask].mean())
