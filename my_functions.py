@@ -92,7 +92,7 @@ def compression(metods, decomp_metodes):
     results_dir = '/mount/src/compressionsequel/work_space/results_dir'
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     
-    percent_complete = int(100/len(metods))
+    percent_complete = int(50/len(metods))
     percent_progress = 0  
     progress_text = "Operation in progress. Please wait."
     my_bar = st.progress(0, text=progress_text)
@@ -102,6 +102,7 @@ def compression(metods, decomp_metodes):
     for i, metod in enumerate(metods):
         #copy files from uploaded_dir to data_dir
         files_to_copy = os.listdir(uploaded_dir)
+        my_bar.progress(percent_progress, text=progress_text)
         for file_name in files_to_copy:
             source_path = os.path.join(uploaded_dir, file_name)
             destination_path = os.path.join(data_dir, file_name)
@@ -128,6 +129,10 @@ def compression(metods, decomp_metodes):
         for file_name in files_to_move:
             source_path = os.path.join(data_dir, file_name)
             shutil.move(source_path, compressed_dir)
+            
+        percent_progress =+ percent_complete
+        my_bar.progress(percent_progress, text=progress_text) 
+        
         
         
         for file_name in os.listdir(compressed_dir):
@@ -167,8 +172,12 @@ def compression(metods, decomp_metodes):
             
             if os.path.isfile(file_after):
                 os.remove(file_after)
+                
+        percent_progress =+ percent_complete          
         my_bar.progress(percent_progress, text=progress_text) 
-        percent_progress =+ percent_complete    
+          
+        
+        
     data = pd.DataFrame({
         'method': comp_metode,
         'filename': files_list,
