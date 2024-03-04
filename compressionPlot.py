@@ -110,23 +110,7 @@ if page4:
 
 
 
-
-
-    
-
-col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
-
-
-with col2:
-    ref_button = st.button('ref')
-    if ref_button:       
-        pass
-        
        
-
-
-
-       
-PATH = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
-if st.button("Download File"):
-    st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
+#PATH = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
+#if st.button("Download File"):
+    #st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
