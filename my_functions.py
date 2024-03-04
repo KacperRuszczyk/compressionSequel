@@ -130,7 +130,7 @@ def compression(metods, decomp_metodes):
             source_path = os.path.join(data_dir, file_name)
             shutil.move(source_path, compressed_dir)
             
-        percent_progress =+ percent_complete
+        percent_progress += percent_complete
         my_bar.progress(percent_progress, text=progress_text) 
         
         
@@ -173,7 +173,7 @@ def compression(metods, decomp_metodes):
             if os.path.isfile(file_after):
                 os.remove(file_after)
                 
-        percent_progress =+ percent_complete          
+        percent_progress += percent_complete          
         my_bar.progress(percent_progress, text=progress_text) 
           
         
