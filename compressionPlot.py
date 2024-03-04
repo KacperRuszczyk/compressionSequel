@@ -2,6 +2,7 @@
 #Debug/compressionPlot
 import streamlit as st
 import pandas as pd
+import os
 
 import my_functions
 
