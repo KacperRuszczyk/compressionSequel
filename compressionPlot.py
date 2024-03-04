@@ -2,17 +2,12 @@
 #Debug/compressionPlot
 import streamlit as st
 import pandas as pd
-import os
-import subprocess
-import shutil
-import time
 
 import my_functions
-import compressionScript
 
 
+data = 0
 unique_methods = 0
-unlock_charts = False
 metods = []
 decomp_metodes = []
 meanCompressionFactor = []
@@ -49,8 +44,6 @@ with col3:
         metods.append('xz') 
         decomp_metodes.append('unxz')
         
-st.markdown(f''' :red[methods used:] :gray[{str(metods)}]''')
-
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 
@@ -62,7 +55,7 @@ with col2:
         if uploaded_files:
             for uploaded_file in uploaded_files:
                 my_functions.save_file(uploaded_file)
-            compressionScript.compression(metods, decomp_metodes)
+            my_functions.compression(metods, decomp_metodes)
 
 
 if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.csv'):      
