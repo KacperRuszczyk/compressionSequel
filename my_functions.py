@@ -101,8 +101,12 @@ def compression(metods, decomp_metodes):
     
     for i, metod in enumerate(metods):
         #copy files from uploaded_dir to data_dir
-        files_to_copy = os.listdir(uploaded_dir)
+        
+        progress_text = f" {metod} compression in progress. Please wait."
         my_bar.progress(percent_progress, text=progress_text)
+        
+        files_to_copy = os.listdir(uploaded_dir)
+        
         for file_name in files_to_copy:
             source_path = os.path.join(uploaded_dir, file_name)
             destination_path = os.path.join(data_dir, file_name)
@@ -129,7 +133,8 @@ def compression(metods, decomp_metodes):
         for file_name in files_to_move:
             source_path = os.path.join(data_dir, file_name)
             shutil.move(source_path, compressed_dir)
-            
+        
+        progress_text = f" {metod} decompression in progress. Please wait."    
         percent_progress += percent_complete
         my_bar.progress(percent_progress, text=progress_text) 
         
@@ -172,9 +177,9 @@ def compression(metods, decomp_metodes):
             
             if os.path.isfile(file_after):
                 os.remove(file_after)
-                
+               
         percent_progress += percent_complete          
-        my_bar.progress(percent_progress, text=progress_text) 
+         
           
         
         
