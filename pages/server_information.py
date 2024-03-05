@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+import subprocess
 
 st.set_page_config(
     page_title="CPU info",
