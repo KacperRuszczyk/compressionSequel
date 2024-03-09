@@ -27,6 +27,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
 st.set_page_config(
     page_title="Compression",
     page_icon="🤡",
+    initial_sidebar_state='expanded'
 )
 
 st.sidebar.success("Select a demo above.")
