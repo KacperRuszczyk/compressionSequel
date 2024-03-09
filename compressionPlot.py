@@ -82,7 +82,7 @@ if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.cs
 
 
 
-col1, left, col2, center, col3, right, col4 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1])
+col1, left, col2, right, col3 = st.columns([1, 0.1, 1, 0.1, 1])
 
 with col1:
     page1 = st.button("Graphs")
@@ -93,8 +93,6 @@ with col2:
 with col3:
     page3 = st.button("One graph")
     
-with col4:
-    page4 = st.button("CPU inf")
 
 if page1:
     st.title('Graphs')
@@ -110,14 +108,6 @@ if page3:
     st.title('OG Graph ')
     st.pyplot(my_functions.Graph_with_dots(data))
     
-if page4:
-    st.title('CPU ')
-    st.markdown(subprocess.run(['lscpu','-C','cpu'], shell=True, capture_output=True, text=True))
-    
-    
-
-    
-
 
 
        
