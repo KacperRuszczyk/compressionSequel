@@ -1,8 +1,5 @@
 import streamlit as st
 
-
-
-
 '''Bzip2:
 Burrows-Wheeler Transform (BWT)
 Move-to-Front (MTF)
@@ -17,7 +14,6 @@ Xz:
 Burrows-Wheeler Transform (BWT)
 LZ77
 LZMA2'''
-
 
 
 st.markdown('Burrows-Wheeler Transform (BWT)')
