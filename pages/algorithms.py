@@ -19,13 +19,6 @@ LZ77
 LZMA2'''
 
 
-st.set_page_config(
-    page_title='Algorithms information',
-    page_icon='📄',
-    initial_sidebar_state='expanded'
-)
-
-
 
 st.markdown('Burrows-Wheeler Transform (BWT)')
 BWT = '''The Burrows-Wheeler Transform is a data compression algorithm developed by Michael Burrows and David Wheeler.  
