@@ -123,6 +123,10 @@ def compression(metods, decomp_metodes):
             
             start_time = time.time()    
             subprocess.run([metod, path_with_file_name])
+            if type(metod[i]) == list:
+                os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
+            else:
+                os.system(f'{metod} {path_with_file_name}')
             end_time = time.time()
             comp_time.append(end_time - start_time) #4
             
