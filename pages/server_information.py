@@ -27,7 +27,7 @@ relevant_info = {
 
 output_lines_disk = result_disk.stdout.split('\n')
 relevant_info_disk = {
-    'Size': my_functions.kb_to_mb(int(output_lines_disk[1].split()[1])),
+    'Size': F"{output_lines_disk[1].split()[1]} KB",
     'Used': output_lines_disk[1].split()[2],
     'Available': output_lines_disk[1].split()[3],
     'Use%': output_lines_disk[1].split()[4],
