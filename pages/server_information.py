@@ -2,6 +2,10 @@ import streamlit as st
 import os
 import subprocess
 
+import my_functions
+
+
+
 st.set_page_config(
     page_title='CPU info',
     page_icon='💽',
@@ -23,12 +27,10 @@ relevant_info = {
 
 output_lines_disk = result_disk.stdout.split('\n')
 relevant_info_disk = {
-    'Filesystem': output_lines_disk[1].split()[0],
-    'Size': output_lines_disk[1].split()[1],
+    'Size': my_functions.kb_to_mb(int(output_lines_disk[1].split()[1])),
     'Used': output_lines_disk[1].split()[2],
     'Available': output_lines_disk[1].split()[3],
     'Use%': output_lines_disk[1].split()[4],
-    'Mounted on': output_lines_disk[1].split()[5],
 }
 
 
