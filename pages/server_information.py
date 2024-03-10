@@ -7,7 +7,7 @@ import my_functions
 
 
 st.set_page_config(
-    page_title='CPU info',
+    page_title='Server information',
     page_icon='💽',
     initial_sidebar_state='expanded'
 )
@@ -28,8 +28,8 @@ relevant_info = {
 output_lines_disk = result_disk.stdout.split('\n')
 relevant_info_disk = {
     'Size': F"{output_lines_disk[1].split()[1]} KB",
-    'Used': output_lines_disk[1].split()[2],
-    'Available': output_lines_disk[1].split()[3],
+    'Used': F"{output_lines_disk[1].split()[2]} KB",
+    'Available': F"{output_lines_disk[1].split()[3]} KB",
     'Use%': output_lines_disk[1].split()[4],
 }
 
