@@ -10,7 +10,7 @@ st.set_page_config(
 
 result_cpu = subprocess.run(['lscpu', '-C', 'cpu'], shell=True, capture_output=True, text=True)
 
-result_memory = subprocess.run(['free', '-m'], shell=True, capture_output=True, text=True)
+result_memory = subprocess.run(['vmstat', '-s'], shell=True, capture_output=True, text=True)
 
 result_disk = subprocess.run(['df', '-h'], shell=True, capture_output=True, text=True)
 
