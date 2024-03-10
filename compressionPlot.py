@@ -38,7 +38,7 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
-
+#Regular
 with col1:
     one_check = st.checkbox('Gzip')
     if one_check:
@@ -54,6 +54,41 @@ with col3:
     if three_check:
         metods.append('xz') 
         decomp_metodes.append('unxz')
+#Best
+with col1:
+    one_check = st.checkbox('Gzip Best')
+    if one_check:
+        metods.append(['gzip','--best'])  
+        decomp_metodes.append('gunzip')
+with col2:
+    two_check = st.checkbox('Bzip2 Best')
+    if two_check:
+        metods.append(['bzip2','--best'])       
+        decomp_metodes.append(['bzip2','-d'])
+with col3:
+    three_check = st.checkbox('Xz Best')
+    if three_check:
+        metods.append(['xz','--best']) 
+        decomp_metodes.append('unxz')
+#Fast
+with col1:
+    one_check = st.checkbox('Gzip Fast')
+    if one_check:
+        metods.append(['gzip','--fast'])  
+        decomp_metodes.append('gunzip')
+with col2:
+    two_check = st.checkbox('Bzip2 Fast')
+    if two_check:
+        metods.append(['bzip2','--fast'])       
+        decomp_metodes.append(['bzip2','-d'])
+with col3:
+    three_check = st.checkbox('Xz Fast')
+    if three_check:
+        metods.append(['xz','--fast']) 
+        decomp_metodes.append('unxz')
+
+
+
         
 
 left, col2, right = st.columns([0.1,10,0.1])

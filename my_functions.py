@@ -9,7 +9,9 @@ import subprocess
 import shutil
 import time
 
-
+def kb_to_mb(size):
+    size = size / 1024
+    return size
 
 def save_file(uploaded_file):
     with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', uploaded_file.name), "wb") as f:
@@ -25,20 +27,15 @@ def result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,m
 
 def Graph_with_dots(data):
     colors_dict = {
-        "gzip": "yellow",
-        "gzip -v9": "red",
-        "gzip -v1": "blue",
-        "pigz": "green",
-        "bzip2": "purple",
-        "pbzip2": "orange",
-        "lz4": "pink",
-        "lz4 -12": "gray",
-        "lzip": "brown",
-        "plzip": "olive",
-        "plzip -9": "cyan",
-        "xz": "magenta",
-        "zstd": "teal",
-        "zstd -19 -T0": "navy"}
+        "gzip": "red",
+        "['gzip', '--best']": "yellow",
+        "['gzip', '--fast']": "orange",
+        "bzip2": "blue",
+        "['bzip2', '--best']": "purple",
+        "['bzip2', '--fast']": "magenta",
+        "xz": "green",
+        "['xz', '--best']": "lime",
+        "['xz', '--fast']": "olive"}
     legend = [mpatches.Patch(color=color, label=label) for label, color in colors_dict.items()]
     colors = [colors_dict[m] for m in data['method']]
     fig = plt.figure(figsize=(12,10))
@@ -120,7 +117,10 @@ def compression(metods, decomp_metodes):
             file_size.append(os.path.getsize(path_with_file_name)) #3
             
             start_time = time.time()    
-            subprocess.run([metod, path_with_file_name])
+            if type(metod) == list:
+                os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
+            else:
+                os.system(f'{metod} {path_with_file_name}')
             end_time = time.time()
             comp_time.append(end_time - start_time) #4
             
