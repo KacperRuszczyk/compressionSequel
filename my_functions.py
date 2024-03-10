@@ -9,7 +9,9 @@ import subprocess
 import shutil
 import time
 
-
+def kb_to_mb(size):
+    size = size / 1024
+    return size
 
 def save_file(uploaded_file):
     with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', uploaded_file.name), "wb") as f:
