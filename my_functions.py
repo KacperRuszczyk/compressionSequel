@@ -27,20 +27,15 @@ def result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,m
 
 def Graph_with_dots(data):
     colors_dict = {
-        "gzip": "yellow",
-        "gzip -v9": "red",
-        "gzip -v1": "blue",
-        "pigz": "green",
-        "bzip2": "purple",
-        "pbzip2": "orange",
-        "lz4": "pink",
-        "lz4 -12": "gray",
-        "lzip": "brown",
-        "plzip": "olive",
-        "plzip -9": "cyan",
-        "xz": "magenta",
-        "zstd": "teal",
-        "zstd -19 -T0": "navy"}
+        "gzip": "red",
+        "['gzip', '--best']": "yellow",
+        "['gzip', '--fast']": "orange",
+        "bzip2": "blue",
+        "['bzip2', '--best']": "purple",
+        "['bzip2', '--best']": "magenta",
+        "xz": "green",
+        "['xz', '--best']": "lime",
+        "['xz', '--fast']": "olive"}
     legend = [mpatches.Patch(color=color, label=label) for label, color in colors_dict.items()]
     colors = [colors_dict[m] for m in data['method']]
     fig = plt.figure(figsize=(12,10))
