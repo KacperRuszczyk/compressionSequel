@@ -32,7 +32,7 @@ def Graph_with_dots(data):
         "['gzip', '--fast']": "orange",
         "bzip2": "blue",
         "['bzip2', '--best']": "purple",
-        "['bzip2', '--best']": "magenta",
+        "['bzip2', '--fast']": "magenta",
         "xz": "green",
         "['xz', '--best']": "lime",
         "['xz', '--fast']": "olive"}
