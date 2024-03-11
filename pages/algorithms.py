@@ -55,6 +55,8 @@ if page4 or page44 or page444:
     'This technique transforms the input data sequence in such a way that similar characters are grouped together.'  
     'This transformation facilitates data compression. BWT sorts the data sequence, creating a new sequence where similar characters are close to each other.'
 
+    st.image('images/Burrows-Wheeler.png', caption=None)
+
 if page5 or page55:
     st.title('Move-to-Front (MTF)')
     
@@ -75,7 +77,7 @@ if page6 or page66:
     '➖If a repetition is found, information about it is saved in the form of a triplet (offset, length, next character) The offset represents the number of characters to backtrack in the data sequence to find the repetition. The length is the number of characters in the repetition, and the next character is the first character after the repetition.'
     '➖If no repetition is found, information about the current character is saved as a pair (0, current character), where 0 indicates no repetition, and the current character is directly stored.'
     '➖Information about repetitions is added to the dictionary for further comparison and compression of subsequent fragments.'
-
+    st.image('images/LZ77.png')
 if page8:
     st.title('Huffmana')
 
@@ -99,7 +101,7 @@ if page8:
     st.markdown(':gray[**Generation of the compressed sequence:**]')
     '➖After assigning codes to symbols, the algorithm goes through the original data sequence and replaces each symbol with its corresponding code.'
     '➖As a result, a compressed data sequence is obtained, in which longer bit codes have been replaced with shorter codes for more frequently occurring symbols.'
-
+    st.image('images/Hoffman.png')
 if page7:
     st.title('LZMA // LZMA2')
 
@@ -113,4 +115,4 @@ if page7:
     'LZMA and LZMA2 are two versions of the same algorithm. LZMA2 introduces the concept of "filters" that can be applied in the compression process.'   
     'Filters are different compression algorithms that can be combined in chains to optimize compression for specific types of data.' 
 
-
+    st.image('images/LZMA.png')
