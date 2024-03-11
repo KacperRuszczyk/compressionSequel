@@ -1,31 +1,22 @@
 import streamlit as st
 
-'''Bzip2:
-Burrows-Wheeler Transform (BWT)
-Move-to-Front (MTF)
-
-Gzip:
-Burrows-Wheeler Transform (BWT)
-Move-to-Front (MTF)
-LZ77
-Huffmana
-
-Xz:
-Burrows-Wheeler Transform (BWT)
-LZ77
-LZMA2'''
 
 col1, left, col2, right, col3 = st.columns([1, 0.1, 1, 0.1, 1])
 
 with col1:
+    st.header("Bzip2")
     page1 = st.button("Bzip2")
 
 with col2:
+    st.header("Gzip")
     page2 = st.button("Gzip")
 
 with col3:
+    st.header("Xz")
     page3 = st.button("Xz")
-   
+    
+    
+col1, left, col2, right, col3 = st.columns([1, 0.1, 1, 0.1, 1])
 with col1:
     page4 = st.button("Burrows-Wheeler Transform")
 
@@ -91,34 +82,34 @@ if page8:
     'Developed by American computer scientist David Huffman in 1952, it is one of the simpler methods of lossless compression.'   
     'Therefore, it is used exclusively with other data compression algorithms, as in the case of the Gzip program where it is utilized alongside the LZ77 algorithm.'
     
-    'The algorithm operates as follows:'
+    ':red[The algorithm operates as follows:]'
     
-    st.markdown('**Analysis of symbol frequencies:**')
+    st.markdown(':gray[**Analysis of symbol frequencies:**]')
     '➖The algorithm begins by analyzing the data sequence to determine the frequencies of individual symbols. The number of occurrences of a symbol is called its frequency.'
      
-    st.markdown('**Construction of the Huffman tree:**')
+    st.markdown(':gray[**Construction of the Huffman tree:**]')
     '➖Based on frequency analysis, the algorithm constructs a tree with a binary structure, where nodes are labeled with symbols, and edges are labeled with 0 or 1.'
     
     '➖In the tree, symbols with higher frequencies are placed closer to the root, while symbols with lower frequencies are placed farther from the root.'
     
-    st.markdown('**Huffman coding:**')
+    st.markdown(':gray[**Huffman coding:**]')
     '➖The algorithm assigns shorter bit codes to more frequently occurring symbols and longer bit codes to less frequently occurring symbols.'  
     '➖For each symbol, the Huffman code is determined by the path from the root to the leaf of the tree. This path consists of 0 and 1, where 0 denotes a left child transition, and 1 denotes a right child transition.'
     
-    st.markdown('**Generation of the compressed sequence:**')
+    st.markdown(':gray[**Generation of the compressed sequence:**]')
     '➖After assigning codes to symbols, the algorithm goes through the original data sequence and replaces each symbol with its corresponding code.'
     '➖As a result, a compressed data sequence is obtained, in which longer bit codes have been replaced with shorter codes for more frequently occurring symbols.'
 
 if page7:
     st.title('LZMA // LZMA2')
 
-    st.markdown('**LZMA**')
+    st.markdown(':red[**LZMA**]')
     'The algorithm, developed since 1996 or 1998 by Igor Pavlov, utilizes symbols and dictionary references as its fundamental compression units, similar to LZ77.' 
     'Symbols represent shorter data sequences that occur at a particular location, while references point to the position from which a pattern can be reconstructed in the dictionary. LZ77, on the other hand, directly uses references to previous occurrences of patterns in a sliding window, consisting of an offset (distance) and the length of the repeated fragment.'   
     'In addition to dictionary compression, LZMA also employs length encoding and other optimization techniques. Length encoding assigns shorter codes to more frequently occurring symbols, contributing to further size reduction.'
 
 
-    st.markdown('**LZMA2**')
+    st.markdown(':red[**LZMA2**]')
     'LZMA and LZMA2 are two versions of the same algorithm. LZMA2 introduces the concept of "filters" that can be applied in the compression process.'   
     'Filters are different compression algorithms that can be combined in chains to optimize compression for specific types of data.' 
 
