@@ -57,21 +57,21 @@ with col2:
 
 
 
-if page4 or page44 or page444:
+if page4:
     st.title('Burrows-Wheeler Transform (BWT)')  
     
     'The Burrows-Wheeler Transform is a data compression algorithm developed by Michael Burrows and David Wheeler.'
     'This technique transforms the input data sequence in such a way that similar characters are grouped together.'  
     'This transformation facilitates data compression. BWT sorts the data sequence, creating a new sequence where similar characters are close to each other.'
 
-if page5 or page55:
+if page5:
     st.title('Move-to-Front (MTF)')
     
     'The Move-to-Front algorithm is a technique that transforms a data sequence by moving frequently occurring elements to the beginning of the sequence.'  
     'During the operation of the algorithm, the processed sequence is traversed, and each character is moved to the front.'  
     'Thanks to MTF, frequently occurring characters become easily encodable, leading to increased efficiency in the compression process.'  
 
-if page6 or page66:
+if page6:
     st.title('LZ77')
 
     'The algorithm was developed in 1977 by Abraham Lempel and Ja’akow Ziv.'  
