@@ -16,24 +16,22 @@ LZ77
 LZMA2'''
 
 
-st.markdown('Burrows-Wheeler Transform (BWT)')
-BWT = '''The Burrows-Wheeler Transform is a data compression algorithm developed by Michael Burrows and David Wheeler.  
+'Burrows-Wheeler Transform (BWT)'
+'''The Burrows-Wheeler Transform is a data compression algorithm developed by Michael Burrows and David Wheeler.  
 This technique transforms the input data sequence in such a way that similar characters are grouped together.  
 This transformation facilitates data compression. BWT sorts the data sequence, creating a new sequence where similar characters are close to each other.  
 The Burrows-Wheeler Transform algorithm has been utilized in programs such as Gzip, Bzip2, and Xz.'''
 
-st.markdown(BWT)
 
-st.markdown('Move-to-Front (MTF)')
-MTF = '''The Move-to-Front algorithm is a technique that transforms a data sequence by moving frequently occurring elements to the beginning of the sequence.  
+'Move-to-Front (MTF)'
+'''The Move-to-Front algorithm is a technique that transforms a data sequence by moving frequently occurring elements to the beginning of the sequence.  
 During the operation of the algorithm, the processed sequence is traversed, and each character is moved to the front.  
 Thanks to MTF, frequently occurring characters become easily encodable, leading to increased efficiency in the compression process.  
 The Move-to-Front algorithm has been used in the Gzip and Bzip2 programs.'''
 
-st.markdown(MTF)
 
-st.markdown('LZ77')
-LZ77 = '''The algorithm was developed in 1977 by Abraham Lempel and Ja’akow Ziv.  
+'LZ77'
+'''The algorithm was developed in 1977 by Abraham Lempel and Ja’akow Ziv.  
 A year later, the authors published an improved version of the method known as LZ78.  
 The IEEE organization recognized the Lempel-Ziv algorithm as a milestone in the development of electronics and computer science.  
 
@@ -52,11 +50,10 @@ Operation description:
   where 0 indicates no repetition, and the current character is directly stored.
 ➖Information about repetitions is added to the dictionary for further comparison and compression of subsequent fragments.'''
 
-st.markdown(LZ77)
 
 
-st.markdown('Huffmana')
-Huffmana = '''Developed by American computer scientist David Huffman in 1952, it is one of the simpler methods of lossless compression.   
+'Huffmana'
+'''Developed by American computer scientist David Huffman in 1952, it is one of the simpler methods of lossless compression.   
 Therefore, it is used exclusively with other data compression algorithms, as in the case of the Gzip program where it is  
 utilized alongside the LZ77 algorithm. The algorithm operates as follows:
 
@@ -84,11 +81,10 @@ Generation of the compressed sequence:
 ➖As a result, a compressed data sequence is obtained, in which longer bit codes  
   have been replaced with shorter codes for more frequently occurring symbols.'''
 
-st.markdown(Huffmana)
 
 
-st.markdown('LZMA')
-LZMA = '''The algorithm, developed since 1996 or 1998 by Igor Pavlov, 
+'LZMA'
+'''The algorithm, developed since 1996 or 1998 by Igor Pavlov, 
 utilizes symbols and dictionary references as its fundamental compression units, similar to LZ77.  
 Symbols represent shorter data sequences that occur at a particular location, 
 while references point to the position from which a pattern can be reconstructed in the dictionary. 
@@ -98,12 +94,12 @@ consisting of an offset (distance) and the length of the repeated fragment.
 In addition to dictionary compression, LZMA also employs length encoding and other optimization techniques.  
 Length encoding assigns shorter codes to more frequently occurring symbols, contributing to further size reduction.'''
 
-st.markdown(LZMA)
 
-st.markdown('LZMA2')
-LZMA2 = '''LZMA and LZMA2 are two versions of the same algorithm.  
+
+'LZMA2'
+'''LZMA and LZMA2 are two versions of the same algorithm.  
 LZMA2 introduces the concept of "filters" that can be applied in the compression process.   
  Filters are different compression algorithms that can be combined in chains to optimize compression for specific types of data.   
  
  The LZMA algorithm has been used in the Xz program.'''
-st.markdown(LZMA2)
+
