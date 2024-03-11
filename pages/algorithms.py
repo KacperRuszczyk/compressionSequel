@@ -62,7 +62,7 @@ if page4:
     
     'The Burrows-Wheeler Transform is a data compression algorithm developed by Michael Burrows and David Wheeler.'
     'This technique transforms the input data sequence in such a way that similar characters are grouped together.'  
-    'This transformation facilitates data compression. BWT sorts the data sequence, creating a new sequence where similar characters are close to each other.  
+    'This transformation facilitates data compression. BWT sorts the data sequence, creating a new sequence where similar characters are close to each other.'
 
 if page5:
     st.title('Move-to-Front (MTF)')
