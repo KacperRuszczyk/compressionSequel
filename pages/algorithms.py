@@ -30,22 +30,22 @@ with col1:
     page4 = st.button("Burrows-Wheeler Transform")
 
 with col2:
-    page44 = st.button("Burrows-Wheeler Transform")
+    page4 = st.button("Burrows-Wheeler Transform ")
 
 with col3:
-    page444 = st.button("Burrows-Wheeler Transform")
+    page4 = st.button(" Burrows-Wheeler Transform")
 
 with col1:
     page5 = st.button("Move-to-Front")
 
 with col2:
-    page55 = st.button("Move-to-Front")
+    page5 = st.button(" Move-to-Front")
 
 with col3:
     page6 = st.button("LZ77")
 
 with col2:
-    page66 = st.button("LZ77")
+    page6 = st.button("LZ77 ")
 
 with col3:
     page7 = st.button("LZMA2")
