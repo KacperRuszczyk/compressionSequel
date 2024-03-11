@@ -74,9 +74,7 @@ if page5 or page55:
 if page6 or page66:
     st.title('LZ77')
 
-    'The algorithm was developed in 1977 by Abraham Lempel and Ja’akow Ziv.'  
-    'A year later, the authors published an improved version of the method known as LZ78.'
-    'The IEEE organization recognized the Lempel-Ziv algorithm as a milestone in the development of electronics and computer science.'  
+    'The algorithm was developed in 1977 by Abraham Lempel and Ja’akow Ziv. A year later, the authors published an improved version of the method known as LZ78. The IEEE organization recognized the Lempel-Ziv algorithm as a milestone in the development of electronics and computer science.'  
     
     st.markdown('**Operation description:**') 
     
@@ -115,21 +113,13 @@ if page7:
     st.title('LZMA // LZMA2')
 
     st.markdown('**LZMA**')
-    'The algorithm, developed since 1996 or 1998 by Igor Pavlov,'
-    'utilizes symbols and dictionary references as its fundamental compression units, similar to LZ77.' 
-    'Symbols represent shorter data sequences that occur at a particular location,' 
-    'while references point to the position from which a pattern can be reconstructed in the dictionary.' 
-    'LZ77, on the other hand, directly uses references to previous occurrences of patterns in a sliding window,' 
-    'consisting of an offset (distance) and the length of the repeated fragment.'  
-    
-    'In addition to dictionary compression, LZMA also employs length encoding and other optimization techniques.'  
-    'Length encoding assigns shorter codes to more frequently occurring symbols, contributing to further size reduction.'
-
+    'The algorithm, developed since 1996 or 1998 by Igor Pavlov, utilizes symbols and dictionary references as its fundamental compression units, similar to LZ77.' 
+    'Symbols represent shorter data sequences that occur at a particular location, while references point to the position from which a pattern can be reconstructed in the dictionary. LZ77, on the other hand, directly uses references to previous occurrences of patterns in a sliding window, consisting of an offset (distance) and the length of the repeated fragment.'   
+    'In addition to dictionary compression, LZMA also employs length encoding and other optimization techniques. Length encoding assigns shorter codes to more frequently occurring symbols, contributing to further size reduction.'
 
 
     st.markdown('**LZMA2**')
-    'LZMA and LZMA2 are two versions of the same algorithm.' 
-    'LZMA2 introduces the concept of "filters" that can be applied in the compression process.'   
+    'LZMA and LZMA2 are two versions of the same algorithm. LZMA2 introduces the concept of "filters" that can be applied in the compression process.'   
     'Filters are different compression algorithms that can be combined in chains to optimize compression for specific types of data.' 
 
 
