@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-cor1, col1, left, col2, right, col3, cor2 = st.columns([0.5,1, 1, 1, 1, 1,0.5])
+cor1, col1, left, col2, right, col3 = st.columns([0.5,1, 1, 1, 1, 1,])
 
 with col1:
     st.header("Bzip2")
