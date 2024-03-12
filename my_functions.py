@@ -14,7 +14,8 @@ def kb_to_mb(size):
     return size
 
 def save_file(uploaded_file):
-    file_name = uploaded_file.name.replace(" ", "")
+    file_name = uploaded_file.name.replace(" ", "").replace("(", "").replace(")", "")
+
     with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', file_name), "wb") as f:
         f.write(uploaded_file.getbuffer())
 
