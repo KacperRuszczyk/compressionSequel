@@ -63,7 +63,7 @@ if page5 or page55:
     'The Move-to-Front algorithm is a technique that transforms a data sequence by moving frequently occurring elements to the beginning of the sequence.'  
     'During the operation of the algorithm, the processed sequence is traversed, and each character is moved to the front.'  
     'Thanks to MTF, frequently occurring characters become easily encodable, leading to increased efficiency in the compression process.'  
-
+    st.image('images/MTF.jpg')
 if page6 or page66:
     st.title('LZ77')
 
