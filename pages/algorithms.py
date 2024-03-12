@@ -1,19 +1,16 @@
 import streamlit as st
 
 
-cor1, col1, left, col2, right, col3 = st.columns([0.4,1, 0.8, 1, 0.8, 1,])
+cor1, col1, left, col2, right, col3 = st.columns([0.4,1, 0.8, 1, 0.8, 1])
 
 with col1:
-    st.header("Bzip2")
-    page1 = st.button("Bzip2")
+    st.header("Bzip2")   
 
 with col2:
     st.header("Gzip")
-    page2 = st.button("Gzip")
-
+    
 with col3:
     st.header("Xz")
-    page3 = st.button("Xz")
     
     
 col1, left, col2, right, col3 = st.columns([1, 0.1, 1, 0.1, 1])
