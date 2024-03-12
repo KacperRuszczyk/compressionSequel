@@ -42,10 +42,10 @@ def Graph_with_dots(data):
     fig = plt.figure(figsize=(12,10))
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.scatter(data['compressionTime'], data['compressionFactor'], c=colors, s=data['decompressionTime']*50, alpha = 0.5)
-    plt.xlabel('Czas kompresji (s)', fontsize=17)
-    plt.ylabel('Współczynnik kompresji (%)', fontsize=17)
-    plt.title('Wykres czasu kompresji i współczynnika kompresji')
+    plt.scatter(data['compressionTime'], data['compressionFactor'], c=colors)
+    plt.xlabel('Compression Time (s)', fontsize=17)
+    plt.ylabel('Compression Factor (%)', fontsize=17)
+    plt.title(' ')
     plt.legend(handles=legend)
     return fig
     
