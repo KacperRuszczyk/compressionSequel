@@ -14,7 +14,8 @@ def kb_to_mb(size):
     return size
 
 def save_file(uploaded_file):
-    with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', uploaded_file.name), "wb") as f:
+    file_name = uploaded_file.name.replace(" ", "")
+    with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', file_name), "wb") as f:
         f.write(uploaded_file.getbuffer())
 
 def result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime):
