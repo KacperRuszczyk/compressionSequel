@@ -26,7 +26,7 @@ st.sidebar.success("Select page above.")
 
 st.title(':red[Efficiency of Lossless Compression Algorithms]')
 
-st.subheader('Welcome to my app dedicated to showcasing the effectiveness (and ineffectiveness in some cases) of lossless compression algorithms across various file formats using programs such as Bzip2, gzip, and xz.')
+st.subheader('Welcome to my app dedicated to showcasing the effectiveness and ineffectiveness in some cases  of lossless compression algorithms')
 
 st.subheader('My platform aims to provide insights into the performance and efficiency of these renowned compression tools.')
 
