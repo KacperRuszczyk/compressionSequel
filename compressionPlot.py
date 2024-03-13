@@ -48,7 +48,7 @@ left, right = st.columns([1, 1])
 
 
 
-Page1 = st.button("Huffmana")
+page1 = st.button("Huffmana")
 
 
 if page1:
