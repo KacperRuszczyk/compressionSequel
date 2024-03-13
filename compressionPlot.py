@@ -32,23 +32,23 @@ st.subheader('My platform aims to provide insights into the performance and effi
 
 st.subheader('Here You can find things such as:')
 
-left, mid, right = st.columns([1, 0.5, 1])
+left, mid, right = st.columns([1, 1, 1])
 
 with left:
-    st.header(':red[Compression app]')
-    st.subheader('That can help you visualise how Bzip2, gzip, and xz are compressing different kinds of file types')
-    st.subheader('Here you can also see how the compression script operates')
+    st.subheader(':red[Compression app]')
+    st.markdown('That can help you visualise how Bzip2, gzip, and xz are compressing different kinds of file types')
+    st.markdown('Here you can also see how the compression script operates')
 with mid:
     st.subheader('and')
 
 with right:
-    st.header(':red[Information about Algorithms]')
-    st.subheader('Used in all the three compression programs')
+    st.subheader(':red[Information about Algorithms]')
+    st.markdown('Used in all the three compression programs')
 left, right = st.columns([1, 1])
 
 
 
-page1 = st.button("Huffmana")
+page1 = st.button("Script")
 
 
 if page1:
