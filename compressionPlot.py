@@ -32,7 +32,7 @@ st.subheader('My platform aims to provide insights into the performance and effi
 
 st.subheader('Here You can find things such as:')
 
-left, mid, right = st.columns([1, 1, 1])
+left, mid, right = st.columns([1, 0.2, 1])
 
 with left:
     st.subheader(':red[Compression app]')
