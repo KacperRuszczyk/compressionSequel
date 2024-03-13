@@ -61,4 +61,4 @@ if page1:
 
 switch_page_button = st.button('compression demo')
 if switch_page_button:
-    my_functions.switch_page("compression_demo")
+    my_functions.switch_page("compression demo")
