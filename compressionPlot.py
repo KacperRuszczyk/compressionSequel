@@ -3,6 +3,9 @@
 import streamlit as st
 import pandas as pd
 import os
+from streamlit_extras.switch_page_button import switch_page
+
+
 
 import my_functions
 
@@ -37,7 +40,7 @@ left, mid, right = st.columns([1, 0.2, 1])
 with left:
     st.subheader(':red[Compression app]')
     st.markdown('That can help you visualise how Bzip2, gzip, and xz are compressing different kinds of file types')
-    st.markdown('Here you can also see how the compression script operates')
+    st.markdown('Here you can also see how the compression script operates:')
 with mid:
     st.subheader('and')
 
@@ -53,3 +56,10 @@ page1 = st.button("Script")
 
 if page1:
     st.image('images/Skrypt.png')
+    
+
+
+
+switch_page_button = st.button('compression demo')
+if switch_page_button:
+    switch_page("compression_demo")
