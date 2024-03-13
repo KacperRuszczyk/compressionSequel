@@ -18,7 +18,7 @@ st.markdown("*1. Upload some files (I would recommend uploading one file extensi
 st.markdown("*2. Choose the compression options that you would like to test.*")
 st.markdown('*3. Click the "compress" button. (FYI, that button also clears the results data from previous attempts.)*')
 st.markdown('*4. Wait until the process is done and view the results.*')
-
+st.divider()
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
