@@ -81,21 +81,21 @@ if page8:
     'Developed by American computer scientist David Huffman in 1952, it is one of the simpler methods of lossless compression.'   
     'Therefore, it is used exclusively with other data compression algorithms, as in the case of the Gzip program where it is utilized alongside the LZ77 algorithm.'
     
-    ':red[The algorithm operates as follows:]'
+    'The algorithm operates as follows:'
     
-    st.markdown(':gray[**Analysis of symbol frequencies:**]')
+    st.markdown(':red[**Analysis of symbol frequencies:**]')
     '➖The algorithm begins by analyzing the data sequence to determine the frequencies of individual symbols. The number of occurrences of a symbol is called its frequency.'
      
-    st.markdown(':gray[**Construction of the Huffman tree:**]')
+    st.markdown(':red[**Construction of the Huffman tree:**]')
     '➖Based on frequency analysis, the algorithm constructs a tree with a binary structure, where nodes are labeled with symbols, and edges are labeled with 0 or 1.'
     
     '➖In the tree, symbols with higher frequencies are placed closer to the root, while symbols with lower frequencies are placed farther from the root.'
     
-    st.markdown(':gray[**Huffman coding:**]')
+    st.markdown(':red[**Huffman coding:**]')
     '➖The algorithm assigns shorter bit codes to more frequently occurring symbols and longer bit codes to less frequently occurring symbols.'  
     '➖For each symbol, the Huffman code is determined by the path from the root to the leaf of the tree. This path consists of 0 and 1, where 0 denotes a left child transition, and 1 denotes a right child transition.'
     
-    st.markdown(':gray[**Generation of the compressed sequence:**]')
+    st.markdown(':red[**Generation of the compressed sequence:**]')
     '➖After assigning codes to symbols, the algorithm goes through the original data sequence and replaces each symbol with its corresponding code.'
     '➖As a result, a compressed data sequence is obtained, in which longer bit codes have been replaced with shorter codes for more frequently occurring symbols.'
     st.image('images/Hoffman.png')

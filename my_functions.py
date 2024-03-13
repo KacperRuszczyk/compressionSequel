@@ -73,7 +73,7 @@ def clear_work_space():
         os.remove(path_with_file_name)
     return
     
-def compression(metods, decomp_metodes):
+def compression(methods, decomp_methods):
     # Data harvesting arrays
     files_list = [] #1
     comp_metode = [] #2
@@ -91,17 +91,17 @@ def compression(metods, decomp_metodes):
     results_dir = '/mount/src/compressionsequel/work_space/results_dir'
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     
-    percent_complete = int(50/len(metods))
+    percent_complete = 50/len(methods)
     percent_progress = percent_complete  
     progress_text = "Operation in progress. Please wait."
     my_bar = st.progress(0, text=progress_text)
 
     
     
-    for i, metod in enumerate(metods):
+    for i, method in enumerate(methods):
         #copy files from uploaded_dir to data_dir
         
-        progress_text = f" {metod} compression in progress. Please wait."
+        progress_text = f" {method} compression in progress. Please wait."
         my_bar.progress(percent_progress, text=progress_text)
         
         files_to_copy = os.listdir(uploaded_dir)
@@ -115,14 +115,14 @@ def compression(metods, decomp_metodes):
             path_with_file_name = os.path.join(data_dir, file_name)
             
             files_list.append(file_name) #1
-            comp_metode.append(metod) #2
+            comp_metode.append(method) #2
             file_size.append(os.path.getsize(path_with_file_name)) #3
             
             start_time = time.time()    
-            if type(metod) == list:
-                os.system(f'{metod[0]} {metod[1]} {path_with_file_name}')
+            if type(method) == list:
+                os.system(f'{method[0]} {method[1]} {path_with_file_name}')
             else:
-                os.system(f'{metod} {path_with_file_name}')
+                os.system(f'{method} {path_with_file_name}')
             end_time = time.time()
             comp_time.append(end_time - start_time) #4
             
@@ -136,7 +136,7 @@ def compression(metods, decomp_metodes):
             source_path = os.path.join(data_dir, file_name)
             shutil.move(source_path, compressed_dir)
         
-        progress_text = f" {metod} decompression in progress. Please wait."    
+        progress_text = f" {method} decompression in progress. Please wait."    
         percent_progress += percent_complete
         my_bar.progress(percent_progress, text=progress_text) 
         
@@ -148,10 +148,10 @@ def compression(metods, decomp_metodes):
             file_size_after_comp.append(os.path.getsize(path_with_file_name)) #5
                 
             start_time = time.time()    
-            if type(decomp_metodes[i]) == list:
-                os.system(f'{decomp_metodes[i][0]} {decomp_metodes[i][1]} {path_with_file_name}')
+            if type(decomp_methods[i]) == list:
+                os.system(f'{decomp_methods[i][0]} {decomp_methods[i][1]} {path_with_file_name}')
             else:
-                os.system(f'{decomp_metodes[i]} {path_with_file_name}')
+                os.system(f'{decomp_methods[i]} {path_with_file_name}')
             end_time = time.time()
             decomp_time.append(end_time - start_time) #6
             
@@ -199,5 +199,5 @@ def compression(metods, decomp_metodes):
     data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
     
     my_bar.empty()
-    
+    st.success('results are done!', icon = '🥧')
     return 
