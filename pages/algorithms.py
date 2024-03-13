@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.title(':red[algorithms]')
-st.subheader('You can find brief explanations about the algorithms used in these three programs here.')
+st.subheader('Here You can find brief explanations about the algorithms used in these three programs.')
 
 
 
