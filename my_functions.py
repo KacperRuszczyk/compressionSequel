@@ -21,8 +21,6 @@ def save_file(uploaded_file):
         
         
 def switch_page(page_name: str):
-    from streamlit import _RerunData, _RerunException
-    from streamlit.source_util import get_pages
 
     def standardize_name(name: str) -> str:
         return name.lower().replace("_", " ")
