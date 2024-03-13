@@ -1,5 +1,9 @@
 import streamlit as st
 
+st.title(':red[algorithms]')
+st.subheader('You can find brief explanations about the algorithms used in these three programs here.')
+
+
 
 cor1, col1, left, col2, right, col3 = st.columns([0.4,1, 0.8, 1, 0.8, 1])
 
