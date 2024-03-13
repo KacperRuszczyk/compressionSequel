@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 import os
-from streamlit_extras.switch_page_button import switch_page
+import streamlit_extras
 
 
 
@@ -62,4 +62,4 @@ if page1:
 
 switch_page_button = st.button('compression demo')
 if switch_page_button:
-    switch_page("compression_demo")
+    streamlit_extras.switch_page("compression_demo")
