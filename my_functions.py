@@ -34,7 +34,7 @@ def switch_page(page_name: str):
     for page_hash, config in pages.items():
         if standardize_name(config["page_name"]) == page_name:
             raise _RerunException(
-                _RerunData(
+                st.experimental_rerun(
                     page_script_hash=page_hash,
                     page_name=page_name,
                 )
