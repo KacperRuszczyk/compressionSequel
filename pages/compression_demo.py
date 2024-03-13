@@ -14,10 +14,10 @@ meanCompressionTime = []
 meanDecompressionTime = []
 
 st.title(':red[Compression Demo]')
-st.markdown("1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).")
-st.markdown("2. Choose the compression options that you would like to test.")
-st.markdown('3. Click the "compress" button. (FYI, that button also clears the results data from previous attempts.)')
-st.markdown('4. Wait until the process is done and view the results.')
+st.markdown("*1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).*")
+st.markdown("*2. Choose the compression options that you would like to test.*")
+st.markdown('*3. Click the "compress" button. (FYI, that button also clears the results data from previous attempts.)*')
+st.markdown('*4. Wait until the process is done and view the results.*')
 
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
