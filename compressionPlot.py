@@ -24,12 +24,11 @@ st.set_page_config(
 
 st.sidebar.success("Select page above.")
 
+st.title(':red[Efficiency of Lossless Compression Algorithms]')
 
+st.header('Welcome to my app dedicated to showcasing the effectiveness (and ineffectiveness in some cases) of lossless compression algorithms across various file formats using programs such as Bzip2, gzip, and xz.')
 
-
-'Welcome to my website dedicated to showcasing the effectiveness (and ineffectiveness in some cases) of lossless compression algorithms across various file formats using programs such as Bzip2, gzip, and xz.  '
-
-'My platform aims to provide insights into the performance and efficiency of these renowned compression tools.'
+st.markdown('My platform aims to provide insights into the performance and efficiency of these renowned compression tools.')
 
 
 
