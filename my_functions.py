@@ -19,7 +19,15 @@ def save_file(uploaded_file):
     with open(os.path.join('/mount/src/compressionsequel/work_space/uploaded_dir', file_name), "wb") as f:
         f.write(uploaded_file.getbuffer())
         
-        
+   
+def sample_files():
+    uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
+    files_to_copy = os.listdir('/mount/src/compressionsequel')
+   
+    for file_name in files_to_copy:
+        source_path = os.path.join('/mount/src/compressionsequel', file_name)
+        destination_path = os.path.join(uploaded_dir, file_name)
+        shutil.copy(source_path, destination_path) 
   
 
 def result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime):

@@ -13,10 +13,10 @@ meanCompressionFactor = []
 meanCompressionTime = []
 meanDecompressionTime = []
 
-st.title(':red[Compression Demo]')
+st.title(':orange[Compression Demo]')
 st.markdown("*1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).*")
 st.markdown("*2. Choose the compression options that you would like to test.*")
-st.markdown('*3. Click the "compress" button. (FYI, that button also clears the results data from previous attempts.)*')
+st.markdown('*3. Click the "compress ..." button. (FYI, that buttons also clears the results data from previous attempts.)*')
 st.markdown('*4. Wait until the process is done and view the results.*')
 st.divider()
 
@@ -74,25 +74,37 @@ with col3:
         decomp_methods.append('unxz')
 
 
-
+st.divider()
         
-
-left, col2, right = st.columns([0.1,10,0.1])
-
-
-with col2:
-    comp_button = st.button('compress')
-    if comp_button:
-        my_functions.clear_work_space()
-        if uploaded_files:
-            if methods != []:
-                for uploaded_file in uploaded_files:
-                    my_functions.save_file(uploaded_file)
-                my_functions.compression(methods, decomp_methods)
-            else:
-                st.warning('No methods have been selected', icon="⚠️")
+comp_button = st.button('Compress your files')
+if comp_button:
+    my_functions.clear_work_space()
+    if uploaded_files:
+        if methods != []:
+            for uploaded_file in uploaded_files:
+                my_functions.save_file(uploaded_file)
+            my_functions.compression(methods, decomp_methods)
         else:
-            st.warning('No files have been uploaded', icon="⚠️")
+            st.warning('No methods have been selected', icon="⚠️")
+    else:
+        st.warning('No files have been uploaded', icon="⚠️")
+
+st.divider()
+
+
+comp_button = st.button('Compress sample files')
+if comp_button:
+    my_functions.clear_work_space()
+    if methods != []:
+        my_functions.sample_files()
+        my_functions.compression(methods, decomp_methods)
+    else:
+        st.warning('No methods have been selected', icon="⚠️")
+   
+
+
+
+st.divider()
 
 if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.csv'):      
     data = pd.read_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv')

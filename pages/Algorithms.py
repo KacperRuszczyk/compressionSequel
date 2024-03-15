@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title(':red[algorithms]')
+st.title(':orange[Algorithms]')
 st.subheader('Here You can find brief explanations about the algorithms used in these three programs.')
 
 
