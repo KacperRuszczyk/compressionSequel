@@ -26,35 +26,31 @@ st.set_page_config(
 
 st.sidebar.success("Select page above.")
 
-st.title(':red[Efficiency of Lossless Compression Algorithms]')
+st.title(':orange[Lossless Compression Algorithms]')
 
-st.subheader('Welcome to my app dedicated to showcasing the effectiveness and ineffectiveness of lossless compression algorithms.')
+st.subheader('This app showcases the effectiveness of lossless compression algorithms.')
 
-st.subheader('My platform aims to provide insights into the performance and efficiency of renowned compression tools such as Bzip2, gzip, and xz.')
+st.subheader("Here you'll be able to examine the performance and efficiency of multiple compression tools. See for yourself!")
 
-st.subheader('Here You can find things such as:')
+st.subheader('Just pick one of the sites on the left')
 
 left, mid, right = st.columns([1, 0.2, 1])
 
 with left:
-    st.subheader(':red[Compression app]')
-    st.markdown('That can help you visualise how Bzip2, gzip, and xz are compressing different kinds of file types')
+    st.subheader(':orange[Compression app]')
+    st.markdown('Demo that can help you visualise how Bzip2, gzip, and xz are compressing different kinds of file types')
     st.markdown('Here you can also see how the compression script operates:')
 with mid:
     st.subheader('and')
 
 with right:
-    st.subheader(':red[Information about Algorithms]')
-    st.markdown('Used in all the three compression programs')
-left, right = st.columns([1, 1])
+    st.subheader(':orange[Information about Algorithms]')
+    st.markdown('Used in all the three compression programs.')
 
 
 
-page1 = st.button("Script")
 
-
-if page1:
-    st.image('images/Skrypt.png')
+st.image('images/Script.png')
     
 
 
