@@ -13,7 +13,7 @@ meanCompressionFactor = []
 meanCompressionTime = []
 meanDecompressionTime = []
 
-st.title(':orange[Compression Demo]')
+st.title(':orange[Compression Demo]',anchor=False)
 st.markdown("*1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).*")
 st.markdown("*2. Choose the compression options that you would like to test.*")
 st.markdown('*3. Click the "compress ..." button. (FYI, that buttons also clears the results data from previous attempts.)*')

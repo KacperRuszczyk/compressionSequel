@@ -34,11 +34,11 @@ relevant_info_disk = {
 }
 
 
-st.header("CPU Information")
+st.header("CPU Information",anchor=False)
 for key, value in relevant_info.items():
     st.write(f"{key}: {value}")
     
-st.header("Drive Capacity Information")
+st.header("Drive Capacity Information",anchor=False)
 for key, value in relevant_info_disk.items():
     st.write(f"{key}: {value}")   
     
