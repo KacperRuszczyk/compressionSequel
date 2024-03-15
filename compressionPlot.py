@@ -32,7 +32,7 @@ st.subheader('This app showcases the effectiveness of lossless compression algor
 
 st.subheader("Here you'll be able to examine the performance and efficiency of multiple compression tools. See for yourself!")
 
-st.subheader('Just pick one of the sites on the left')
+st.subheader(':arrow_left: Just pick one of the sites on the left.')
 
 left, mid, right = st.columns([1, 0.2, 1])
 
