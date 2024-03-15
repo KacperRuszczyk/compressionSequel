@@ -24,12 +24,12 @@ def sample_files():
     uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'
     files_to_copy = os.listdir('/mount/src/compressionsequel/images')
     for file_name in files_to_copy:
-        source_path = os.path.join('/mount/src/compressionsequel', file_name)
+        source_path = os.path.join('/mount/src/compressionsequel/images', file_name)
         destination_path = os.path.join(uploaded_dir, file_name)
         shutil.copy(source_path, destination_path) 
     files_to_copy = os.listdir('/mount/src/compressionsequel/pages')
     for file_name in files_to_copy:
-        source_path = os.path.join('/mount/src/compressionsequel', file_name)
+        source_path = os.path.join('/mount/src/compressionsequel/pages', file_name)
         destination_path = os.path.join(uploaded_dir, file_name)
         shutil.copy(source_path, destination_path) 
 
