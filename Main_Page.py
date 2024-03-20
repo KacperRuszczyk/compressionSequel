@@ -53,6 +53,6 @@ st.set_page_config(
 
 session_id = test()
 
-st.markdown(session_id)
+st.markdown(type(session_id))
 
 
