@@ -6,6 +6,12 @@ import os
 
 import my_functions
 
+def test():
+    from streamlit.runtime.scriptrunner import get_script_run_ctx
+    session_id = get_script_run_ctx().session_id
+    return session_id
+
+
 
 #streamlit boot PATH creation
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
@@ -45,8 +51,8 @@ st.set_page_config(
 )
 
 
+session_id = test()
 
-
-st.markdown(user_session)
+st.markdown(session_id)
 
 
