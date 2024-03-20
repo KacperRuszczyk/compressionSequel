@@ -23,12 +23,15 @@ if os.path.exists('/mount/src/compressionsequel/user_check') == False:
 
 user_session = my_functions._get_session()
 user_file_check = '/mount/src/compressionsequel/user_checkcheck.txt'
+st.markdown(user_session)
 if os.path.isfile(user_file_check):
     with open(user_file_check) as file:
         line = file.readline()
     if str(line) == str(user_session):
+        st.markdown('pass')
         pass
     else:
+        st.markdown('clear')
         os.remove(user_file_check)
         my_functions.clear_work_space()
         with open(user_file_check, "w") as file:
