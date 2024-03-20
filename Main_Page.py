@@ -39,9 +39,7 @@ if os.path.isfile(user_file_check):
 else:
     with open(user_file_check, "w") as file:
         file.write(str(user_session))
-test_button = st.button('test')
-if test_button:
-    pass
+
 
 st.set_page_config(
     page_title="Compression",
