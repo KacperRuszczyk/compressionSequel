@@ -18,28 +18,6 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
 #user check
-if os.path.exists('/mount/src/compressionsequel/user_check') == False:    
-    os.mkdir('/mount/src/compressionsequel/user_check')
-
-user_session = my_functions._get_session()
-user_file_check = '/mount/src/compressionsequel/user_checkcheck.txt'
-st.markdown(user_session)
-if os.path.isfile(user_file_check):
-    with open(user_file_check) as file:
-        line = file.readline()
-    if str(line) == str(user_session):
-        st.markdown('pass')
-        pass
-    else:
-        st.markdown('clear')
-        os.remove(user_file_check)
-        my_functions.clear_work_space()
-        with open(user_file_check, "w") as file:
-            file.write(str(user_session))
-else:
-    with open(user_file_check, "w") as file:
-        file.write(str(user_session))
-
 
 st.set_page_config(
     page_title="Compression",
