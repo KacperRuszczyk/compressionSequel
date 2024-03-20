@@ -26,7 +26,7 @@ st.set_page_config(
 
 
 
-#user_session = my_functions._get_session()
-#st.markdown(user_session)
+user_session = my_functions._get_session()
+st.markdown(user_session)
 
 
