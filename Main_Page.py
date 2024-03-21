@@ -4,11 +4,9 @@ import streamlit as st
 import pandas as pd
 import os
 
-
-
 import my_functions
 
-
+my_functions.clear_work_space()
 #streamlit boot PATH creation
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space')
@@ -17,7 +15,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/decompressed_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
-#user check
+
 
 st.set_page_config(
     page_title="Compression",
