@@ -1,5 +1,13 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Algorithms",
+    page_icon="📚",
+    initial_sidebar_state='expanded'
+)
+
+
+
 st.title(':orange[Algorithms]',anchor=False)
 st.subheader('Here You can find brief explanations about the algorithms used in these three programs.',anchor=False)
 
