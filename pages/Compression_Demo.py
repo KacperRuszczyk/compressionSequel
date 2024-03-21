@@ -4,6 +4,13 @@ import os
 
 import my_functions
 
+st.set_page_config(
+    page_title="Compression Demo",
+    page_icon="📊",
+    initial_sidebar_state='expanded'
+)
+
+
 
 data = 0
 unique_methods = 0
