@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 
-
+result_path_check = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
 data = 0
 unique_methods = 0
 methods = []
@@ -139,19 +139,28 @@ with col3:
     
 
 if page1:
-    st.title('Graphs')
-    st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Factor': meanCompressionFactor}), x='Method', y='Compression Factor')
-    st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Time (s)': meanCompressionTime}), x='Method', y='Compression Time (s)')
-    st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Decompression Time (s)': meanDecompressionTime}), x='Method', y='Decompression Time (s)')
-
+    if os.path.isfile(result_path_check):
+        st.title('Graphs')
+        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Factor': meanCompressionFactor}), x='Method', y='Compression Factor')
+        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Time (s)': meanCompressionTime}), x='Method', y='Compression Time (s)')
+        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Decompression Time (s)': meanDecompressionTime}), x='Method', y='Decompression Time (s)')
+    else:
+        st.warning('No results', icon="⚠️")
 if page2:
-    st.title('Data Frame')
-    #st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
-    st.dataframe(data)
+    if os.path.isfile(result_path_check):
+        st.title('Data Frame')
+        #st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
+        st.dataframe(data)
+    else:
+        st.warning('No results', icon="⚠️")
 if page3:
-    st.title('OG Graph ')
-    st.pyplot(my_functions.Graph_with_dots(data))
-    
+    if os.path.isfile(result_path_check):
+        st.title('OG Graph ')
+        st.pyplot(my_functions.Graph_with_dots(data))
+    else:
+        st.warning('No results', icon="⚠️")
+
+
 
 
        
