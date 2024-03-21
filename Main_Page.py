@@ -12,6 +12,11 @@ def test():
     return session_id
 
 
+st.set_page_config(
+    page_title="Compression",
+    page_icon="👻",
+    initial_sidebar_state='expanded'
+)
 
 #streamlit boot PATH creation
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
@@ -48,11 +53,6 @@ else:
 
 
 
-st.set_page_config(
-    page_title="Compression",
-    page_icon="👻",
-    initial_sidebar_state='expanded'
-)
 
 
 session_id = test()
