@@ -18,12 +18,18 @@ compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
 decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
 results_dir = '/mount/src/compressionsequel/work_space/results_dir'
 uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'        
-        
-        
+      
+sample_files1 = '/mount/src/compressionsequel/pages'        
+sample_files2 = '/mount/src/compressionsequel/images'
+
+
+
+
+
 
 class FileManager:
-    def __init__(slef,File_Path):
-        self.File_Path = File_Path
+    def __init__(slef):
+        
         self.files_list = [] #1
         self.comp_metode = [] #2
         self.file_size = [] #3
@@ -32,7 +38,27 @@ class FileManager:
         self.decomp_time = [] #6
         self.file_size_after_decomp = [] #7
         self.check_if_diff = [] #8
-            
+        
+    def save_file(self,uploaded_files,uploaded_dir):
+        for uploaded_file in uploaded_files
+            file_name = uploaded_file.name.replace(" ", "").replace("(", "").replace(")", "")
+            with open(os.path.join(uploaded_dir, file_name), "wb") as f:
+                f.write(uploaded_file.getbuffer())
+        return
+        
+    def sample_files(self,uploaded_dir,sample_files1,sample_files2):
+        files_to_copy = os.listdir(sample_files1)
+        for file_name in files_to_copy:
+            source_path = os.path.join(sample_files1, file_name)
+            destination_path = os.path.join(uploaded_dir, file_name)
+            shutil.copy(source_path, destination_path) 
+        files_to_copy = os.listdir(sample_files2)
+        for file_name in files_to_copy:
+            source_path = os.path.join(sample_files2, file_name)
+            destination_path = os.path.join(uploaded_dir, file_name)
+            shutil.copy(source_path, destination_path) 
+        return
+        
     def copy_files_from_to(self,files_from,files_to):
         files_to_copy = os.listdir(files_from)
         for file_name in files_to_copy:
@@ -81,8 +107,15 @@ class FileManager:
         
         
         
-        
-for File_Name in os.listdir(Dir_Path):
+mover = FileManager()   
+
+if Fake_Files:
+    mover.sample_files(uploaded_dir,sample_files1,sample_files2)
+else:
+    mover.save_file(uploaded_files,uploaded_dir)
     
+for File_Name in os.listdir(Dir_Path):
+    mover.copy_files_from_to()
     for method in methods:
-        
+        tester = FileManager()  
+    
