@@ -115,15 +115,15 @@ class FileManager:
                 f.write(uploaded_file.getbuffer())
         return
         
-    def sample_files(self,sample_files1,sample_files2):
-        files_to_copy = os.listdir(sample_files1)
+    def sample_files(self):
+        files_to_copy = os.listdir(self.sample_files1)
         for file_name in files_to_copy:
-            source_path = os.path.join(sample_files1, file_name)
+            source_path = os.path.join(self.sample_files1, file_name)
             destination_path = os.path.join(self.uploaded_dir, file_name)
             shutil.copy(source_path, destination_path) 
-        files_to_copy = os.listdir(sample_files2)
+        files_to_copy = os.listdir(self.sample_files2)
         for file_name in files_to_copy:
-            source_path = os.path.join(sample_files2, file_name)
+            source_path = os.path.join(self.sample_files2, file_name)
             destination_path = os.path.join(self.uploaded_dir, file_name)
             shutil.copy(source_path, destination_path) 
         return
@@ -296,7 +296,7 @@ if comp_button:
     if uploaded_files or Fake_Files:
         if methods != []:
             if Fake_Files:
-                mover.sample_files(sample_files1,sample_files2)
+                mover.sample_files()
             else:
                 mover.save_file(uploaded_files) 
             compression_function()
