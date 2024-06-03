@@ -256,14 +256,14 @@ def compression_function():
         for method in methods:
             tester = Compresor(methods, decomp_methods) 
             st.markdown(tester.current_comp_method)
+            st.markdown(tester.current_comp_method)
+            st.markdown(os.listdir(mover.compressed_dir))
             tester.add_file_name(file_name) #1
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
             tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4   
-            st.markdown('plz')
             st.markdown(path_with_file_name)
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
-            st.markdown('help')
             st.markdown(path_with_file_name)
             tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
             tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name)) #6
@@ -280,8 +280,7 @@ def compression_function():
             'decompressionTime': tester.decomp_time,
             'sizeAfterDecompression': tester.file_size_after_decomp,
             'different': tester.check_if_diff})
-            st.markdown('me')
-            st.markdown(data2)
+
             data = pd.concat([data, data2], ignore_index=True)
             
             
