@@ -255,6 +255,7 @@ def compression_function():
         st.markdown('plz')
         for method in methods:
             tester = Compresor(methods, decomp_methods) 
+            st.markdown(tester.current_comp_method)
             tester.add_file_name(file_name) #1
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
