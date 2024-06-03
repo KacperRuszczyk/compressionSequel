@@ -7,8 +7,6 @@ import subprocess
 import shutil
 import time
 
-
-
 import my_functions
 
 st.set_page_config(
