@@ -252,6 +252,7 @@ def compression_function():
         path_with_og_file = os.path.join(mover.uploaded_dir, file_name)
         path_with_file_name = os.path.join(mover.compressed_dir, file_name)
         shutil.copy(path_with_og_file, path_with_file_name)  
+        st.markdown('plz')
         for method in methods:
             tester = Compresor(methods, decomp_methods) 
             tester.add_file_name(file_name) #1
@@ -278,7 +279,7 @@ def compression_function():
             'decompressionTime': tester.decomp_time,
             'sizeAfterDecompression': tester.file_size_after_decomp,
             'different': tester.check_if_diff})
-            
+            st.markdown(data2)
             data = pd.concat([data, data2], ignore_index=True)
             
             
