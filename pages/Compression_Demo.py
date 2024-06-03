@@ -42,6 +42,8 @@ with col2:
     fake_files_check = st.checkbox('Use Sample Files')
     if fake_files_check:
         Fake_Files = True
+    else:
+        Fake_Files = False
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 #Regular
@@ -163,8 +165,7 @@ class FileManager:
     def path_with_file_name_update(self,path_with_file_name):
         self.remove_file(path_with_file_name)
         file_name = self.get_list_files_in_dir(self.compressed_dir)
-        st.markdown(file_name)
-        new_path_with_file_name = os.path.join(self.compressed_dir,file_name)
+        new_path_with_file_name = os.path.join(self.compressed_dir,str(file_name))
         return new_path_with_file_name
   
     def clear_work_space(self):
