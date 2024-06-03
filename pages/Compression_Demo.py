@@ -160,11 +160,11 @@ class FileManager:
         File_List = os.listdir(Dir_Path)
         return File_List
     
-    def path_with_file_name_update(self,path_with_file_name):
-        self.remove_file(path_with_file_name)
+    def path_with_file_name_update(self,path_with_file_name_old):
+        self.remove_file(path_with_file_name_old)
         file_name = self.get_list_files_in_dir(self.compressed_dir)
-        new_path_with_file_name = os.path.join(self.compressed_dir,file_name[0])
-        return new_path_with_file_name
+        new_path_with_file_name_new = os.path.join(self.compressed_dir,file_name[0])
+        return new_path_with_file_name_new
   
     def clear_work_space(self):
         for file_name in os.listdir(self.data_dir):
