@@ -54,7 +54,7 @@ with col2:
     two_check = st.checkbox('Bzip2')
     if two_check:
         methods.append('bzip2')       
-        decomp_methods.append(['bzip2 -d'])
+        decomp_methods.append('bzip2 -d')
 with col3:
     three_check = st.checkbox('Xz')
     if three_check:
@@ -64,33 +64,33 @@ with col3:
 with col1:
     one_check = st.checkbox('Gzip Best')
     if one_check:
-        methods.append(['gzip --best'])  
+        methods.append('gzip --best')  
         decomp_methods.append('gunzip')
 with col2:
     two_check = st.checkbox('Bzip2 Best')
     if two_check:
-        methods.append(['bzip2 --best'])       
-        decomp_methods.append(['bzip2 -d'])
+        methods.append('bzip2 --best')       
+        decomp_methods.append('bzip2 -d')
 with col3:
     three_check = st.checkbox('Xz Best')
     if three_check:
-        methods.append(['xz --best']) 
+        methods.append('xz --best') 
         decomp_methods.append('unxz')
 #Fast
 with col1:
     one_check = st.checkbox('Gzip Fast')
     if one_check:
-        methods.append(['gzip --fast'])  
+        methods.append('gzip --fast')  
         decomp_methods.append('gunzip')
 with col2:
     two_check = st.checkbox('Bzip2 Fast')
     if two_check:
-        methods.append(['bzip2 --fast'])       
-        decomp_methods.append(['bzip2 -d'])
+        methods.append('bzip2 --fast')       
+        decomp_methods.append('bzip2 -d')
 with col3:
     three_check = st.checkbox('Xz Fast')
     if three_check:
-        methods.append(['xz --fast']) 
+        methods.append('xz --fast') 
         decomp_methods.append('unxz')
 
 
