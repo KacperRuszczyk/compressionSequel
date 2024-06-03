@@ -253,14 +253,14 @@ def compression_function():
         path_with_file_name = os.path.join(mover.compressed_dir, file_name)
         shutil.copy(path_with_og_file, path_with_file_name)  
         for method in methods:
-            tester = FileManager(methods, decomp_methods) 
+            tester = Compresor(methods, decomp_methods) 
             tester.add_file_name(file_name) #1
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
             tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name) #4     
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
             tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
-            tester.comp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name) #6
+            tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name) #6
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
             tester.file_size_after_decomp.append(tester.get_file_size(path_with_file_name)) #7
             tester.compare(path_with_file_name,path_with_og_file) #8
