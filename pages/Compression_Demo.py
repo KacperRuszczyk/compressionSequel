@@ -282,7 +282,7 @@ def compression_function():
             'different': tester.check_if_diff})
 
             data = pd.concat([data, data2], ignore_index=True)
-            
+        mover.remove_file(path_with_file_name)
             
     data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
     data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
