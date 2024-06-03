@@ -40,8 +40,8 @@ with col1:
     uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 with col2:
     fake_files_check = st.checkbox('Use Sample Files')
-    if one_check:
-        methods.append('gzip')  
+    if fake_files_check:
+        Fake_Files = True
 
 col1, left, col2, right, col3 = st.columns([1,0.1,1,0.1,1])
 #Regular
