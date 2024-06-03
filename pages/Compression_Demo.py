@@ -293,7 +293,7 @@ mover = FileManager()
 comp_button = st.button('Compress your files')
 if comp_button:   
     mover.clear_work_space()
-    if uploaded_files or Fale_files:
+    if uploaded_files or Fake_Files:
         if methods != []:
             if Fake_Files:
                 mover.sample_files(sample_files1,sample_files2)
