@@ -279,6 +279,7 @@ def compression_function():
             'decompressionTime': tester.decomp_time,
             'sizeAfterDecompression': tester.file_size_after_decomp,
             'different': tester.check_if_diff})
+            st.markdown('me')
             st.markdown(data2)
             data = pd.concat([data, data2], ignore_index=True)
             
