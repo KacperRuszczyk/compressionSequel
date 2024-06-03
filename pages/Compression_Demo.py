@@ -137,10 +137,6 @@ class FileManager:
         return
         
         
-    def (self,file_from,file_to):
-        source_path = os.path.join(file_from, file_name)
-        shutil.move(source_path, file_to)
-        return
     
     def move_all_files_from_to(self,files_from,files_to):
         files_to_move = os.listdir(files_from)
