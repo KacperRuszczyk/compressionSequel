@@ -201,8 +201,8 @@ class Compresor:
         self.decomp_time = [] #6
         self.file_size_after_decomp = [] #7
         self.check_if_diff = [] #8
-        self.current_comp_method = methods[Compresor.Counter]
-        self.current_decomp_method = decomp_methods[Compresor.Counter]
+        self.current_comp_method = methods[Compresor.Counter % len(methods) -1]
+        self.current_decomp_method = decomp_methods[Compresor.Counter % len(decomp_methods) -1]
         Compresor.Counter += 1
         
     def get_file_size(self,path_with_file_name): #3, 5, 7
