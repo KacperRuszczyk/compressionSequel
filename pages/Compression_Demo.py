@@ -258,9 +258,9 @@ def compression_function():
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
             tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4   
-            st.markdown(path_with_file_name)
+            st.markdown(path_with_file_name, 1)
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
-            st.markdown(path_with_file_name)
+            st.markdown(path_with_file_name, 2)
             tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
             tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name)) #6
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
