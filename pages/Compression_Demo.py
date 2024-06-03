@@ -255,7 +255,7 @@ def compression_function():
         for method in methods:
             tester = Compresor(methods, decomp_methods) 
             st.markdown(tester.current_comp_method)
-            st.markdown(tester.current_comp_method)
+            st.markdown(tester.current_decomp_method)
             st.markdown(os.listdir(mover.compressed_dir))
             tester.add_file_name(file_name) #1
             tester.add_method() #2
