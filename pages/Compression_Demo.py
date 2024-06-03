@@ -163,6 +163,7 @@ class FileManager:
     def path_with_file_name_update(self,path_with_file_name):
         self.remove_file(path_with_file_name)
         file_name = self.get_list_files_in_dir(self.compressed_dir)
+        st.markdown(file_name)
         new_path_with_file_name = os.path.join(self.compressed_dir,file_name)
         return new_path_with_file_name
   
