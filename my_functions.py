@@ -44,14 +44,14 @@ def result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,m
 def Graph_with_dots(data):
     colors_dict = {
         "gzip": "red",
-        "['gzip', '--best']": "yellow",
-        "['gzip', '--fast']": "orange",
+        "gzip --best": "yellow",
+        "gzip --fast": "orange",
         "bzip2": "blue",
-        "['bzip2', '--best']": "purple",
-        "['bzip2', '--fast']": "magenta",
+        "bzip2 --best": "purple",
+        "bzip2--fast": "magenta",
         "xz": "green",
-        "['xz', '--best']": "lime",
-        "['xz', '--fast']": "olive"}
+        "xz --best": "lime",
+        "xz --fast": "olive"}
     legend = [mpatches.Patch(color=color, label=label) for label, color in colors_dict.items()]
     colors = [colors_dict[m] for m in data['method']]
     fig = plt.figure(figsize=(12,10))
