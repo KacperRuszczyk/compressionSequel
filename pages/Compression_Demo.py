@@ -15,7 +15,6 @@ st.set_page_config(
     initial_sidebar_state='expanded'
 )
 
-
 result_path_check = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
 data = 0
 unique_methods = 0
