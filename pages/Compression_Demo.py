@@ -253,6 +253,7 @@ def compression_function():
     mover = FileManager()     
     mover.progress_bar_update(len(methods))
     progress_text = "Operation in progress. Please wait."
+    progres_amount = mover.percent_progress_bar
     progress_bar = st.progress(0, text=progress_text)
 
     for file_name in os.listdir(mover.uploaded_dir):
@@ -268,13 +269,15 @@ def compression_function():
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
 
             progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
-            progress_bar.progress(mover.percent_progress_bar, text=progress_text)
+            progress_bar.progress(progres_amount, text=progress_text)
+            progres_amount += mover.percent_progress_bar
 
             tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
 
             progress_text = f"decompressing {file_name} with {tester.current_decomp_method}. Please wait."
-            progress_bar.progress(mover.percent_progress_bar, text=progress_text)
+            progress_bar.progress(progres_amount, text=progress_text)
+            progres_amount += mover.percent_progress_bar
 
             tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
             tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name)) #6
