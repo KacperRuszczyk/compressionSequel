@@ -270,14 +270,16 @@ def compression_function():
 
             progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
             progress_bar.progress(progres_amount, text=progress_text)
-            progres_amount += mover.percent_progress_bar
+            if progres_amount < 1:
+                progres_amount += mover.percent_progress_bar
 
             tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
 
             progress_text = f"decompressing {file_name} with {tester.current_decomp_method}. Please wait."
             progress_bar.progress(progres_amount, text=progress_text)
-            progres_amount += mover.percent_progress_bar
+            if progres_amount < 1:
+                progres_amount += mover.percent_progress_bar
 
             tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
             tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name)) #6
