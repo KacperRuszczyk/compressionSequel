@@ -266,7 +266,7 @@ def compression_function():
             tester.add_file_name(file_name) #1
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
-
+            st.markdown(mover.percent_progress_bar)
             progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
             progress_bar.progress(mover.percent_progress_bar, text=progress_text)
 
