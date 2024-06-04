@@ -110,7 +110,7 @@ class FileManager:
 
     def progress_bar_update(self,methods_amount):
         files_amount = len(os.listdir(self.uploaded_dir))
-        self.percent_progress_bar = round(1 / (files_amount * methods_amount * 2), 10) 
+        self.percent_progress_bar = round(1 / (files_amount * methods_amount * 2), 1000) 
         return
     def save_file(self,uploaded_files):
         for uploaded_file in uploaded_files:
