@@ -33,6 +33,20 @@ st.subheader("Here you'll be able to examine the performance and efficiency of m
 
 st.subheader(':arrow_left: Just pick one of the sites on the left.',anchor=False)
 
+comp_button = st.button('Compress your files')
+
+
+
+progress_text = "Operation in progress. Please wait."
+progress_bar = st.progress(0, text=progress_text)
+
+if comp_button:
+    progress_text = f"compressing. Please wait."
+    progress_bar.progress(1.7, text=progress_text)
+
+
+
+
 left, mid, right = st.columns([1, 0.2, 1])
 
 with left:
