@@ -98,7 +98,8 @@ st.divider()
 
 class FileManager:
     def __init__(self):
-    
+
+        self.percent_progress_bar = 0
         self.data_dir = '/mount/src/compressionsequel/work_space/data_dir'
         self.compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
         self.decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
@@ -106,7 +107,11 @@ class FileManager:
         self.uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'        
         self.sample_files1 = '/mount/src/compressionsequel/pages'        
         self.sample_files2 = '/mount/src/compressionsequel/images'
-    
+
+    def progress_bar_update(self,methods_amount):
+        files_amount = len(os.listdir(self.uploaded_dir))
+        self.percent_progress_bar = 100 / (files_amount * methods_amount * 2)
+        return
     def save_file(self,uploaded_files):
         for uploaded_file in uploaded_files:
             file_name = uploaded_file.name.replace(" ", "").replace("(", "").replace(")", "")
@@ -246,27 +251,36 @@ def compression_function():
         'different': []})
         
     mover = FileManager()     
-    
+    mover.progress_bar_update(len(methods))
+    progress_text = "Operation in progress. Please wait."
+    progress_bar = st.progress(0, text=progress_text)
+
     for file_name in os.listdir(mover.uploaded_dir):
         path_with_og_file = os.path.join(mover.uploaded_dir, file_name)
         path_with_file_name = os.path.join(mover.compressed_dir, file_name)
         shutil.copy(path_with_og_file, path_with_file_name)  
-        st.markdown('plz')
+
         for method in methods:
-            tester = Compresor(methods, decomp_methods) 
-            st.markdown(tester.current_comp_method)
-            st.markdown(tester.current_decomp_method)
-            st.markdown(os.listdir(mover.compressed_dir))
+            tester = Compresor(methods, decomp_methods)
+
             tester.add_file_name(file_name) #1
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
-            tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4   
-            st.markdown(path_with_file_name)
+
+            progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
+            progress_bar.progress(mover.percent_progress_bar, text=progress_text)
+
+            tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
-            st.markdown(path_with_file_name)
+
+            progress_text = f"decompressing {file_name} with {tester.current_decomp_method}. Please wait."
+            progress_bar.progress(mover.percent_progress_bar, text=progress_text)
+
             tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
             tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name)) #6
+
             path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
+
             tester.file_size_after_decomp.append(tester.get_file_size(path_with_file_name)) #7
             tester.compare(path_with_file_name,path_with_og_file) #8
             
@@ -284,7 +298,11 @@ def compression_function():
         mover.remove_file(path_with_file_name)
             
     data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
-    data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)  
+    data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)
+
+    progress_bar.empty()
+    st.success('results are done!', icon='🥧')
+
     return
  
 
