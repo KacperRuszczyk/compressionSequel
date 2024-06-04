@@ -110,7 +110,7 @@ class FileManager:
 
     def progress_bar_update(self,methods_amount):
         files_amount = len(os.listdir(self.uploaded_dir))
-        self.percent_progress_bar = round(100 / (files_amount * methods_amount * 2), 1)
+        self.percent_progress_bar = 1 / (files_amount * methods_amount * 2)
         return
     def save_file(self,uploaded_files):
         for uploaded_file in uploaded_files:
@@ -266,7 +266,7 @@ def compression_function():
             tester.add_file_name(file_name) #1
             tester.add_method() #2
             tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
-            st.markdown(mover.percent_progress_bar)
+
             progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
             progress_bar.progress(mover.percent_progress_bar, text=progress_text)
 
