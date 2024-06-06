@@ -41,9 +41,9 @@ class Compresor:
             text=True
         )
         if 'identical' in result_temp.stdout:
-            self.check_if_diff.append(True)
+            self.check_if_diff.append('identical')
         else:
-            self.check_if_diff.append(False)
+            self.check_if_diff.append('not identical')
         return
 
     def add_file_name(self, file_name):  # 1
