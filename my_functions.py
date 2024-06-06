@@ -9,6 +9,10 @@ import subprocess
 import shutil
 import time
 
+from Classes.Compresor import Compresor
+from Classes.FileManager import FileManager
+
+
 def kb_to_mb(size):
     size = size / 1024
     return size
@@ -44,14 +48,14 @@ def result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,m
 def Graph_with_dots(data):
     colors_dict = {
         "gzip": "red",
-        "['gzip', '--best']": "yellow",
-        "['gzip', '--fast']": "orange",
+        "gzip --best": "yellow",
+        "gzip --fast": "orange",
         "bzip2": "blue",
-        "['bzip2', '--best']": "purple",
-        "['bzip2', '--fast']": "magenta",
+        "bzip2 --best": "purple",
+        "bzip2 --fast": "magenta",
         "xz": "green",
-        "['xz', '--best']": "lime",
-        "['xz', '--fast']": "olive"}
+        "xz --best": "lime",
+        "xz --fast": "olive"}
     legend = [mpatches.Patch(color=color, label=label) for label, color in colors_dict.items()]
     colors = [colors_dict[m] for m in data['method']]
     fig = plt.figure(figsize=(12,10))
@@ -222,3 +226,76 @@ def _get_session():
     from streamlit.runtime.scriptrunner import get_script_run_ctx
     session_id = get_script_run_ctx().session_id
     return session_id
+
+
+def compression_function(methods,decomp_methods):
+    data = pd.DataFrame({
+        'method': [],
+        'filename': [],
+        'sizeBefore': [],
+        'compressionTime': [],
+        'compressedFileSize': [],
+        'decompressionTime': [],
+        'sizeAfterDecompression': [],
+        'different': []})
+
+    mover = FileManager()
+    mover.progress_bar_update(len(methods))
+    progress_text = "Operation in progress. Please wait."
+    progres_amount = mover.percent_progress_bar
+    progress_bar = st.progress(0, text=progress_text)
+
+    for file_name in os.listdir(mover.uploaded_dir):
+        path_with_og_file = os.path.join(mover.uploaded_dir, file_name)
+        path_with_file_name = os.path.join(mover.compressed_dir, file_name)
+        shutil.copy(path_with_og_file, path_with_file_name)
+
+        for method in methods:
+            tester = Compresor(methods, decomp_methods)
+
+            tester.add_file_name(file_name)  # 1
+            tester.add_method()  # 2
+            tester.file_size.append(tester.get_file_size(path_with_file_name))  # 3
+
+            progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
+            progress_bar.progress(progres_amount, text=progress_text)
+            if progres_amount < 1 - mover.percent_progress_bar:
+                progres_amount += mover.percent_progress_bar
+
+            tester.comp_time.append(tester.compress_decompress(tester.current_comp_method, path_with_file_name))  # 4
+            path_with_file_name = mover.path_with_file_name_update(path_with_file_name)  # update
+
+            progress_text = f"decompressing {file_name} with {tester.current_decomp_method}. Please wait."
+            progress_bar.progress(progres_amount, text=progress_text)
+            if progres_amount < 1 - mover.percent_progress_bar:
+                progres_amount += mover.percent_progress_bar
+
+            tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))  # 5
+            tester.decomp_time.append(
+                tester.compress_decompress(tester.current_decomp_method, path_with_file_name))  # 6
+
+            path_with_file_name = mover.path_with_file_name_update(path_with_file_name)  # update
+
+            tester.file_size_after_decomp.append(tester.get_file_size(path_with_file_name))  # 7
+            tester.compare(path_with_file_name, path_with_og_file)  # 8
+
+            data2 = pd.DataFrame({
+                'method': tester.comp_method,
+                'filename': tester.files_list,
+                'sizeBefore': tester.file_size,
+                'compressionTime': tester.comp_time,
+                'compressedFileSize': tester.file_size_after_comp,
+                'decompressionTime': tester.decomp_time,
+                'sizeAfterDecompression': tester.file_size_after_decomp,
+                'different': tester.check_if_diff})
+
+            data = pd.concat([data, data2], ignore_index=True)
+        mover.remove_file(path_with_file_name)
+
+    data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
+    data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)
+
+    progress_bar.empty()
+    st.success('results are done!', icon='🥧')
+
+    return

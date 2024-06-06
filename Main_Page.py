@@ -33,6 +33,7 @@ st.subheader("Here you'll be able to examine the performance and efficiency of m
 
 st.subheader(':arrow_left: Just pick one of the sites on the left.',anchor=False)
 
+
 left, mid, right = st.columns([1, 0.2, 1])
 
 with left:
