@@ -1,7 +1,7 @@
 import os
 import subprocess
 import time
-
+import pandas as pd
 class Compresor:
     Counter = 0
 
