@@ -57,7 +57,7 @@ class Compresor:
         data = pd.read_csv(result_path_check)
         self.unique_methods = list(set(data['method']))
         averageTime = data['compressionTime'].mean()
-        for method in unique_methods:
+        for method in self.unique_methods:
             mask = data['method'] == method
             self.meanCompressionFactor.append(data['compressionFactor'][mask].mean())
             self.meanCompressionTime.append(data['compressionTime'][mask].mean())
