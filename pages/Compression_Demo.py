@@ -12,15 +12,9 @@ st.set_page_config(
     initial_sidebar_state='expanded'
 )
 mover = FileManager()
-
-result_path_check = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
-data = 0
-unique_methods = 0
 methods = []
 decomp_methods = []
-meanCompressionFactor = []
-meanCompressionTime = []
-meanDecompressionTime = []
+
 
 st.title(':orange[Compression Demo]',anchor=False)
 st.markdown("*1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).*")
@@ -117,8 +111,8 @@ st.divider()
 
 if os.path.isfile(mover.result_path_check):
     tester = Compresor(methods, decomp_methods)
-    tester.create_graph_data(result_path_check)
-
+    tester.create_graph_data(mover.result_path_check)
+    data = pd.read_csv(mover.result_path_check)
 
 
 
@@ -135,7 +129,7 @@ with col3:
     
 
 if page1:
-    if os.path.isfile(result_path_check):
+    if os.path.isfile(mover.result_path_check):
         st.title('Graphs')
         st.bar_chart(pd.DataFrame({'Method': tester.unique_methods, 'Compression Factor': tester.meanCompressionFactor}), x='Method', y='Compression Factor')
         st.bar_chart(pd.DataFrame({'Method': tester.unique_methods, 'Compression Time (s)': tester.meanCompressionTime}), x='Method', y='Compression Time (s)')
@@ -143,13 +137,13 @@ if page1:
     else:
         st.warning('No results', icon="⚠️")
 if page2:
-    if os.path.isfile(result_path_check):
+    if os.path.isfile(mover.result_path_check):
         st.title('Data Frame')
         st.dataframe(data)
     else:
         st.warning('No results', icon="⚠️")
 if page3:
-    if os.path.isfile(result_path_check):
+    if os.path.isfile(mover.result_path_check):
         st.title('OG Graph ')
         st.pyplot(my_functions.Graph_with_dots(data))
     else:
