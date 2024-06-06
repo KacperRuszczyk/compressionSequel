@@ -1,12 +1,9 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 import pandas as pd
 import os
-import subprocess
-import shutil
-import time
 
+from Classes.Compresor import Compresor
+from Classes.FileManager import FileManager
 import my_functions
 
 st.set_page_config(
@@ -14,6 +11,7 @@ st.set_page_config(
     page_icon="📊",
     initial_sidebar_state='expanded'
 )
+mover = FileManager()
 
 result_path_check = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
 data = 0
@@ -27,7 +25,7 @@ meanDecompressionTime = []
 st.title(':orange[Compression Demo]',anchor=False)
 st.markdown("*1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).*")
 st.markdown("*2. Choose the compression options that you would like to test.*")
-st.markdown('*3. Click the "compress ..." button. (FYI, that buttons also clears the results data from previous attempts.)*')
+st.markdown('*3. Click the "compress ..." button. (FYI, that buttons also clears the results data from previous attempt.)*')
 st.markdown('*4. Wait until the process is done and view the results.*')
 st.divider()
  
@@ -96,228 +94,7 @@ with col3:
 st.divider()
         
 
-class FileManager:
-    def __init__(self):
 
-        self.percent_progress_bar = 0
-        self.data_dir = '/mount/src/compressionsequel/work_space/data_dir'
-        self.compressed_dir = '/mount/src/compressionsequel/work_space/compressed_dir'
-        self.decompressed_dir = '/mount/src/compressionsequel/work_space/decompressed_dir'
-        self.results_dir = '/mount/src/compressionsequel/work_space/results_dir'
-        self.uploaded_dir = '/mount/src/compressionsequel/work_space/uploaded_dir'        
-        self.sample_files1 = '/mount/src/compressionsequel/pages'        
-        self.sample_files2 = '/mount/src/compressionsequel/images'
-
-    def progress_bar_update(self,methods_amount):
-        files_amount = len(os.listdir(self.uploaded_dir))
-        self.percent_progress_bar = round(1 / (files_amount * methods_amount * 2), 1000) 
-        return
-    def save_file(self,uploaded_files):
-        for uploaded_file in uploaded_files:
-            file_name = uploaded_file.name.replace(" ", "").replace("(", "").replace(")", "")
-            with open(os.path.join(self.uploaded_dir, file_name), "wb") as f:
-                f.write(uploaded_file.getbuffer())
-        return
-        
-    def sample_files(self):
-        files_to_copy = os.listdir(self.sample_files1)
-        for file_name in files_to_copy:
-            source_path = os.path.join(self.sample_files1, file_name)
-            destination_path = os.path.join(self.uploaded_dir, file_name)
-            shutil.copy(source_path, destination_path) 
-        files_to_copy = os.listdir(self.sample_files2)
-        for file_name in files_to_copy:
-            source_path = os.path.join(self.sample_files2, file_name)
-            destination_path = os.path.join(self.uploaded_dir, file_name)
-            shutil.copy(source_path, destination_path) 
-        return
-        
-    def copy_files_from_to(self,files_from,files_to):
-        files_to_copy = os.listdir(files_from)
-        for file_name in files_to_copy:
-            source_path = os.path.join(files_from, file_name)
-            destination_path = os.path.join(files_to, file_name)
-            shutil.copy(source_path, destination_path)
-        return
-        
-        
-    
-    def move_all_files_from_to(self,files_from,files_to):
-        files_to_move = os.listdir(files_from)
-        for file_name in files_to_move:
-            source_path = os.path.join(files_from, file_name)
-            shutil.move(source_path, files_to)
-        return
-        
-    def remove_file(self,path_with_file_name):
-        if os.path.isfile(path_with_file_name):
-            os.remove(path_with_file_name)
-        return   
-        
-    def remove_all_files(self,Dir_Path):
-        for file_name in os.listdir(Dir_Path):
-            path_with_file_name = os.path.join(Dir_Path, file_name)
-            os.remove(path_with_file_name)
-        return
-        
-    def get_list_files_in_dir(self,Dir_Path):
-        File_List = os.listdir(Dir_Path)
-        return File_List
-    
-    def path_with_file_name_update(self,path_with_file_name_old):
-        self.remove_file(path_with_file_name_old)
-        file_name = self.get_list_files_in_dir(self.compressed_dir)
-        new_path_with_file_name_new = os.path.join(self.compressed_dir,file_name[0])
-        return new_path_with_file_name_new
-  
-    def clear_work_space(self):
-        for file_name in os.listdir(self.data_dir):
-            path_with_file_name = os.path.join(self.data_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(self.compressed_dir):
-            path_with_file_name = os.path.join(self.compressed_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(self.decompressed_dir):
-            path_with_file_name = os.path.join(self.decompressed_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(self.results_dir):
-            path_with_file_name = os.path.join(self.results_dir, file_name)
-            os.remove(path_with_file_name)
-        for file_name in os.listdir(self.uploaded_dir):
-            path_with_file_name = os.path.join(self.uploaded_dir, file_name)
-            os.remove(path_with_file_name)
-        return      
-
-  
-        
-        
-class Compresor:
-    
-    Counter = 0
-    
-    def __init__(self, methods, decomp_methods):
-                
-        self.files_list = [] #1
-        self.comp_method = [] #2
-        self.file_size = [] #3
-        self.comp_time = [] #4
-        self.file_size_after_comp = [] #5
-        self.decomp_time = [] #6
-        self.file_size_after_decomp = [] #7
-        self.check_if_diff = [] #8
-        self.current_comp_method = methods[Compresor.Counter % len(methods) -1]
-        self.current_decomp_method = decomp_methods[Compresor.Counter % len(decomp_methods) -1]
-        Compresor.Counter += 1
-        
-    def get_file_size(self,path_with_file_name): #3, 5, 7
-        File_Size = os.path.getsize(path_with_file_name)
-        return File_Size
-    
-    def compress_decompress(self,method,File_Path): #4, 6
-        start_time = time.time()
-        os.system(f'{method} {File_Path}')
-        end_time = time.time()
-        result_time = end_time - start_time        
-        return result_time
-    
-    def compare(self,file_after,file_before): #8
-        result_temp = subprocess.run([f"diff -s {file_after} {file_before} | awk '{{print $6}}'"], shell=True, capture_output=True, text=True)
-        self.check_if_diff.append(result_temp)
-        return
-    
-    def add_file_name(self,file_name): #1
-        self.files_list.append(file_name)
-        return
-    
-    def add_method(self): #2
-        self.comp_method.append(self.current_comp_method)
-        return
-            
-
-
-    
-    
-    
-def compression_function():   
-
-    data = pd.DataFrame({
-        'method': [] ,
-        'filename': [] ,
-        'sizeBefore': [] ,
-        'compressionTime': [],
-        'compressedFileSize': [],
-        'decompressionTime': [],
-        'sizeAfterDecompression': [],
-        'different': []})
-        
-    mover = FileManager()     
-    mover.progress_bar_update(len(methods))
-    progress_text = "Operation in progress. Please wait."
-    progres_amount = mover.percent_progress_bar
-    progress_bar = st.progress(0, text=progress_text)
-
-    for file_name in os.listdir(mover.uploaded_dir):
-        path_with_og_file = os.path.join(mover.uploaded_dir, file_name)
-        path_with_file_name = os.path.join(mover.compressed_dir, file_name)
-        shutil.copy(path_with_og_file, path_with_file_name)  
-
-        for method in methods:
-            tester = Compresor(methods, decomp_methods)
-
-            tester.add_file_name(file_name) #1
-            tester.add_method() #2
-            tester.file_size.append(tester.get_file_size(path_with_file_name)) #3
-
-            progress_text = f"compressing {file_name} with {tester.current_comp_method}. Please wait."
-            progress_bar.progress(progres_amount, text=progress_text)
-            if progres_amount < 1 - mover.percent_progress_bar:
-                progres_amount += mover.percent_progress_bar
-
-            tester.comp_time.append(tester.compress_decompress(tester.current_comp_method,path_with_file_name)) #4
-            path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
-
-            progress_text = f"decompressing {file_name} with {tester.current_decomp_method}. Please wait."
-            progress_bar.progress(progres_amount, text=progress_text)
-            if progres_amount < 1 - mover.percent_progress_bar:
-                progres_amount += mover.percent_progress_bar
-
-            tester.file_size_after_comp.append(tester.get_file_size(path_with_file_name))#5
-            tester.decomp_time.append(tester.compress_decompress(tester.current_decomp_method,path_with_file_name)) #6
-
-            path_with_file_name = mover.path_with_file_name_update(path_with_file_name) #update
-
-            tester.file_size_after_decomp.append(tester.get_file_size(path_with_file_name)) #7
-            tester.compare(path_with_file_name,path_with_og_file) #8
-            
-            data2 = pd.DataFrame({
-            'method': tester.comp_method,
-            'filename': tester.files_list,
-            'sizeBefore': tester.file_size,
-            'compressionTime': tester.comp_time,
-            'compressedFileSize': tester.file_size_after_comp,
-            'decompressionTime': tester.decomp_time,
-            'sizeAfterDecompression': tester.file_size_after_decomp,
-            'different': tester.check_if_diff})
-
-            data = pd.concat([data, data2], ignore_index=True)
-        mover.remove_file(path_with_file_name)
-            
-    data['compressionFactor'] = 100 - (100 * data['compressedFileSize'] / data['sizeBefore'])
-    data.to_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv', index=False)
-
-    progress_bar.empty()
-    st.success('results are done!', icon='🥧')
-
-    return
- 
-
-
-
-        
-        
-        
-mover = FileManager()   
-        
 comp_button = st.button('Compress your files')
 if comp_button:   
     mover.clear_work_space()
@@ -327,7 +104,7 @@ if comp_button:
                 mover.sample_files()
             else:
                 mover.save_file(uploaded_files) 
-            compression_function()
+            my_functions.compression_function(methods,decomp_methods)
         else:
             st.warning('No methods have been selected', icon="⚠️")
     else:
@@ -338,15 +115,9 @@ if comp_button:
 
 st.divider()
 
-if os.path.isfile('/mount/src/compressionsequel/work_space/results_dir/result.csv'):      
-    data = pd.read_csv('/mount/src/compressionsequel/work_space/results_dir/result.csv')
-    unique_methods = list(set(data['method']))
-    averageTime = data['compressionTime'].mean()
-    for method in unique_methods:
-        mask = data['method'] == method
-        meanCompressionFactor.append(data['compressionFactor'][mask].mean())
-        meanCompressionTime.append(data['compressionTime'][mask].mean())
-        meanDecompressionTime.append(data['decompressionTime'][mask].mean())
+if os.path.isfile(mover.result_path_check):
+    tester = Compresor(methods, decomp_methods)
+    tester.create_graph_data(result_path_check)
 
 
 
@@ -366,15 +137,14 @@ with col3:
 if page1:
     if os.path.isfile(result_path_check):
         st.title('Graphs')
-        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Factor': meanCompressionFactor}), x='Method', y='Compression Factor')
-        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Compression Time (s)': meanCompressionTime}), x='Method', y='Compression Time (s)')
-        st.bar_chart(pd.DataFrame({'Method': unique_methods, 'Decompression Time (s)': meanDecompressionTime}), x='Method', y='Decompression Time (s)')
+        st.bar_chart(pd.DataFrame({'Method': tester.unique_methods, 'Compression Factor': tester.meanCompressionFactor}), x='Method', y='Compression Factor')
+        st.bar_chart(pd.DataFrame({'Method': tester.unique_methods, 'Compression Time (s)': tester.meanCompressionTime}), x='Method', y='Compression Time (s)')
+        st.bar_chart(pd.DataFrame({'Method': tester.unique_methods, 'Decompression Time (s)': tester.meanDecompressionTime}), x='Method', y='Decompression Time (s)')
     else:
         st.warning('No results', icon="⚠️")
 if page2:
     if os.path.isfile(result_path_check):
         st.title('Data Frame')
-        #st.dataframe(my_functions.result_data_frame(unique_methods,meanCompressionFactor,meanCompressionTime,meanDecompressionTime))
         st.dataframe(data)
     else:
         st.warning('No results', icon="⚠️")
@@ -387,8 +157,3 @@ if page3:
 
 
 
-
-       
-#PATH = '/mount/src/compressionsequel/work_space/results_dir/result.csv'
-#if st.button("Download File"):
-    #st.markdown(f'<a href="{PATH}" download="results.csv">download</a>', unsafe_allow_html=True)
