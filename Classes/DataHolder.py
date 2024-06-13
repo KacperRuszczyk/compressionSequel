@@ -25,7 +25,7 @@ class DataHolder:
 
         data = pd.read_csv(result_path_check)
         self.unique_methods = list(set(data['comp_metode']))
-        averageTime = data['compressionTime'].mean()
+        averageTime = data['comp_time'].mean()
         for method in self.unique_methods:
             mask = data['method'] == method
             self.meanCompressionFactor.append(data['compressionFactor'][mask].mean())
