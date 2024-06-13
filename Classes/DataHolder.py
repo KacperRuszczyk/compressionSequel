@@ -18,7 +18,7 @@ class DataHolder:
 
     def prep(self, Path):
         data = pd.DataFrame(self.data)
-        data['compressionFactor'] = 100 - (100 * self.data['file_size_after_comp'] / self.data['file_size'])
+        data['compressionFactor'] = 100 - (100 * data['file_size_after_comp'] / data['file_size'])
         data.to_csv(Path, index=False)
         return
     def create_graph_data(self, result_path_check):
