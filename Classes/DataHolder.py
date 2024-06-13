@@ -27,7 +27,7 @@ class DataHolder:
         self.unique_methods = list(set(data['comp_metode']))
         averageTime = data['comp_time'].mean()
         for method in self.unique_methods:
-            mask = data['method'] == method
+            mask = data['comp_metode'] == method
             self.meanCompressionFactor.append(data['compressionFactor'][mask].mean())
             self.meanCompressionTime.append(data['compressionTime'][mask].mean())
             self.meanDecompressionTime.append(data['decompressionTime'][mask].mean())
