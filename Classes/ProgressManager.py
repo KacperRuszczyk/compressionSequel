@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from Classes.FileManager import FileManager
 from Classes.PathManager import PathManager
