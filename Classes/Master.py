@@ -20,7 +20,7 @@ class Master:
         self.progress_manager.progress_bar_start(methods)
 
         for file_name in os.listdir(self.path_manager.uploaded_dir):
-            self.compression_subfunction(self, file_name, methods, decomp_methods)
+            self.compression_subfunction(file_name, methods, decomp_methods)
 
         self.data_holder.prep(self.path_manager.result_path_check)
         self.progress_manager.progress_bar_end()
