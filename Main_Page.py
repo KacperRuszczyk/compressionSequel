@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 #Debug/compressionPlot
 import streamlit as st
-import pandas as pd
+from Classes.FileManager import FileManager
+from Classes.PathManager import PathManager
 import os
 
-import my_functions
+file_manager = FileManager()
+path_manager = PathManager()
 
 #streamlit boot PATH creation
 if os.path.exists('/mount/src/compressionsequel/work_space') == False:
@@ -15,7 +17,7 @@ if os.path.exists('/mount/src/compressionsequel/work_space') == False:
     os.mkdir('/mount/src/compressionsequel/work_space/results_dir')
     os.mkdir('/mount/src/compressionsequel/work_space/uploaded_dir')
 
-my_functions.clear_work_space()
+file_manager.clear_work_space()
 
 st.set_page_config(
     page_title="Compression",
