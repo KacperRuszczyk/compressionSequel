@@ -6,7 +6,9 @@ from Classes.Master import Master
 from Classes.FileManager import FileManager
 from Classes.PathManager import PathManager
 from Classes.DataHolder import DataHolder
+from Classes.Grapher import Grapher
 import my_functions
+
 
 st.set_page_config(
     page_title="Compression Demo",
@@ -16,6 +18,7 @@ st.set_page_config(
 file_manager = FileManager()
 data_holder = DataHolder()
 path_manager = PathManager()
+grapher = Grapher()
 master = Master()
 methods = []
 decomp_methods = []
@@ -148,6 +151,6 @@ if page2:
 if page3:
     if os.path.isfile(path_manager.result_path_check):
         st.title('OG Graph ')
-        st.pyplot(my_functions.Graph_with_dots(data))
+        st.pyplot(grapher.og_graph(data))
     else:
         st.warning('No results', icon="⚠️")
