@@ -7,7 +7,6 @@ from Classes.FileManager import FileManager
 from Classes.PathManager import PathManager
 from Classes.DataHolder import DataHolder
 from Classes.Grapher import Grapher
-import my_functions
 
 
 st.set_page_config(
