@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import subprocess
 
-import my_functions
+
 
 
 
