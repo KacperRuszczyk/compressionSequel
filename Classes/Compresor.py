@@ -16,11 +16,10 @@ class Compresor:
         return file_Size
 
     def compress_decompress(self, method, File_Path):  # 4, 6
-        start_time = time.time()
+
         os.system(f'{method} {File_Path}')
-        end_time = time.time()
-        result_time = end_time - start_time
-        return result_time
+
+        return
 
     def compare(self, file_after, file_before):  # 8
         result_temp = subprocess.run(
