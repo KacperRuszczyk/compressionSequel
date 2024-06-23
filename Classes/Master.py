@@ -40,14 +40,14 @@ class Master:
             self.progress_manager.progress_bar_iter(file_name, compresor.current_comp_method)  # bar_comp
 
             self.data_holder.data['comp_time'].append(
-                self.timer.measure(compresor.compress_decompress(compresor.current_comp_method, path_with_file_name)))  # 4
+                self.timer.measure(compresor.compress_decompress,compresor.current_comp_method, path_with_file_name))  # 4
             path_with_file_name = self.file_manager.path_with_file_name_update(path_with_file_name)  # update
 
             self.progress_manager.progress_bar_iter(file_name, compresor.current_decomp_method)  # bar_decomp
 
             self.data_holder.data['file_size_after_comp'].append(compresor.get_file_size(path_with_file_name))  # 5
             self.data_holder.data['decomp_time'].append(
-                self.timer.measure(compresor.compress_decompress(compresor.current_decomp_method, path_with_file_name)))  # 6
+                self.timer.measure(compresor.compress_decompress,compresor.current_decomp_method, path_with_file_name))  # 6
 
             path_with_file_name = self.file_manager.path_with_file_name_update(path_with_file_name)  # update
 
