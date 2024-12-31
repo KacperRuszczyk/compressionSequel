@@ -27,7 +27,7 @@ st.markdown(
     "*1. Upload some files (I would recommend uploading one file extension type, but I'm not going to tell you how to live your life).*")
 st.markdown("*2. Choose the compression options that you would like to test.*")
 st.markdown(
-    '*3. Click the "compress ..." button. (FYI, that buttons also clears the results data from previous attempt.)*')
+    '*3. Click the "compress ..." button. (FYI, that button also clears the results data from previous attempt.)*')
 st.markdown('*4. Wait until the process is done and view the results.*')
 st.divider()
 
